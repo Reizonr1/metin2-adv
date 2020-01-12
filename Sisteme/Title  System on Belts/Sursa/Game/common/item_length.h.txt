@@ -1,0 +1,8 @@
+//cauta
+
+ITEM_BELT,				//34 벨트
+
+//adauga sub
+
+	ITEM_NORMAL_TITLE,		//36
+	ITEM_NORMAL_BUFF,		//37

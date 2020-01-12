@@ -1,0 +1,30 @@
+3.Rezolvare:
+3.1.input_main.cpp
+//Cauta functia:
+void CInputMain::QuickslotAdd(LPCHARACTER ch, const char * data)
+//Inlocuieste-o cu:
+void CInputMain::QuickslotAdd(LPCHARACTER ch, const char * data)
+{
+   struct command_quickslot_add * pinfo = (struct command_quickslot_add *) data;
+#ifdef ENABLE_FIX_QUICK_SLOT   
+   if(pinfo->slot.type == QUICKSLOT_TYPE_ITEM)
+   {
+      LPITEM item = NULL;
+      
+      TItemPos srcCell(INVENTORY, pinfo->slot.pos);
+      
+      if (!(item = ch->GetItem(srcCell)))
+         return;
+      
+      if (item->GetType() != ITEM_USE && item->GetType() != ITEM_QUEST)
+         return;
+   }
+#endif
+   
+   ch->SetQuickslot(pinfo->pos, pinfo->slot);
+}
+
+
+3.2.service.h
+//Adauga:
+#define ENABLE_FIX_QUICK_SLOT

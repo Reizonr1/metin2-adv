@@ -1,0 +1,4 @@
+ALTER TABLE account.account ADD guard_ip VARCHAR(15) NOT NULL DEFAULT '0.0.0.0';
+ALTER TABLE account.account ADD guard_status TINYINT(1) NOT NULL DEFAULT '0';
+ALTER TABLE account.account ADD guard_date INT(11) NOT NULL DEFAULT '0';
+ALTER TABLE account.account ADD guard_code INT(9) NOT NULL DEFAULT '0';

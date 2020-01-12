@@ -1,0 +1,77 @@
+întrati în sursa server>game>src fisierul
+cmd_gm.cpp
+
+si cautati functia: 
+ACMD(do_item)
+
+si înlocuiti-o cu:
+ACMD(do_item)
+{
+    char arg1[256], arg2[256];
+    two_arguments(argument, arg1, sizeof(arg1), arg2, sizeof(arg2));
+       if (!*arg1)
+    {
+        ch->ChatPacket(CHAT_TYPE_INFO, "Usage: item <item vnum>");
+        return;
+    }
+       int iCount = 1;
+       if (*arg2)
+    {
+        str_to_number(iCount, arg2);
+        iCount = MINMAX(1, iCount, ITEM_MAX_COUNT);
+    }
+       DWORD dwVnum;
+       if (isnhdigit(*arg1))
+        str_to_number(dwVnum, arg1);
+    else
+    {
+        if (!ITEM_MANAGER::instance().GetVnum(arg1, dwVnum))
+        {
+            ch->ChatPacket(CHAT_TYPE_INFO, "#%u item not exist by that vnum.", dwVnum);
+            return;
+        }
+    }
+       LPITEM item = ITEM_MANAGER::instance().CreateItem(dwVnum, iCount, 0, true);
+       if (item)
+    {
+        if (item->IsDragonSoul())
+        {
+            int iEmptyPos = ch->GetEmptyDragonSoulInventory(item);
+               if (iEmptyPos != -1)
+            {
+                item->AddToCharacter(ch, TItemPos(DRAGON_SOUL_INVENTORY, iEmptyPos));
+                LogManager::instance().ItemLog(ch, item, "GM", item->GetName());
+            }
+            else
+            {
+                M2_DESTROY_ITEM(item);
+                if (!ch->DragonSoul_IsQualified())
+                {
+                    ch->ChatPacket(CHAT_TYPE_INFO, "RÎsARE C°LsC­ µÇÁö lER?.");
+                }
+                else
+                    ch->ChatPacket(CHAT_TYPE_INFO, "Not enough inventory space.");
+            }
+        }
+        else
+        {
+            int iEmptyPos = ch->GetEmptyInventory(item->GetSize());
+               if (iEmptyPos != -1)
+            {
+                if (item->GetType() == ITEM_COSTUME && item->GetSubType() == COSTUME_ACCE)
+                    item->SetSocket(1, iCount);
+                   item->AddToCharacter(ch, TItemPos(INVENTORY, iEmptyPos));
+                LogManager::instance().ItemLog(ch, item, "GM", item->GetName());
+               }
+            else
+            {
+                M2_DESTROY_ITEM(item);
+                ch->ChatPacket(CHAT_TYPE_INFO, "Not enough inventory space.");
+            }
+        }
+    }
+    else
+    {
+        ch->ChatPacket(CHAT_TYPE_INFO, "#%u item not exist by that vnum.", dwVnum);
+    }
+}

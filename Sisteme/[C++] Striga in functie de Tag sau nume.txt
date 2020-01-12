@@ -1,0 +1,106 @@
+//Toate modificarile sunt in sursa game/All changes are in the game source
+ 
+//In common->service.h adauga/add:
+#define ENABLE_GLOBAL_CHAT
+ 
+//In input_p2p.cpp
+//Cauta/Search:
+    void operator () (LPDESC d)
+    {
+        if (!d->GetCharacter()|| (d->GetCharacter()->GetGMLevel() == GM_PLAYER && d->GetEmpire() != m_bEmpire))
+            return;
+ 
+        d->GetCharacter()->ChatPacket(CHAT_TYPE_SHOUT, "%s", m_str);
+    }
+   
+//Si modifica/And change like this:
+    void operator () (LPDESC d)
+    {
+        if (!d->GetCharacter())
+            return;
+ 
+        d->GetCharacter()->ChatPacket(CHAT_TYPE_SHOUT, "%s", m_str);
+    }
+   
+===========================================================================================================================
+   
+//In input_main.cpp
+//Cauta/Search:
+    char chatbuf[CHAT_MAX_LEN + 1];
+    int len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s", ch->GetName(), buf);
+   
+//Modifica de forma asta/Change like this:
+    char chatbuf[CHAT_MAX_LEN + 1];
+    int len;
+   
+//Si adauga sub/And add bellow:
+#ifdef ENABLE_GLOBAL_CHAT
+    if(ch->GetGMLevel() > GM_PLAYER)
+    {
+       
+        if (strncmp("[Owner]", ch->GetName(), 5) == 0)
+        {
+            len = snprintf(chatbuf, sizeof(chatbuf), "[|cFF00FF00Detinator Server|r] %s : %s", ch->GetName(), buf);
+        }
+        else if (strncmp("[SGA]", ch->GetName(), 3) == 0)
+        {
+            len = snprintf(chatbuf, sizeof(chatbuf), "[|cFF00FF00Administrator|r] %s : %s", ch->GetName(), buf);
+        }
+        else
+        {
+            len = snprintf(chatbuf, sizeof(chatbuf), "[|cFF00FF00Staff|r] %s : %s", ch->GetName(), buf);
+        }
+    }
+    else
+        len = snprintf(chatbuf, sizeof(chatbuf), "[|cFF00FF00Lv. %d|r] %s : %s", ch->GetLevel(), ch->GetName(), buf);
+#else
+    len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s", ch->GetName(), buf);
+#endif
+       
+//Cauta/Search:    
+        if ((thecore_heart->pulse - (int) ch->GetLastShoutPulse() < passes_per_sec * 15))
+            return (iExtraLen);
+ 
+        ch->SetLastShoutPulse(thecore_heart->pulse);
+//Adauga sub/Add bellow:
+ 
+#ifdef ENABLE_GLOBAL_CHAT
+        const char* kingdoms[3] = { "|cFFff0000|H|h[Shinsoo]|cFFA7FFD4|H|h", "|cFFFFFF00|H|h[Chunjo]|cFFA7FFD4|H|h", "|cFF0080FF|H|h[Jinno]|cFFA7FFD4|H|h" };
+        char chatbuf_global[CHAT_MAX_LEN + 1];
+       
+        if(ch->GetGMLevel() > GM_PLAYER)
+        {
+            if (strncmp("[Owner]", ch->GetName(), 5) == 0)
+            {
+                int len_global = snprintf(chatbuf_global, sizeof(chatbuf_global), "[|cFF00FF00Detinator Server|r] %s : %s", ch->GetName(), buf);
+            }
+            else if (strncmp("[SGA]", ch->GetName(), 3) == 0)
+            {
+                int len_global = snprintf(chatbuf_global, sizeof(chatbuf_global), "[|cFF00FF00Administrator|r] %s : %s", ch->GetName(), buf);
+            }
+            else
+            {
+                int len_global = snprintf(chatbuf_global, sizeof(chatbuf_global), "[|cFF00FF00[Staff]|r] %s : %s",  ch->GetName(), buf);
+            }
+        }
+        else
+            int len_global = snprintf(chatbuf_global, sizeof(chatbuf_global), "%s [CH%d][|cFF00FF00Lv. %d|r] %s: %s",kingdoms[ch->GetEmpire()-1], g_bChannel, ch->GetLevel(), ch->GetName(), buf);
+       
+#else
+    int len_global = snprintf(chatbuf_global, sizeof(chatbuf_global), "%s : %s",ch->GetName(), buf);
+#endif
+        TPacketGGShout p;
+ 
+        p.bHeader = HEADER_GG_SHOUT;
+        p.bEmpire = ch->GetEmpire();
+        strlcpy(p.szText, chatbuf_global, sizeof(p.szText));
+ 
+        P2P_MANAGER::instance().Send(&p, sizeof(TPacketGGShout));
+ 
+        SendShout(chatbuf_global, ch->GetEmpire());
+ 
+        return (iExtraLen);
+    }
+
+
+NEFUNCTIONAL

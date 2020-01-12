@@ -1,0 +1,12 @@
+Cauta ---------
+
+DRAGON_SOUL_INVENTORY,
+
+Adauga sub ------
+
+#ifdef WJ_SPLIT_INVENTORY_SYSTEM
+	INVENTORY,
+	INVENTORY,
+	INVENTORY,
+	INVENTORY,
+#endif

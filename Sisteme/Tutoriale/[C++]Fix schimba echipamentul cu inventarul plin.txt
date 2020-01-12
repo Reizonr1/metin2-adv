@@ -1,0 +1,9 @@
+Intrati in game, dechideti char_item.cpp si cautati:
+if (false == CanUnequipNow(item2) || false == CanEquipNow(item1))
+
+O inlocuiti cu:
+//if (false == CanUnequipNow(item2) || false == CanEquipNow(item1))
+if (false == CanEquipNow(item1))
+    return false;
+if (item2->IsDragonSoul() && false == CanUnequipNow(item2))
+    return false;

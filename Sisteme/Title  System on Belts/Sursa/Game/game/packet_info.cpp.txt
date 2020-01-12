@@ -1,0 +1,9 @@
+//cauta
+
+Set(HEADER_CG_STATE_CHECKER, sizeof(BYTE), "ServerStateCheck", false);
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	Set(HEADER_CG_TITLE_CHOOSE, sizeof(TPacketGGTitleInfo), "TitleInfo", true);
+#endif

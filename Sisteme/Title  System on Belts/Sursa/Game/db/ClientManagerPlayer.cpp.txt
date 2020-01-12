@@ -1,0 +1,56 @@
+//adauga la inceput
+
+#define __TITLE_SYSTEM__
+
+//cauta 
+
+"horse_skill_point = %d, "
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+			"t_choosed = %d, "
+			"t_available = '%s', "
+#endif
+
+//cauta
+
+pkTab->horse_skill_point);
+
+//modifica cu
+
+		pkTab->horse_skill_point
+#ifdef __TITLE_SYSTEM__
+		,pkTab->iTChoosed
+		,pkTab->cTAvailable
+#endif
+		);
+
+
+//cauta
+
+				"UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(last_play),horse_skill_point FROM player%s WHERE id=%d", GetTablePostfix(), packet->player_id);
+
+//modifica cu
+
+				"UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(last_play),horse_skill_point,"
+#ifdef __TITLE_SYSTEM__
+				"t_choosed, "
+				"t_available "
+#endif
+				"FROM player%s WHERE id=%d",
+
+				GetTablePostfix(), packet->player_id);
+
+//cauta
+
+str_to_number(pkTab->horse_skill_point, row[col++]);
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	str_to_number(pkTab->iTChoosed, row[col++]);
+	if (row[col])
+		strlcpy(pkTab->cTAvailable, row[col], sizeof(pkTab->cTAvailable));
+#endif
+

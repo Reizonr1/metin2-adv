@@ -1,0 +1,61 @@
+//cauta
+
+BELT_INVENTORY_SLOT_COUNT = BELT_INVENTORY_SLOT_WIDTH * BELT_INVENTORY_SLOT_HEIGHT,
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	TITLE_MAX_LEN = 200,
+#endif
+
+//cauta
+
+enum
+{
+	QUICKSLOT_TYPE_NONE,
+	QUICKSLOT_TYPE_ITEM,
+	QUICKSLOT_TYPE_SKILL,
+	QUICKSLOT_TYPE_COMMAND,
+	QUICKSLOT_TYPE_MAX_NUM,
+};
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+enum ETitles
+{
+	TITLE_0,	// 0 = default
+	TITLE_1,
+	TITLE_2,
+	TITLE_3,
+	TITLE_4,
+	TITLE_5,
+	TITLE_6,
+	TITLE_7,
+	TITLE_8,
+	TITLE_9,
+	TITLE_10,
+	TITLE_11,
+	TITLE_12,
+	TITLE_13,
+	TITLE_14,
+	TITLE_15,
+	TITLE_16,
+	TITLE_17,
+	TITLE_18,
+	TITLE_19,
+	TITLE_20,
+	TITLES_MAX_NUM
+};
+#endif
+
+
+
+//cauta
+
+WEAR_BELT,			// 23	: 신규 벨트슬롯
+
+//adauga sub
+
+	WEAR_NORMAL_TITLE,		// 28
+	WEAR_NORMAL_BUFF,		// 28

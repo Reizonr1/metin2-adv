@@ -1,0 +1,3 @@
+Run this querys - Aşağıdaki queryleri çalıştırın:
+ALTER TABLE player.player ADD pin int(9) NOT NULL DEFAULT 0;
+ALTER TABLE player.player ADD pin_kontrol int(1) NOT NULL DEFAULT 0;

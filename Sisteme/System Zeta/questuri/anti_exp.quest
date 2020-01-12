@@ -1,0 +1,32 @@
+quest anti_exp begin
+    state start begin
+		when login begin
+			cmdchat("antiexp_index "..q.getcurrentquestindex())
+		end
+		when button or info begin
+        if pc.getqf("antiexp") == 0 then
+            pc.setqf("antiexp", 1)
+            chat("Experienta a fost blocata la 0.")
+            local ep = pc.get_exp()
+            pc.give_exp2(-ep)
+            timer("erfahrung", 3)
+        elseif pc.getqf("antiexp") == 1 then
+            pc.setqf("antiexp", 0)
+            chat("Ai deblocat expperienta.")
+            end
+        end              
+        when erfahrung.timer with pc.getqf("antiexp") == 1 begin
+            local ep = pc.get_exp()
+            pc.give_exp2(-ep)
+            timer("erfahrung1", 3)
+            pc.setqf("antiexp", 1)
+        end    
+            
+        when erfahrung1.timer with pc.getqf("antiexp") == 1 begin
+            local ep = pc.get_exp()
+            pc.give_exp2(-ep)
+            timer("erfahrung", 3)
+            pc.setqf("antiexp", 1)            
+        end
+    end
+end  

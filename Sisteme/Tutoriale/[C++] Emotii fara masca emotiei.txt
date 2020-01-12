@@ -1,0 +1,24 @@
+Deschide cmd_emoticon.cpp si cauta:
+
+bool CHARACTER_CanEmotion(CHARACTER& rch)
+{
+// °áČĄ˝Ä ¸ĘżˇĽ´Â »çżëÇŇ Ľö ŔÖ´Ů.
+if (marriage::WeddingManager::instance().IsWeddingMap(rch.GetMapIndex()))
+return true;
+
+// żÁ¤ŔÇ °ˇ¸é Âřżë˝Ă »çżëÇŇ Ľö ŔÖ´Ů.
+if (rch.IsEquipUniqueItem(UNIQUE_ITEM_EMOTION_MASK))
+return true;
+
+if (rch.IsEquipUniqueItem(UNIQUE_ITEM_EMOTION_MASK2))
+return true;
+
+return false;
+}
+
+
+editeaza cu asta:
+
+bool CHARACTER_CanEmotion(CHARACTER& rch)
+{
+return true;//Ne kérjen maszkot soha

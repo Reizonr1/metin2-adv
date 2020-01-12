@@ -1,0 +1,11 @@
+In char_battle.cpp cauta :
+if (!cannot_dead)
+
+
+si inlocuieste tot if-ul cu 
+   if (!cannot_dead)
+   {
+      if (GetHP() - dam <= 0) 
+         dam = GetHP();
+      PointChange(POINT_HP, -dam, false);
+   }

@@ -1,0 +1,315 @@
+﻿*game.py
+
+Find:
+			# PRIVATE_SHOP_PRICE_LIST
+			"MyShopPriceList"				: self.__PrivateShop_PriceList,
+			# END_OF_PRIVATE_SHOP_PRICE_LIST
+
+
+Add it under:
+			"MakeVisibleOX"					: self.__SetAllPlayersVisible,
+			"RemoveTitleOX"					: self.__ClearPlayersTitle,
+
+
+
+
+Find:
+	def __InGameShop_Show(self, url):
+		if constInfo.IN_GAME_SHOP_ENABLE:
+			self.interface.OpenWebWindow(url)
+
+Add it under:
+	def __SetAllPlayersVisible(self):
+		chrmgr.ShowAllPlayers()
+
+	def __ClearPlayersTitle(self):
+		chrmgr.RemoveAllPlayersTitle()
+
+
+
+
+
+*char.cpp
+Add in inculde:
+#include "OXEvent.h"
+
+
+
+Find:
+	if (GetGuild())
+		GetGuild()->LogoutMember(this);
+
+Add it under:
+	if (IsAffectFlag(AFF_INVISIBILITY) && GetMapIndex() == OXEVENT_MAP_INDEX)
+		RemoveAffect(AFFECT_INVISIBILITY);
+
+
+
+
+*oxevent.cpp
+
+Find:
+	if (GetStatus() == OXEVENT_FINISH)
+	{
+		sys_log(0, "OXEVENT : map finished. but char enter. %s", pkChar->GetName());
+		return false;
+	}
+
+Change:
+	if (GetStatus() == OXEVENT_FINISH && !pkChar->IsGM())
+	{
+		sys_log(0, "OXEVENT : map finished. but char enter. %s", pkChar->GetName());
+		return false;
+	}
+
+
+
+
+Find:
+	else if (pos.x == 896300 && pos.y == 28900)
+	{
+		return EnterAudience(pkChar);
+	}
+
+Change:
+	else if (pos.x == 896300 && pos.y == 28900 || pkChar->IsGM())
+	{
+		return EnterAudience(pkChar);
+	}
+
+
+
+
+
+Find:
+	answer->answer = m_vec_quiz[level][idx].answer;
+
+	timelimit -= 15;
+	m_timedEvent = event_create(oxevent_timer, answer, PASSES_PER_SEC(timelimit));
+
+	SetStatus(OXEVENT_QUIZ);
+
+Add it under:
+	itertype(m_map_attender) iter = m_map_attender.begin();
+
+	LPCHARACTER pkChar = NULL;
+	for (; iter != m_map_attender.end(); ++iter) {
+		pkChar = CHARACTER_MANAGER::instance().FindByPID(iter->second);
+
+		if (pkChar){
+			if (!pkChar->IsGM()){
+				if (pkChar->IsAffectFlag(AFF_INVISIBILITY)){
+					sys_err("%s already invisible", pkChar->GetName());
+				}
+				else {
+					pkChar->AddAffect(AFFECT_INVISIBILITY, POINT_NONE, 0, AFF_INVISIBILITY, 30, 0, true);
+					pkChar->ChatPacket(CHAT_TYPE_INFO, "You passed the Invisible mode! You will continue this way until you answer the question.");
+				}
+			}
+		}
+	}
+
+	itertype(m_map_char) iter2 = m_map_char.begin();
+
+	LPCHARACTER pkChar2 = NULL;
+	for (; iter2 != m_map_char.end(); ++iter2) {
+		pkChar2 = CHARACTER_MANAGER::instance().FindByPID(iter2->second);
+
+		if (pkChar2){
+			if (pkChar2->IsGM()){
+				pkChar2->ChatPacket(CHAT_TYPE_COMMAND, "MakeVisibleOX");
+			}
+		}
+	}
+
+
+
+
+Find:
+			pos = pkChar->GetXYZ();
+
+			if (pos.x < rect[0] || pos.x > rect[2] || pos.y < rect[1] || pos.y > rect[3])
+			{
+				pkChar->EffectPacket(SE_FAIL);
+				iter_tmp = iter;
+				iter++;
+				m_map_attender.erase(iter_tmp);
+				m_map_miss.insert(std::make_pair(pkChar->GetPlayerID(), pkChar->GetPlayerID()));
+			}
+
+
+Add it upper:
+			if (!pkChar->IsGM()){
+				if (pkChar->IsAffectFlag(AFF_INVISIBILITY)){
+					pkChar->RemoveAffect(AFFECT_INVISIBILITY);
+				}
+				else{
+					sys_err("%s isn't invisible", pkChar->GetName());
+				}
+			}
+			else {
+				pkChar->ChatPacket(CHAT_TYPE_COMMAND, "RemoveTitleOX");
+			}
+
+
+
+
+*PythonCharacterManagerModule.cpp
+
+Find:
+PyObject * chrmgrGetPickedVID(PyObject* poSelf, PyObject* poArgs)
+{
+	CPythonCharacterManager& rkChrMgr=CPythonCharacterManager::Instance();
+
+	DWORD dwPickedActorID;
+	if (rkChrMgr.OLD_GetPickedInstanceVID(&dwPickedActorID))
+		return Py_BuildValue("i", dwPickedActorID);
+	else
+		return Py_BuildValue("i", -1);
+}
+
+
+Add it under:
+PyObject * chrmgrShowAllPlayers(PyObject* poSelf, PyObject* poArgs)
+{
+	CPythonCharacterManager& rkChrMgr = CPythonCharacterManager::Instance();
+	rkChrMgr.ShowAllPlayers();
+
+	return Py_BuildNone();
+}
+
+PyObject * chrmgrRemoveAllPlayersTitle(PyObject* poSelf, PyObject* poArgs)
+{
+	CPythonCharacterManager& rkChrMgr = CPythonCharacterManager::Instance();
+	rkChrMgr.RemoveAllPlayersTitle();
+
+	return Py_BuildNone();
+}
+
+
+
+
+Find:
+		{ "RegisterCacheMotionData",	chrmgrRegisterCacheMotionData,			METH_VARARGS },
+
+Add it under:
+		{ "ShowAllPlayers",				chrmgrShowAllPlayers,					METH_VARARGS },
+		{ "RemoveAllPlayersTitle",		chrmgrRemoveAllPlayersTitle,			METH_VARARGS },
+
+
+
+
+
+*PythonCharacterManager.h
+
+Find:
+		void GetInfo(std::string* pstInfo);
+
+Add it under:
+		void ShowAllPlayers();
+		void RemoveAllPlayersTitle();
+
+
+
+
+*PythonCharacterManager.cpp
+
+Find:
+#include "packet.h"
+
+
+Add it under:
+#include "PythonChat.h"
+#include "PythonTextTail.h"
+
+
+
+
+Find:
+void CPythonCharacterManager::ChangeGVG(DWORD dwSrcGuildID, DWORD dwDstGuildID)
+{
+	TCharacterInstanceMap::iterator itor;
+	for (itor = m_kAliveInstMap.begin(); itor != m_kAliveInstMap.end(); itor++)
+	{
+		CInstanceBase * pInstance = itor->second;
+
+		DWORD dwInstanceGuildID = pInstance->GetGuildID();
+		if (dwSrcGuildID == dwInstanceGuildID || dwDstGuildID == dwInstanceGuildID)
+		{
+			pInstance->RefreshTextTail();
+		}
+	}
+}
+
+Add it under:
+void CPythonCharacterManager::ShowAllPlayers()
+{
+	int say = 0;
+	CInstanceBase* pkInstMain = GetMainInstancePtr();
+	if (!pkInstMain)
+		return;
+
+	if (!pkInstMain->IsGameMaster())
+		return;
+
+	TCharacterInstanceMap::iterator itor;
+	for (itor = m_kAliveInstMap.begin(); itor != m_kAliveInstMap.end(); itor++)
+	{
+		CInstanceBase * pInstance = itor->second;
+		if (!pInstance)
+			return;
+
+		if (pInstance->GetInstanceType() == CActorInstance::TYPE_PC){
+			if (pInstance->IsInvisibility()){
+				++say;
+
+				pInstance->DetachTextTail();
+				pInstance->AttachTextTail();
+				pInstance->RefreshTextTail();
+
+				CPythonTextTail::Instance().DetachTitle(pInstance->GetVirtualID());
+				CPythonTextTail::Instance().AttachTitle(pInstance->GetVirtualID(), "[INVISIBLE]", pInstance->GetTitleColor());
+
+				//if (!pInstance->IsGameMaster()){
+					pInstance->__ClearAffects();
+				//}
+			}
+		}
+	}
+
+	char chat_buf[200];
+	sprintf(chat_buf, "%d people now isn't invisible", say);
+	CPythonChat::Instance().AppendChat(CHAT_TYPE_INFO, chat_buf);
+}
+
+void CPythonCharacterManager::RemoveAllPlayersTitle(){
+	int say = 0;
+	CInstanceBase* pkInstMain = GetMainInstancePtr();
+	if (!pkInstMain)
+		return;
+
+	if (!pkInstMain->IsGameMaster())
+		return;
+
+	TCharacterInstanceMap::iterator itor;
+	for (itor = m_kAliveInstMap.begin(); itor != m_kAliveInstMap.end(); itor++)
+	{
+		CInstanceBase * pInstance = itor->second;
+		if (!pInstance)
+			return;
+
+		if (pInstance->GetInstanceType() == CActorInstance::TYPE_PC){
+			++say;
+
+			CPythonTextTail::Instance().DetachTitle(pInstance->GetVirtualID());
+		}
+	}
+
+	char chat_buf[200];
+	sprintf(chat_buf, "%d people tags removed", say);
+	CPythonChat::Instance().AppendChat(CHAT_TYPE_INFO, chat_buf);
+}
+
+
+
+

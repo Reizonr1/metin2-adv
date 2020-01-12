@@ -1,0 +1,281 @@
+﻿Add in lair warp function - Odanın giriş fonksiyonuna ekleyin (dragon_lair.warp_from_lair):
+
+if pc.is_observer_member() == true then
+	return
+end
+
+
+Add in horse summon quest - At çağırma questine ekleyin:
+if pc.is_observer_member() == true then
+   return
+end
+
+
+Giriş için - For login;
+pc.warp_as_observer(843600, 1066900, 208)
+
+Örnek - example:
+quest DragonLairObserver begin
+	state start begin
+		when 30121.chat."Izleyici girisi " begin
+			pc.warp_as_observer(843600, 1066900, 208)
+		end
+	end
+end
+
+
+
+Quest_functions;
+pc.is_observer_member
+pc.warp_as_observer
+
+
+
+questlua_pc.cpp;
+
+Find - Bul:
+{ "remove_skill_book_no_delay",	pc_remove_skill_book_no_delay}, 
+
+Add it under- Add it under- Altına ekle:
+{ "is_observer_member", pc_is_observer },
+{ "warp_as_observer", pc_warp_as_observer },
+
+
+Find - Bul:
+void RegisterPCFunctionTable()
+
+Add it upper - Üstüne ekle:
+	int pc_is_observer(lua_State * L)
+	{
+		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
+		if (!ch)
+			return 0;
+
+		if (ch->IsObserverMode())
+			lua_pushboolean(L, true);
+		else
+			lua_pushboolean(L, false);
+
+		return 1;
+	}
+
+	int pc_warp_as_observer(lua_State * L)
+	{
+		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
+		if (!ch)
+		{
+			lua_pushboolean(L, false);
+			return 1;
+		}
+
+		if (!lua_isnumber(L, 1) || !lua_isnumber(L, 2))
+		{
+			lua_pushboolean(L, false);
+			return 1;
+		}
+
+		long map_index = 0;
+		if (lua_isnumber(L, 3))
+			map_index = (int)lua_tonumber(L, 3);
+
+		//PREVENT_HACK
+		if (ch->IsHack())
+		{
+			lua_pushboolean(L, false);
+			return 1;
+		}
+		//END_PREVENT_HACK
+
+		ch->SetQuestFlag("warp.is_observer_member", 1);
+		//ch->SaveExitLocation();
+		ch->WarpSet((int)lua_tonumber(L, 1), (int)lua_tonumber(L, 2), map_index);
+
+		lua_pushboolean(L, true);
+
+		return 1;
+	}
+
+
+	
+cmd_general.cpp
+
+Find - Bul:
+ACMD(do_observer_exit)
+{
+	if (ch->IsObserverMode())
+	{
+	
+Add it under- Add it under- Altına ekle:
+		if (ch->GetMapIndex() == 208){
+			ch->LogoutSpecialObserver();
+			ch->GoHome();
+			return;
+		}
+		
+		
+
+char.cpp
+
+Find - Bul:
+int	CHARACTER::GetSkillPowerByLevel(int level, bool bMob) const
+{
+	return CTableBySkill::instance().GetSkillPowerByLevelFromType(GetJob(), GetSkillGroup(), MINMAX(0, level, SKILL_MAX_LEVEL), bMob); 
+}
+
+Add it under- Add it under- Altına ekle:
+void CHARACTER::LoginSpecialObserver()
+{
+	bool isObserverMember = GetQuestFlag("warp.is_observer_member") > 0 ? true : false;
+	if (isObserverMember){
+		if (IsObserverMode()){
+			sys_err("[%lu]%s already in observermode !", GetAID(), GetName());
+			GoHome();
+		}
+
+		if (GetParty()) {
+			LPPARTY pParty = GetParty();
+			if (pParty->GetMemberCount() == 2)
+			{
+				CPartyManager::instance().DeleteParty(pParty);
+			}
+			else
+			{
+				ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<ÆÄÆ¼> ÆÄÆ¼¿¡¼­ ³ª°¡¼Ì½À´Ï´Ù."));
+				pParty->Quit(GetPlayerID());
+			}
+		}
+		
+		if (ch->IsRiding())
+			ch->StopRiding();
+
+		sys_log(0, "Observer login event: [%lu]%s", GetAID(), GetName());
+		SetObserverMode(true);
+		ChatPacket(CHAT_TYPE_INFO, "Izleyici olarak giris yapildi"); // you logon as observer
+	}
+}
+
+void CHARACTER::LogoutSpecialObserver()
+{
+	bool isObserverMember = GetQuestFlag("warp.is_observer_member") > 0 ? true : false;
+	if (isObserverMember){
+		sys_log(0, "Observer logout event: [%lu]%s", GetAID(), GetName());
+		SetObserverMode(false);
+		SetQuestFlag("warp.is_observer_member", 0);
+	}
+}
+
+
+Find - Bul:
+	if (!CHARACTER_MANAGER::instance().FlushDelayedSave(this))
+	{
+		SaveReal();
+	}
+	
+Add it upper - Üstüne ekle:
+	if (GetMapIndex() == 208)
+		LogoutSpecialObserver();
+		
+		
+
+		
+char.h
+
+Find - Bul:
+void	SetPotionLimit(int count) { m_nPotionLimit = count; }
+int		GetPotionLimit() const { return m_nPotionLimit; }
+// END_ARENA
+	
+Add it under- Add it under- Altına ekle:
+void	LoginSpecialObserver();
+void	LogoutSpecialObserver();
+
+
+
+input_login.cpp
+
+Find - Bul:
+	else if (ch->GetMapIndex() == 113)
+	{
+		// ox ÀÌº¥Æ® ¸Ê
+		if (COXEventManager::instance().Enter(ch) == false)
+		{
+			// ox ¸Ê ÁøÀÔ Çã°¡°¡ ³ªÁö ¾ÊÀ½. ÇÃ·¹ÀÌ¾î¸é ¸¶À»·Î º¸³»ÀÚ
+			if (ch->GetGMLevel() == GM_PLAYER)
+				ch->WarpSet(EMPIRE_START_X(ch->GetEmpire()), EMPIRE_START_Y(ch->GetEmpire()));
+		}
+	}
+	
+Add it under- Add it under- Altına ekle:
+	else if (ch->GetMapIndex() == 208)
+	{
+		ch->LoginSpecialObserver();
+	}
+	
+	
+	
+char_state.cpp
+
+Find - Bul:
+void CHARACTER::StateBattle()
+
+Find again - Tekrar bul:
+LPCHARACTER victim = GetVictim();
+
+Add it under- Add it under- Altına ekle:
+	if (victim){
+		if (victim->IsPC() && victim->IsObserverMode()) {
+			return;
+		}
+	}
+	
+	
+	
+	
+	
+	
+*battle.cpp
+Find - Bul:
+bool battle_is_attackable(LPCHARACTER ch, LPCHARACTER victim)
+{
+	// »ó´ë¹æÀÌ Á×¾úÀ¸¸é Áß´ÜÇÑ´Ù.
+	if (victim->IsDead())
+		return false;
+	if (victim->IsObserverMode())
+		return false;
+
+Add it under- Altına ekle:
+	if (victim->IsPC()){
+		if (victim->IsObserverMode()){
+			return false;
+		}
+	}
+
+
+*char_battle.cpp
+
+Find - Bul:
+bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // returns true if dead
+{
+
+Add it under- Altına ekle:
+	if (IsPC()){
+		if (IsObserverMode()){
+			return false;
+		}
+	}
+
+
+
+Find - Bul:
+	// CASTLE
+	if (IS_CASTLE_MAP(GetMapIndex()) && false == castle_can_attack(this, pkVictim))
+		return false;
+	// CASTLE
+
+Add it under- Altına ekle:
+	if (pkVictim->IsPC()){
+		if (pkVictim->IsObserverMode()){
+			return false;
+		}
+	}
+

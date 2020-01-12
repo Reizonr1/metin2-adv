@@ -1,0 +1,12 @@
+deathmatch.get_attender_count
+deathmatch.get_spectator_count
+deathmatch.get_status
+deathmatch.get_mapindex
+deathmatch.open
+deathmatch.start_event
+deathmatch.end_event
+deathmatch.check_status
+deathmatch.join_spectator
+deathmatch.give_item
+deathmatch.get_high_score_owner
+deathmatch.get_high_score

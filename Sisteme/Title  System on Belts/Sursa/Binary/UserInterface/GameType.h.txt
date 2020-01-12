@@ -1,0 +1,20 @@
+//cauta
+
+#ifdef ENABLE_NEW_EQUIPMENT_SYSTEM
+	const DWORD c_New_Equipment_Start = c_Equipment_Start + 23;
+	const DWORD c_New_Equipment_Count = 3;
+	const DWORD c_Equipment_Ring1 = c_New_Equipment_Start + 0;
+	const DWORD c_Equipment_Ring2 = c_New_Equipment_Start + 1;
+	const DWORD c_Equipment_Belt  = c_New_Equipment_Start + 2;;
+#endif
+
+//modifica in
+
+#ifdef ENABLE_NEW_EQUIPMENT_SYSTEM
+	const DWORD c_New_Equipment_Start = c_Equipment_Start + 21;
+	const DWORD c_New_Equipment_Count = 4;
+	const DWORD c_Equipment_Ring1 = c_New_Equipment_Start + 0;
+	const DWORD c_Equipment_Ring2 = c_New_Equipment_Start + 1;
+	const DWORD c_Equipment_Belt  = c_New_Equipment_Start + 2;
+	const DWORD c_Equipment_Title  = c_New_Equipment_Start + 3;;
+#endif

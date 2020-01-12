@@ -1,0 +1,10 @@
+quest depozit begin
+	state start begin
+		when login begin
+			cmdchat("depozit_index "..q.getcurrentquestindex())
+		end
+		when button or info begin
+			game.open_safebox()
+		end
+	end
+end

@@ -1,0 +1,31 @@
+PYTHONTOLUA = 0
+PYTHONISLEM = ""
+
+CONFIG_YOL = "locale/tr/ui/config/"
+INPUT = 0
+
+DUELLO_BILGILERI = {}
+DUELLO_LOG = []
+DUELLO_YOLLANANLAR = []
+DUELLO_YOLLAYANLAR = []
+DUELLO_KAPAT = 0
+DUELLO_BENIM_PARA = 0
+DUELLO_RAKIP_PARA = 0
+DUELLO_RAKIP = ""
+DUELLO_KABUL = 0
+DUELLO_KABUL_RAKIP = 0
+DUELLO_VID = 0
+DUELLO_ROUND = 1
+DUELLO_ROUND_HAZIR_MY = 0
+DUELLO_ROUND_HAZIR_TARGET = 0
+DUELLO_ROUND_YENILE = 0
+DUELLO_ROUND_DURUM = 0#1: diðer round için hazýrlýk.
+DUELLO_ROUND_ZAMAN = 15
+DUELLO_ROUND_ZAMAN_IN = 0
+DUELLO_ROUND_ZAMAN_KALAN = 0
+DUELLO_ROUND_BASLAT = 0
+DUELLO_SKOR_MY = 0
+DUELLO_SKOR_TARGET = 0
+DUELLO_UST=0 #Düello'da giyilen itemi koyabilme / açýk
+DUELLO_DURUM = 0 #0: Düelloda deðilsin, 1: duellodasýn, 2: duello teklifi edilmiþ, 3: duello teklifi gelmiþ, 4: duello'ya item konuluyor, 5:2.Düello durum
+DUELLO_BASLATAN = 0 #1: sen, 2: rakip

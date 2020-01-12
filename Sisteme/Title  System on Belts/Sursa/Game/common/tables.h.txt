@@ -1,0 +1,10 @@
+//cauta
+
+short	horse_skill_point;
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	int		iTChoosed;
+	char	cTAvailable[TITLE_MAX_LEN + 1];
+#endif	

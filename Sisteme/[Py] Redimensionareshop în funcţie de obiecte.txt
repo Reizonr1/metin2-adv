@@ -1,0 +1,94 @@
+UISHOP.PY
+ 
+ 
+*cauta
+    def Refresh(self):
+ 
+*adauga deasupra
+    def GetEmptyLines(self):
+        emptyLines = 8
+        for i in xrange(5):
+            empty = 8
+            for j in xrange(8):
+                itemIndex = shop.GetItemID(5*j+i)
+                if itemIndex > 0:
+                    item.SelectItem(itemIndex)
+                    (w, h) = item.GetItemSize()
+                    empty -= h
+            if empty < emptyLines:
+                emptyLines = empty
+        return emptyLines
+ 
+ 
+ 
+*cauta
+            self.itemSlotWindow = GetObject("ItemSlot")
+ 
+*adauga deasupra
+            self.board = GetObject("board")
+ 
+ 
+ 
+*cauta
+        self.itemSlotWindow = 0
+ 
+*adauga deasupra
+        self.board = 0
+ 
+ 
+ 
+*cauta functia
+    def Open(self, vid):
+ 
+*inlocuieste-o cu (sau vezi diferentele)
+    def Open(self, vid):
+ 
+        isPrivateShop = FALSE
+        isMainPlayerPrivateShop = FALSE
+ 
+        import chr
+        if chr.IsNPC(vid):
+            isPrivateShop = FALSE
+        else:
+            isPrivateShop = TRUE
+ 
+        self.board.SetSize(184, 328)
+        self.itemSlotWindow.ArrangeSlot(0, 5, 8, 32, 32, 0, 0)
+        self.itemSlotWindow.RefreshSlot()
+        self.itemSlotWindow.SetSlotBaseImage("d:/ymir work/ui/public/Slot_Base.sub", 1.0, 1.0, 1.0, 1.0)
+        self.btnBuy.SetPosition(21, 295)
+        self.btnSell.SetPosition(104, 295)
+ 
+        if player.IsMainCharacterIndex(vid):
+ 
+            isMainPlayerPrivateShop = TRUE
+ 
+            self.btnBuy.Hide()
+            self.btnSell.Hide()
+            self.btnClose.Show()
+ 
+        else:
+            if isPrivateShop == FALSE:
+                EMPTY_LINES = 32 * self.GetEmptyLines()
+ 
+                self.board.SetSize(184, 328 - EMPTY_LINES)
+ 
+                self.itemSlotWindow.ArrangeSlot(0, 5, 8 - EMPTY_LINES / 32, 32, 32, 0, 0)
+                self.itemSlotWindow.RefreshSlot()
+                self.itemSlotWindow.SetSlotBaseImage("d:/ymir work/ui/public/Slot_Base.sub", 1.0, 1.0, 1.0, 1.0)
+ 
+                self.btnBuy.SetPosition(21, 295 - EMPTY_LINES)
+                self.btnSell.SetPosition(104, 295 - EMPTY_LINES)
+ 
+            isMainPlayerPrivateShop = FALSE
+ 
+            self.btnBuy.Show()
+            self.btnSell.Show()
+            self.btnClose.Hide()
+ 
+        shop.Open(isPrivateShop, isMainPlayerPrivateShop)
+        self.Refresh()
+        self.SetTop()
+        self.Show()
+ 
+        (self.xShopStart, self.yShopStart, z) = player.GetMainCharacterPosition()

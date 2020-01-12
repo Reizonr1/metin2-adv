@@ -1,0 +1,46 @@
+#PythonApplicationProcedure.cpp
+//Search this function:
+void CPythonApplication::__MinimizeFullScreenWindow(HWND hWnd, DWORD dwWidth, DWORD dwHeight)
+{
+	ChangeDisplaySettings(0, 0);
+	SetWindowPos(hWnd, 0, 0, 0,
+				 dwWidth,
+				 dwHeight,
+				 SWP_SHOWWINDOW);
+	ShowWindow(hWnd, SW_MINIMIZE);
+}
+//Add after:
+void CPythonApplication::__ResetCameraWhenMinimize()
+{
+	CCameraManager& rkCmrMgr=CCameraManager::Instance();
+	CCamera* pkCmrCur=rkCmrMgr.GetCurrentCamera();
+	if (pkCmrCur) 
+	{
+		pkCmrCur->EndDrag();
+	}
+	
+	SetCursorNum(NORMAL);
+	if ( CURSOR_MODE_HARDWARE == GetCursorMode())
+		SetCursorVisible(TRUE);
+}
+
+//Search:
+					if (m_isWindowFullScreenEnable)
+					{
+						__MinimizeFullScreenWindow(hWnd, m_dwWidth, m_dwHeight);
+					}
+//Replace with:
+					if (m_isWindowFullScreenEnable)
+					{
+						__MinimizeFullScreenWindow(hWnd, m_dwWidth, m_dwHeight);
+						__ResetCameraWhenMinimize();
+					}
+					else
+					{
+						__ResetCameraWhenMinimize();
+					}
+#PythonApplication.h
+//Search:
+		void __MinimizeFullScreenWindow(HWND hWnd, DWORD dwWidth, DWORD dwHeight);
+//Add after:
+		void __ResetCameraWhenMinimize();

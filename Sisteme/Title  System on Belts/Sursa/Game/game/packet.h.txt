@@ -1,0 +1,50 @@
+//cauta
+
+HEADER_GG_PCBANG_UPDATE			= 28,
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	HEADER_CG_TITLE_CHOOSE = 208,
+	HEADER_GG_TITLE_ANSWER = 37,
+#endif
+
+//cauta
+
+
+typedef struct packet_char_additional_info
+
+//adauga sub short	sAlignment;
+
+#ifdef __TITLE_SYSTEM__
+	int		iTitleID;
+#endif
+
+//cauta
+
+typedef struct packet_update_char
+
+//adauga sub short	sAlignment;
+
+#ifdef __TITLE_SYSTEM__
+	int		iTitleID;
+#endif
+
+//cauta
+
+typedef struct SPacketGCStateCheck
+
+//adauga sub toata functia
+
+
+#ifdef __TITLE_SYSTEM__
+typedef struct SPacketGGTitleInfo
+{
+	BYTE	bHeader;
+	int		iTitle;
+	BYTE	bAnswer;
+} TPacketGGTitleInfo;
+#endif
+
+
+

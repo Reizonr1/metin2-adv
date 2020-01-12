@@ -1,0 +1,35 @@
+File: char_item.cpp
+
+Cauta :
+UnHidden Content:
+   if (item->GetWearFlag() & WEARABLE_UNIQUE)
+   {
+      if ((GetWear(WEAR_UNIQUE1) && GetWear(WEAR_UNIQUE1)->IsSameSpecialGroup(item)) || (GetWear(WEAR_UNIQUE2) && GetWear(WEAR_UNIQUE2)->IsSameSpecialGroup(item)))
+      {
+         ChatPacket(CHAT_TYPE_INFO, LC_TEXT("?? ??? ??? ??? ? ?? ??? ??? ? ????."));
+         return false;
+      }
+
+      if (marriage::CManager::instance().IsMarriageUniqueItem(item->GetVnum()) &&
+         !marriage::CManager::instance().IsMarried(GetPlayerID()))
+      {
+         ChatPacket(CHAT_TYPE_INFO, LC_TEXT("???? ?? ???? ??? ??? ? ????."));
+         return false;
+      }
+   }
+Adauga :
+   if (item->GetType() == ITEM_RING) // ring check for two same rings
+   {
+      LPITEM ringItems[2] = { GetWear(WEAR_RING1), GetWear(WEAR_RING2) };
+      for (int i = 0; i < 2; i++)
+      {
+         if (ringItems[i]) // if that item is equipped
+         {
+            if (ringItems[i]->GetVnum() == item->GetVnum())
+            {
+               ChatPacket(CHAT_TYPE_INFO, LC_TEXT("Nu poti echipa acest item de doua ori!"));
+               return false;
+            }
+         }
+      }
+   }

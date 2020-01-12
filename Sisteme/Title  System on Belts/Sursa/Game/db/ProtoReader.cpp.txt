@@ -1,0 +1,8 @@
+//cauta
+
+"ITEM_BELT",								//35개 (EItemTypes 값으로 치면 34)
+
+//adauga sub
+
+		"ITEM_NORMAL_TITLE",
+		"ITEM_NORMAL_BUFF",

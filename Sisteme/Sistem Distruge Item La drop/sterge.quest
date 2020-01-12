@@ -1,0 +1,22 @@
+quest itemmuell begin
+	state start begin
+		function ItemZerstoeren(slot, vnum)
+			chat("Itemul a fost distrus cu succes")
+			item.select_cell(slot)
+			item.remove_stack()
+		end
+		when letter begin
+			cmdchat("ITEMZER QID|"..q.getcurrentquestindex())
+		end
+		
+		when button or info begin
+			cmdchat("getinputbegin")
+			local cmd = split(input(cmdchat("ITEMZER SELECT|")), "|")
+			cmdchat("getinputend")
+			
+			if cmd[1] == "DELETE" then
+				itemmuell.ItemZerstoeren(tonumber(cmd[2]), tonumber(cmd[3]))
+			end
+		end
+	end
+end

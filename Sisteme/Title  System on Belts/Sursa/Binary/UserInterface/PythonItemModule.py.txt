@@ -1,0 +1,7 @@
+//cauta
+
+PyModule_AddIntConstant(poModule, "EQUIPMENT_BELT",				c_Equipment_Belt);
+
+//adauga sub
+
+	PyModule_AddIntConstant(poModule, "EQUIPMENT_TITLE",				c_Equipment_Title);

@@ -1,0 +1,49 @@
+Sursa SRC:
+
+cautati:
+
+ITEM_MANAGER::instance().RemoveItem(item, "REMOVE (METIN)");
+
+inlocuiti cu:
+
+item->SetCount(item->GetCount() - 1);
+//ITEM_MANAGER::instance().RemoveItem(item, "REMOVE (METIN)");
+
+Ar trebui sa arate cv de genul acesta:
+Imagine
+https://imgur.com/a/npFG6Ry
+
+acum compilati si intrati in navicat:
+
+
+Player > item_proto
+
+cautati pietrele si le puneti "Flag 4"
+
+Ar trebui sa arate ceva de genul asta:
+Imagine
+https://imgur.com/a/XOREpSe
+
+codul pietrelor:
+
+28430
+28431
+28432
+28433
+28434
+28435
+28436
+28437
+28438
+28439
+28441
+28442
+28443
+
+28430 = +4
+28330 = +3
+28230 = +2
+28130 = +1
+28030 = +0
+
+Sursa Metin2Dev https://metin2.dev/board/index.php?/top ... -ring-bug/

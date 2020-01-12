@@ -1,0 +1,11 @@
+Open account db and account table
+
+Select desing table
+
+Find:
+password 45 varchar
+
+Change:
+password 64 varchar
+
+http://puu.sh/jYBqa/36f3beab91.png

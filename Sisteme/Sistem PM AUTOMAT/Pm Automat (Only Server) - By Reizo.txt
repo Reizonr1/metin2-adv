@@ -1,0 +1,89 @@
+So, deschidem game.py:
+Căutăm:
+
+"mall"
+
+Adăugăm:
+
+"open_notice_info"		: self.__open_notice_info,
+"write_notice_info"		: self.__write_notice_info,
+
+Căutăm:
+
+__InGameShop_Show(self,url):
+
+Adăugăm:
+
+def __open_notice_info(self):
+	self.interface.RegisterGameMasterName("<--System-->")
+	self.interface.RecvWhisper("<--System-->")
+		
+def __write_notice_info(self,text):
+	chat.AppendWhisper(chat.WHISPER_TYPE_CHAT, "<--System-->", text.replace("_", " "))
+
+
+Ok acu' partea de quest:
+
+Creăm un nou quest şi băgăm în el:
+
+quest reizo_notice begin
+	state start begin
+		function read_notice_line(l)
+			return readline("/quest/system/reizo_notice/notice.txt", l)
+		end
+		
+		when login begin
+			local qf = readline("/quest/system/reizo_notice/qf.txt", 1)
+			local lineas = 0
+			if tonumber(qf) > pc.getqf("reizo_notice") then
+				for line in io.lines("/quest/system/reizo_notice/notice.txt") do lineas = lineas + 1 end
+				cmdchat("open_notice_info")
+				for i = 1,lineas do
+					cmdchat("write_notice_info "..string.gsub(reizo_notice.read_notice_line(i), ' ', '_'))
+				end
+				pc.setqf("reizo_notice", qf)
+			end
+		end
+	end
+end
+
+Ok partea asta-i uşoară faceţi un folder în quests numit system şi în el băgăm altul numit reizo_notice şi adăugăm 2 txt-uri cu numele: notice.txt şi qf.txt. În qf.txt va trebui să puneţi un număr spre exemplu 0 adăugăm un 0 şi dăm save, iar în notice băgăm ce vrem să apară în pm.
+
+În caz că nu avem funcţia readline adăugăm:
+
+function readline(path, x)
+    local linetable = {}
+    for line in io.lines(path) do
+        table.insert(linetable, line)
+    end
+    return linetable[x]
+end 
+
+Aşa şi acum băgăm în quest_functions următoarele lucruri: readline şi io.lines.
+Simplu aşa-i =)) ?
+
+Cum adaug un nou mesaj?
+Simplu mergi în qf.txt modifici numărul recomandat e să pui cu 1 în plus (EX: dacă ai 0 pui 1)
+Apoi mergem în notice.txt şi adăugăm mesajul.
+
+Pentru cei care vor să se trimită la fiecare login:
+Modificaţi questul în:
+
+quest reizo_notice begin
+	state start begin
+		function read_notice_line(l)
+			return readline("/quest/system/reizo_notice/notice.txt", l)
+		end
+		
+		when login begin
+			local lineas = 0
+			for line in io.lines("/quest/system/reizo_notice/notice.txt") do lineas = lineas + 1 end
+			cmdchat("open_notice_info")
+			for i = 1,lineas do
+				cmdchat("write_notice_info "..string.gsub(reizo_notice.read_notice_line(i), ' ', '_'))
+			end
+		end
+	end
+end
+
+Şi puteţi şterge qf.txt pentru că va fi inutil.

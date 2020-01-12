@@ -1,0 +1,250 @@
+//cauta
+
+addPacket.sAlignment = 0;
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+				addPacket.iTitleID = 0;
+#endif
+
+//cauta
+
+addPacket.sAlignment = m_iAlignment / 10;
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+			addPacket.iTitleID = GetPoint(POINT_TITLE);
+#endif
+
+//cauta
+
+pack.bPKMode	= m_bPKMode;
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	pack.iTitleID = GetPoint(POINT_TITLE);
+#endif
+
+//cauta
+
+pack2.sAlignment = 0;
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	pack.iTitleID = GetPoint(POINT_TITLE);
+#endif
+
+//cauta
+
+tab.horse = GetHorseData();
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	tab.iTChoosed = GetPoint(POINT_TITLE);
+	strlcpy(tab.cTAvailable, GetTitlesAvailable(), sizeof(tab.cTAvailable));
+#endif
+
+//cauta
+
+	pack.points[POINT_MAX_STAMINA]	= GetMaxStamina();
+
+	for (int i = POINT_ST; i < POINT_MAX_NUM; ++i)
+		pack.points[i] = GetPoint(i);
+		
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	for (int w = TITLE_0; w < TITLES_MAX_NUM; ++w)
+	{
+		BYTE bType = POINT_TITLE + w;
+		pack.points[bType] = GetPoint(bType);
+	}
+#endif
+
+//cauta
+
+long lSPRecovery = GetPoint(POINT_SP_RECOVERY);
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	std::vector<int> vTitles;
+	if (IsPC())
+	{
+		for (int w = TITLE_0; w < TITLES_MAX_NUM; ++w)
+		{
+			BYTE bType = POINT_TITLE + w;
+			vTitles.push_back(GetPoint(bType));
+		}
+		
+		vTitles.push_back(0);
+	}
+#endif
+
+//cauta
+
+SetPoint(POINT_PC_BANG_DROP_BONUS, 0);
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	if (IsPC())
+	{
+		for (int w = TITLE_0; w < TITLES_MAX_NUM; ++w)
+		{
+			BYTE bType = POINT_TITLE + w;
+			SetPoint(bType, vTitles[w]);
+		}
+		
+		vTitles.clear();
+	}
+#endif
+
+///////////////adauga la final///////////
+
+#ifdef __TITLE_SYSTEM__
+void CHARACTER::SetTitle(int iTitle, BYTE bValue)
+{
+	assert(iTitle < TITLES_MAX_NUM);
+	int iNewTitle = POINT_TITLE + iTitle;
+	if (bValue > 0)
+	{
+		SetPoint(iNewTitle, 1);
+		sys_log(0, "[Title System]: %s has just learn the title %d.", GetName(), iTitle);
+	}
+	else
+	{
+		// if (iTitle == ChoosedTitle())
+		// {
+			// SetPoint(POINT_TITLE, 0);
+			// sys_log(0, "[Title System]: %s title choosed, was automated seted to 0.", GetName());
+		// }
+		
+		SetPoint(iNewTitle, 0);
+		sys_log(0, "[Title System]: %s has just unlearn the title %d.", GetName(), iTitle);
+	}
+	
+	ComputePoints();
+	PointsPacket();
+}
+
+bool CHARACTER::GetTitle(int iTitle)
+{
+	assert(iTitle < TITLES_MAX_NUM);
+	int iNewTitle = POINT_TITLE + iTitle;
+	bool _to_return = false;
+	if (GetPoint(iNewTitle) == 1)
+		_to_return = true;
+	
+	return _to_return;
+}
+
+bool CHARACTER::ChooseTitle(int iTitle)
+{
+	assert(iTitle < TITLES_MAX_NUM);
+	int iNewTitle = POINT_TITLE + iTitle;
+	bool _to_return = false;
+	if ((iTitle == 0) || (GetPoint(iNewTitle) == 1 && iNewTitle != POINT_TITLE))
+		_to_return = true;
+	
+	if (_to_return)
+	{
+		SetPoint(POINT_TITLE, iTitle);
+		sys_log(0, "[Title System]: %s has just choose to have the title %d.", GetName(), iTitle);
+	}
+	
+	ComputePoints();
+	PointsPacket();
+	UpdatePacket();
+	return _to_return;
+}
+
+void CHARACTER::pChooseTitle(int iTitle)
+{
+	BYTE bAnswer = 0;
+	bool bPass = false;
+	int iNewTitle = POINT_TITLE + iTitle;
+	if (iTitle >= TITLES_MAX_NUM || iTitle < 1)
+	{
+		bAnswer = 1;
+		bPass = true;
+	}
+	else if (iTitle == ChoosedTitle())
+	{
+		bAnswer = 2;
+		bPass = true;
+	}
+	else if (GetPoint(iNewTitle) != 1)
+	{
+		bAnswer = 3;
+		bPass = true;
+	}
+	else
+		bAnswer = 4;
+	
+	if (iTitle == 0)
+	{
+		if (GetPoint(iNewTitle) != 0)
+		{
+			bAnswer = 4;
+			bPass = false;
+		}
+		else
+		{
+			bAnswer = 2;
+			bPass = true;
+		}
+	}
+	
+	if (!bPass)
+		bPass = ChooseTitle(iTitle);
+	
+	TPacketGGTitleInfo p;
+	p.bHeader = HEADER_GG_TITLE_ANSWER;
+	p.iTitle = iTitle;
+	p.bAnswer = bAnswer;
+	GetDesc()->Packet(&p, sizeof(TPacketGGTitleInfo));	
+}
+
+int CHARACTER::ChoosedTitle()
+{
+	int iChoosed = GetPoint(POINT_TITLE);
+	return iChoosed;
+}
+
+const char * CHARACTER::GetTitlesAvailable() const
+{
+	static char cString[TITLE_MAX_LEN + 1];
+	snprintf(cString, sizeof(cString), "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,", GetPoint(POINT_TITLE_1), GetPoint(POINT_TITLE_2), GetPoint(POINT_TITLE_3), GetPoint(POINT_TITLE_4), GetPoint(POINT_TITLE_5), GetPoint(POINT_TITLE_6), GetPoint(POINT_TITLE_7), GetPoint(POINT_TITLE_8), GetPoint(POINT_TITLE_9), GetPoint(POINT_TITLE_10), GetPoint(POINT_TITLE_11), GetPoint(POINT_TITLE_12), GetPoint(POINT_TITLE_13), GetPoint(POINT_TITLE_14), GetPoint(POINT_TITLE_15), GetPoint(POINT_TITLE_16), GetPoint(POINT_TITLE_17), GetPoint(POINT_TITLE_18), GetPoint(POINT_TITLE_19), GetPoint(POINT_TITLE_20));
+	return cString;
+}
+
+void CHARACTER::EquipTitle(LPITEM item)
+{
+	DWORD iTitle = item->GetValue(1);
+	SetPoint(POINT_TITLE, iTitle);
+	ComputePoints();
+	PointsPacket();
+	UpdatePacket();
+}
+
+void CHARACTER::UnequipTitle(LPITEM item)
+{
+	SetPoint(POINT_TITLE, 0);
+	ComputePoints();
+	PointsPacket();
+	UpdatePacket();
+}
+
+void CHARACTER::CheckTitle()
+{
+	LPITEM item = GetWear(WEAR_NORMAL_BUFF);	
+	DWORD iTitle = item->GetValue(1);
+	SetPoint(POINT_TITLE, iTitle);
+}
+#endif

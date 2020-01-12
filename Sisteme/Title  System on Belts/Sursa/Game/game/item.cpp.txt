@@ -1,0 +1,76 @@
+//cauta
+
+if ((0 == GetWearFlag() || ITEM_TOTEM == GetType()) && ITEM_COSTUME != GetType() && ITEM_DS != GetType() && ITEM_SPECIAL_DS != GetType() && ITEM_RING != GetType() && ITEM_BELT != GetType())
+
+//modifica cu
+
+#ifdef __TITLE_SYSTEM__
+	if ((0 == GetWearFlag() || ITEM_TOTEM == GetType()) && ITEM_COSTUME != GetType() && ITEM_DS != GetType() && ITEM_SPECIAL_DS != GetType() && ITEM_RING != GetType() && ITEM_BELT != GetType() && ITEM_NORMAL_TITLE != GetType())
+#else 
+	if ((0 == GetWearFlag() || ITEM_TOTEM == GetType()) && ITEM_COSTUME != GetType() && ITEM_DS != GetType() && ITEM_SPECIAL_DS != GetType() && ITEM_RING != GetType() && ITEM_BELT != GetType())
+#endif
+
+//cauta
+
+	else if (GetType() == ITEM_BELT)
+		return WEAR_BELT;
+
+//adauga sub
+
+	else if (GetType() == ITEM_NORMAL_TITLE)
+		return WEAR_NORMAL_TITLE;
+
+
+//cauta
+
+bool CItem::IsEquipable() const
+
+//sub
+
+	case ITEM_BELT:
+		return true;
+
+//adauga
+
+	case ITEM_NORMAL_TITLE:
+		return true;
+
+
+//cauta
+
+void CItem::ClearMountAttributeAndAffect()
+
+//adauga deasupra
+
+
+bool CItem::IsTitleItem()
+{
+	if (GetType() == ITEM_NORMAL_TITLE)
+		return true;
+	
+	return false;
+}
+
+//cauta
+
+ch->BuffOnAttr_AddBuffsFromItem(this);
+
+//adauga sub
+
+	if (IsTitleItem())
+		ch->EquipTitle(this);
+
+//cauta
+
+
+	if (this != m_pOwner->GetWear(GetCell() - INVENTORY_MAX_NUM))
+	{
+		sys_err("m_pOwner->GetWear() != this");
+		return false;
+	}
+
+//adauga sub
+
+	if (IsTitleItem())
+		m_pOwner->UnequipTitle(this);
+

@@ -1,0 +1,105 @@
+//cauta
+
+void RegisterPCFunctionTable()
+
+//adauga deasupra
+
+#ifdef __TITLE_SYSTEM__
+	int pc_set_title(lua_State * L)
+	{
+		bool _to_return = false;
+		if (!lua_isnumber(L, 1) || !lua_isnumber(L, 2))
+		{
+			sys_err("Invalid argument.");
+			lua_pushboolean(L, _to_return);
+			return 1;
+		}
+		
+		CQuestManager& q = CQuestManager::instance();
+		LPCHARACTER ch = q.GetCurrentCharacterPtr();
+		if (!ch)
+		{
+			lua_pushboolean(L, _to_return);
+			return 1;
+		}
+		
+		_to_return = true;
+		int iTitle = (int)lua_tonumber(L, 1);
+		BYTE bValue = (BYTE)lua_tonumber(L, 2);
+		ch->SetTitle(iTitle, bValue);
+		lua_pushboolean(L, _to_return);
+		return 1;
+	}
+	
+	int pc_get_title(lua_State * L)
+	{
+		bool _to_return = false;
+		if (!lua_isnumber(L, 1))
+		{
+			sys_err("Invalid argument.");
+			lua_pushboolean(L, _to_return);
+			return 1;
+		}
+		
+		CQuestManager& q = CQuestManager::instance();
+		LPCHARACTER ch = q.GetCurrentCharacterPtr();
+		if (!ch)
+		{
+			lua_pushboolean(L, _to_return);
+			return 1;
+		}
+		
+		int iTitle = (int)lua_tonumber(L, 1);
+		_to_return = ch->GetTitle(iTitle);
+		lua_pushboolean(L, _to_return);
+		return 1;
+	}
+	
+	int pc_choose_title(lua_State * L)
+	{
+		bool _to_return = false;
+		if (!lua_isnumber(L, 1))
+		{
+			sys_err("Invalid argument.");
+			lua_pushboolean(L, _to_return);
+			return 1;
+		}
+		
+		CQuestManager& q = CQuestManager::instance();
+		LPCHARACTER ch = q.GetCurrentCharacterPtr();
+		if (!ch)
+		{
+			lua_pushboolean(L, _to_return);
+			return 1;
+		}
+		
+		int iTitle = (int)lua_tonumber(L, 1);
+		_to_return = ch->ChooseTitle(iTitle);
+		lua_pushboolean(L, _to_return);
+		return 1;
+	}
+	
+	int pc_choosed_title(lua_State * L)
+	{
+		CQuestManager& q = CQuestManager::instance();
+		LPCHARACTER ch = q.GetCurrentCharacterPtr();
+		if (!ch)
+		{
+			lua_pushnumber(L, 0);
+			return 1;
+		}
+		
+		int _to_return = ch->ChoosedTitle();
+		lua_pushnumber(L, _to_return);
+		return 1;
+	}
+#endif
+
+//adauga in void RegisterPCFunctionTable()
+
+#ifdef __TITLE_SYSTEM__
+			{"set_title", pc_set_title},			// Use (return true or false >> player will learn/unlearn this title): pc.set_title(title number, 0 to unlearn or 1 to learn) >> in length.h check: enum ETitles.
+			{"get_title", pc_get_title},			// Use (return true or false >> true in case player can have this title): pc.get_title(title number) >> in length.h check: enum ETitles.
+			{"choose_title", pc_choose_title},		// Use (return true or false >> true in case player can want to set this title and can): pc.choose_title(title number) >> in length.h check: enum ETitles.
+			{"choosed_title", pc_choosed_title},	// Use (return number of title choosed or 0): pc.choosed_title() >> in length.h check: enum ETitles.
+#endif

@@ -1,0 +1,70 @@
+//cauta
+
+case ITEM_BELT:		// 신규 벨트 아이템
+
+//adauga sub
+
+		case ITEM_NORMAL_TITLE:
+
+
+//cauta
+
+if (count == 0 || count >= item->GetCount() || !item->IsStackable() || IS_SET(item->GetAntiFlag(), ITEM_ANTIFLAG_STACK))
+
+//modifica toata functia cu
+
+
+		if (count == 0 || count >= item->GetCount() || !item->IsStackable() || IS_SET(item->GetAntiFlag(), ITEM_ANTIFLAG_STACK))
+		{
+			sys_log(0, "%s: ITEM_MOVE %s (window: %d, cell : %d) -> (window:%d, cell %d) count %d", GetName(), item->GetName(), Cell.window_type, Cell.cell,
+				DestCell.window_type, DestCell.cell, count);
+
+			item->RemoveFromCharacter();
+			SetItem(DestCell, item);
+
+#ifdef __TITLE_SYSTEM__
+			if(ITEM_NORMAL_TITLE == item->GetType())
+			{
+				quest::CQuestManager::instance().UseItem(GetPlayerID(), item, false);
+			}
+#endif
+
+			if (INVENTORY == Cell.window_type && INVENTORY == DestCell.window_type)
+				SyncQuickslot(QUICKSLOT_TYPE_ITEM, Cell.cell, DestCell.cell);
+		}
+		
+//cauta
+
+
+bool CHARACTER::UnequipItem(LPITEM item)
+{
+	int pos;
+
+	if (false == CanUnequipNow(item))
+		return false;
+
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	if(ITEM_NORMAL_TITLE == item->GetType())
+	{
+		quest::CQuestManager::instance().UseItem(GetPlayerID(), item, false);
+	}
+#endif	
+
+//cauta
+
+		if (UNIQUE_SPECIAL_RIDE == item->GetSubType() && IS_SET(item->GetFlag(), ITEM_FLAG_QUEST_USE))
+		{
+			quest::CQuestManager::instance().UseItem(GetPlayerID(), item, false);
+		}
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+		else if(ITEM_NORMAL_TITLE == item->GetType())
+		{
+			quest::CQuestManager::instance().UseItem(GetPlayerID(), item, false);
+		}
+#endif

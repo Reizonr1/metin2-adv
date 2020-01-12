@@ -1,0 +1,14 @@
+Intră în char_affect.cpp si cauta
+COD: SELECTAŢI TOT
+
+void CHARACTER::RemoveGoodAffect()
+Mai jos o să găsești, in functie:
+COD: SELECTAŢI TOT
+
+RemoveAffect(AFFECT_MOV_SPEED);
+RemoveAffect(AFFECT_ATT_SPEED);
+Editează în:
+COD: SELECTAŢI TOT
+
+/*RemoveAffect(AFFECT_MOV_SPEED);
+RemoveAffect(AFFECT_ATT_SPEED);*/

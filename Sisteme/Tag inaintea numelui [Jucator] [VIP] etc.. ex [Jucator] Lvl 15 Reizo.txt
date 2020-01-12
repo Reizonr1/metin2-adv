@@ -1,0 +1,101 @@
+Cautati functia :  void CInstanceBase::UpdateTextTailLevel(DWORD level) 
+Pe care o gasiti in UserInterfaceEffect.cpp
+Si inlocuiti cu :
+
+#ifdef ENABLE_CUSTOM_TAG_SYSTEM
+void CInstanceBase::UpdateTextTailLevel(DWORD level)
+{
+	static D3DXCOLOR s_kLevelColor = D3DXCOLOR(152.0f / 255.0f, 255.0f / 255.0f, 51.0f / 255.0f, 1.0f);
+
+	char szText[256];
+	if (IsNewPet())
+	{
+		sprintf(szText, "Nivel %d", level);
+		CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+	}
+	if (IsStone())
+	{
+		sprintf(szText, "Nivel %d", level);
+		CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+	}
+	if (IsEnemy())
+	{
+		sprintf(szText, "|cFFFF0000[Lv %d]", level);
+		CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+	}
+	if (IsPC())
+	{
+		std::string szName = GetNameString();
+
+		if (szName.find("[YT]") != std::string::npos)
+		{
+			sprintf(szText, "|cFFFF0000|h[YouTuber]|h|r Lv%d	", level);
+			CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+		}
+		else if (szName.find("[VIP]") != std::string::npos)
+		{
+			sprintf(szText, "[Jucator VIP] Lv%d ", level);
+			CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+		}
+		else if (szName.find("[MS]") != std::string::npos)
+		{
+			sprintf(szText, "|cffff6060|h[Miss]|h|r Lv%d ", level);
+			CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+		}
+
+		else if (szName.find("[MR]") != std::string::npos)
+		{
+			sprintf(szText, "|cffff6060|h[Mister]|h|r Lv%d ", level);
+			CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+		}
+		else if (szName.find("") != std::string::npos)
+		{
+			sprintf(szText, "[Jucator] Lv%d ", level);
+			CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+		}
+	}
+	if (IsGameMaster())
+	{
+		sprintf(szText, "|cFFFF0000[ADMIN] |cff00ff00Lv%d", level);
+		CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+	}
+}
+#else
+void CInstanceBase::UpdateTextTailLevel(DWORD level)
+{
+	static D3DXCOLOR s_kLevelColor = D3DXCOLOR(152.0f/255.0f, 255.0f/255.0f, 51.0f/255.0f, 1.0f);
+
+	char szText[256];
+	sprintf(szText, "Lv %d	", level);
+	CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+}
+#endif
+
+
+
+--------------------------------------------------------
+		La aceasta functie nu editati nimic. 
+
+		else if (szName.find("") != std::string::npos)
+		{
+			sprintf(szText, "[Jucator] Lv%d ", level);
+			CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+		}
+
+
+--------------------------------------------------------
+
+		else if (szName.find("[GA]") != std::string::npos)
+		{
+			sprintf(szText, "[ADMIN] Lv%d ", level);
+			CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+		}
+		
+		Pentru a-ti pune numele dorit, ex [GM]14K , modificati  [ADMIN] cu ce doriti, iar deasupra la [GA] cu gradul din joc.
+		Si dupa puneti comanda  de mai sus, modificata, din nou sub cea normala [GA].
+
+
+Apoi intrati in locale.inc.h
+Si adaugati:
+
+#define ENABLE_CUSTOM_TAG_SYSTEM

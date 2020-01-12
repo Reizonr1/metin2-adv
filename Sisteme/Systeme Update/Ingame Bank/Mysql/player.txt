@@ -1,0 +1,3 @@
+ALTER TABLE player.player ADD bank_bar_first INT(11) NOT NULL DEFAULT '0';
+ALTER TABLE player.player ADD bank_bar_second INT(11) NOT NULL DEFAULT '0';
+ALTER TABLE player.player ADD bank_bar_third INT(11) NOT NULL DEFAULT '0';

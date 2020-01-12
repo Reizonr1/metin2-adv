@@ -1,0 +1,47 @@
+//cauta
+
+POINT_RESIST_PENETRATE = 137
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+	POINT_TITLE = 150,
+	POINT_TITLE_1 = 151,
+	POINT_TITLE_2 = 152,
+	POINT_TITLE_3 = 153,
+	POINT_TITLE_4 = 154,
+	POINT_TITLE_5 = 155,
+	POINT_TITLE_6 = 156,
+	POINT_TITLE_7 = 157,
+	POINT_TITLE_8 = 158,
+	POINT_TITLE_9 = 159,
+	POINT_TITLE_10 = 160,
+	POINT_TITLE_11 = 161,
+	POINT_TITLE_12 = 162,
+	POINT_TITLE_13 = 163,
+	POINT_TITLE_14 = 164,
+	POINT_TITLE_15 = 165,
+	POINT_TITLE_16 = 166,
+	POINT_TITLE_17 = 167,
+	POINT_TITLE_18 = 168,
+	POINT_TITLE_19 = 169,
+	POINT_TITLE_20 = 170,
+#endif
+
+//cauta
+
+BYTE			GetChatCounter() const;
+
+//adauga sub
+
+#ifdef __TITLE_SYSTEM__
+		void			EquipTitle(LPITEM item);
+		void			UnequipTitle(LPITEM item);
+		void			CheckTitle();
+		void			SetTitle(int iTitle, BYTE bValue);
+		bool			GetTitle(int iTitle);
+		bool			ChooseTitle(int iTitle);
+		void			pChooseTitle(int iTitle);
+		int				ChoosedTitle();
+		const char *	GetTitlesAvailable() const;
+#endif

@@ -1,0 +1,8 @@
+//cauta
+
+		void		ClearMountAttributeAndAffect();
+		bool		IsNewMountItem();
+
+//adauga sub
+
+		bool		IsTitleItem();

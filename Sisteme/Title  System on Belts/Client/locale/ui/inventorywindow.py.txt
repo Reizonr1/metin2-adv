@@ -1,0 +1,7 @@
+//cauta
+
+										{"index":item.EQUIPMENT_BELT, "x":39, "y":106, "width":32, "height":32},
+
+//modifica cu
+
+										{"index":item.EQUIPMENT_TITLE, "x":39, "y":106, "width":32, "height":32},

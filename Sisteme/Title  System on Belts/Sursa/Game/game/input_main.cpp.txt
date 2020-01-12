@@ -1,0 +1,46 @@
+//cauta
+
+case HEADER_CG_DRAGON_SOUL_REFINE:
+
+//modifica pana la finalul functiei cu asta
+
+
+		case HEADER_CG_DRAGON_SOUL_REFINE:
+			{
+				TPacketCGDragonSoulRefine* p = reinterpret_cast <TPacketCGDragonSoulRefine*>((void*)c_pData);
+				switch(p->bSubType)
+				{
+				case DS_SUB_HEADER_CLOSE:
+					ch->DragonSoul_RefineWindow_Close();
+					break;
+				case DS_SUB_HEADER_DO_REFINE_GRADE:
+					{
+						DSManager::instance().DoRefineGrade(ch, p->ItemGrid);
+					}
+					break;
+				case DS_SUB_HEADER_DO_REFINE_STEP:
+					{
+						DSManager::instance().DoRefineStep(ch, p->ItemGrid);
+					}
+					break;
+				case DS_SUB_HEADER_DO_REFINE_STRENGTH:
+					{
+						DSManager::instance().DoRefineStrength(ch, p->ItemGrid);
+					}
+					break;
+				}
+			}
+
+			break;
+#ifdef __TITLE_SYSTEM__
+		case HEADER_CG_TITLE_CHOOSE:
+			{
+				TPacketGGTitleInfo* p = reinterpret_cast <TPacketGGTitleInfo*>((void*)c_pData);
+				if (ch)
+					ch->pChooseTitle(p->iTitle);
+			}
+			break;
+#endif
+	}
+	return (iExtraLen);
+}

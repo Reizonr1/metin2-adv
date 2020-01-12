@@ -1,0 +1,32 @@
+Intri constinfo.py din root si adaugi oriunde:
+login_message = 0
+bot_name = "NumeBot"
+mainFolder = "main"Dupa intri in game.py din root si cauti:
+def OpenLa sfarsitul functiei adaugi:
+if constInfo.login_message == 0:
+			constInfo.login_message = 1
+			if os.path.exists(constInfo.mainFolder+"/message.txt"):
+				File = open(constInfo.mainFolder+"/message.txt","r")
+				oldFile = open(constInfo.mainFolder+"/olDmessage.txt","r")
+				messagelist = File.read()
+				messagelistOld = oldFile.read()
+				message = messagelist.split("\n")
+				File.close()
+				oldFile.close()
+				if messagelist != messagelistOld:
+					for text in message:	
+						self.OnRecvWhisper(chat.WHISPER_TYPE_CHAT, constInfo.bot_name, constInfo.bot_name+": "+text)
+					File = open(constInfo.mainFolder+"/olDmessage.txt","w")
+					File.write(messagelist)
+					File.close()
+					messagelist = None
+					messagelistOld = None
+Dupa adaugi folderul din arhiva in fisierul principal de la client.
+http://www.girlshare.ro/3490197794.6
+
+
+
+Daca vrei sa nu mai poti trimite mesaj la Bot intri in uiwhipser.py si cauti:
+def SendWhisper(self):sub: textLength = len(text) adaugi:
+if self.targetName == constInfo.bot_name:
+			return

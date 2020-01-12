@@ -1,0 +1,20 @@
+Cautam functia in uiexchange.py
+
+    def Refresh(self):
+
+        self.RefreshOwnerSlot()
+        self.RefreshTargetSlot()
+
+        self.OwnerMoney.SetText(str(exchange.GetElkFromSelf()))
+        self.TargetMoney.SetText(str(exchange.GetElkFromTarget()))
+
+Inlocuiesti cu:
+
+def Refresh(self):
+ 
+                self.RefreshOwnerSlot()
+                self.RefreshTargetSlot()
+ 
+                #Adaugare (.) intre cifre (negot)  - Inceput
+                self.OwnerMoney.SetText(str(('.'.join([ i-3<0 and str(exchange.GetElkFromSelf())[:i] or str(exchange.GetElkFromSelf())[i-3:i] for i in range(len(str(exchange.GetElkFromSelf()))%3, len(str(exchange.GetElkFromSelf()))+1, 3) if i ]))))
+                self.TargetMoney.SetText(str(('.'.join([ i-3<0 and str(exchange.GetElkFromTarget())[:i] or str(exchange.GetElkFromTarget())[i-3:i] for i in range(len(str(exchange.GetElkFromTarget()))%3, len(str(exchange.GetElkFromTarget()))+1, 3) if i ]))))

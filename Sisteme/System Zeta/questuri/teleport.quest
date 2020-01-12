@@ -1,0 +1,157 @@
+quest teleport begin
+   state start begin
+		when login begin
+			cmdchat("teleporter_index "..q.getcurrentquestindex())
+		end
+      when button or info begin
+         local x
+         local y
+         local t
+         local e = pc.get_empire()
+         say_title("Teleporter:")
+         say("Încotro vrei sa mergi straine?")
+         local s = select("Map1", "Map2", "Valea Orcilor", "Deoert", "Sohan", "Tara de foc", "Urmatoarele", "Închide")
+         if s==7 then
+            say_title("Teleporter:")
+            say("Încotro vrei sa mergi straine?")
+            local p = select("Turnul Demonilor", "V1", "Padurea Fantomelor", "Padurea Rooie", "Tara Gigantilor", "Grota Exilului", "Închide")
+            if p==1 then
+               x="590400"
+               y="110500"
+            elseif p==2 then
+               x="91900"
+               y="525400"
+            elseif p==3 then
+               x="289000"
+               y="5800"
+            elseif p==4 then
+               say_title("Teleporter")
+               say("Încotro vrei sa mergi straine?")
+               t = select("Început", "Sfâroit", "Închide")
+               if t==1 then
+                  x="1119900"
+                  y="70800"
+               elseif t==2 then
+                  x="1119200"
+                  y="7000"
+               end
+            elseif p==5 then
+               x="828100"
+               y="763400"
+            elseif p==6 then
+               x="284200"
+               y="809600"
+            end
+         elseif s==1 then
+            say_title("Teleporter")
+            say("Încotro vrei sa mergi straine?")
+            t = select("Regatul Roou", "Regatul Galben", "Regatul Albastru","Închide")
+            if t==1 then
+               x="473900"
+               y="954600"
+            elseif t==2 then
+               x="63200"
+               y="166700"
+            elseif t==3 then
+               x="959600"
+               y="269700"
+            end
+         elseif s==2 then
+            say_title("Teleporter:")
+            say("Încotro vrei sa mergi straine?")
+            t = select("Regatul Roou", "Regatul Galben", "Regatul Albastru", "Închide")
+            if t==1 then
+               x="352300"
+               y="882700"
+            elseif t==2 then
+               x="145700"
+               y="239800"
+            elseif t==3 then
+               x="863800"
+               y="246000"
+            end
+         elseif s==3 then
+            say_title("Teleporter:")
+            say("Încotro vrei sa mergi straine?")
+            t = select("Început", "Centru", "Arahani", "Închide")
+            if t==1 then
+               if e==1 then
+                  x="402100"
+                  y="673900"                  
+               elseif e==2 then
+                  x="270400"
+                  y="739900"
+               elseif e==3 then
+                  x="321300"
+                  y="808000"
+               end
+            elseif t==2 then
+               x="332700"
+               y="745600"
+            elseif t==3 then
+               x="282800"
+               y="792800"
+            end
+         elseif s==4 then
+            say_title("Teleporter:")
+            say("Încotro vrei sa mergi straine?")
+            t = select("Inceput", "Sfâroit", "Închide")
+            if t==1 then
+               if e==1 then
+                  x="217800"
+                  y="627200"                  
+               elseif e==2 then
+                  x="221900"
+                  y="502700"
+               elseif e==3 then
+                  x="344000"
+                  y="502500"
+               end
+            elseif t==2 then
+               x="296300"
+               y="547500"
+            end
+         elseif s==5 then
+            say_title("Teleporter")
+            say("Încotro vrei sa mergi straine?")
+            t = select("Început", "Mijloc", "Închide")
+            if t==1 then
+               if e==1 then
+                  x="434200"
+                  y="290600"                  
+               elseif e==2 then
+                  x="375200"
+                  y="174900"
+               elseif e==3 then
+                  x="491800"
+                  y="173600"
+               end
+            elseif t==2 then
+               x="436200"
+               y="215300"
+            end         
+         elseif s==6 then
+            say_title("Teleporter:")
+            say("Încotro vrei sa mergi straine?")
+            t = select("Început", "Închide")
+            if t==1 then
+               if e==1 then
+                  x="599400"
+                  y="756300"                  
+               elseif e==2 then
+                  x="597800"
+                  y="622200"
+               elseif e==3 then
+                  x="730700"
+                  y="689800"
+               end
+            elseif t==2 then
+               return
+            end
+         end         
+         if s!=8 or p!= 7 then
+            pc.warp(x, y)
+         end
+      end
+   end
+end

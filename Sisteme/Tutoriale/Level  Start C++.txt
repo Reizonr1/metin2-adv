@@ -1,0 +1,34 @@
+//@Svn/Server/common/service.h
+#define ENABLE_FEATURES_FIRST_LOGIN
+//@Svn/Server/game/src/input_login.cpp
+//1.) Search for:
+	ch->StartCheckSpeedHackEvent();
+//2.) Add after:
+#ifdef ENABLE_FEATURES_FIRST_LOGIN
+	ch->FirstLogin();
+#endif
+	
+//@Svn/Server/game/src/char.h
+//1.) Search for:
+		void			SendEquipment(LPCHARACTER ch);
+//2.) Add after:
+#ifdef ENABLE_FEATURES_FIRST_LOGIN
+		void			FirstLogin();
+#endif
+//@Svn/Server/game/src/char.cpp
+//1.) Search for:
+void CHARACTER::SetMarryPartner(LPCHARACTER ch)
+{
+	m_pkChrMarried = ch;
+}
+//2.) Add after:
+#ifdef ENABLE_FEATURES_FIRST_LOGIN
+void CHARACTER::FirstLogin()
+{
+	if (!GetQuestFlag("start.first_login"))
+	{
+		ResetPoint(MINMAX(1, 99, PLAYER_MAX_LEVEL_CONST)); /* Change level 99 with what you want. */
+		SetQuestFlag("start.first_login", 1);	
+	}
+}
+#endif

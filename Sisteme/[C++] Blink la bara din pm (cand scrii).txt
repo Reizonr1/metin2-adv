@@ -1,0 +1,46 @@
+Intrați in Svn/Client/EterLib/GrpTextInstance.cpp si căutați :
+
+
+if (m_isCursor)
+Sub el adăugați :
+
+
+if (m_isCursor && !(CTimer::instance().GetCurrentSecond() >= m_isBlinking && (ELTimer_GetMSec() / 400) % 2))
+Cauta :
+
+
+m_isMultiLine = false;
+Si adăugați :
+
+
+m_isBlinking = CTimer::instance().GetCurrentSecond();
+Intrați in 1.Svn/Client/EterLib/GrpTextInstance.h si adaugi :
+
+
+#include "../EterBase/Timer.h"
+Cauta :
+
+
+void SetMax(int iMax);
+
+Adaugă :
+
+
+void SetBlinking(){ m_isBlinking = CTimer::instance().GetCurrentSecond() + 1.5f; };
+Cauta :
+
+
+bool m_isCursor;
+Adaugă :
+
+
+float m_isBlinking;
+Intrați in Svn/Client/EterPythonLib/PythonWindow.cpp si căutați :
+
+
+
+m_TextInstance.SetValue(c_szText);
+Adăugați :
+
+
+m_TextInstance.SetBlinking();

@@ -1,0 +1,7 @@
+//cauta
+
+ITEM_TYPE_BELT,						//34 벨트
+
+//adauga sub
+
+			ITEM_TYPE_TITLE,

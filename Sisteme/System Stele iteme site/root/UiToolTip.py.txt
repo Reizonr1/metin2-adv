@@ -1,0 +1,40 @@
+#root/uiToolTip.py
+#1.) Search for:
+		self.__AdjustMaxWidth(attrSlot, itemDesc)
+		self.__SetItemTitle(itemVnum, metinSlot, attrSlot)
+#2.) Add after:		
+	def __SetFeaturesToolTip(self, itemVnum):
+		######################################################
+		# title_name        : Features tooltip on objects
+		# date_created      : 2017.01.11
+		# author            : VegaS
+
+		image = ui.ImageBox()
+		image.SetParent(self)
+		image.Show()			
+
+		self.main = {
+			"vnums" : [
+				140, 150, 3130, 270, 12010, 12020, 12030, 12040, 480, 460, 470, 5120, 7120, 20250, 20750, 20000, 180, 190
+			]
+		}
+		######################################################################################################
+		# Example: vnums[480] = 480, 481, 482, 483, 484, 485, 486, 487, 488, 489 Put more items (need only first index from +0, and automatically will be increment from +0 to +9.)
+					
+		for k in xrange(10):
+			for v in xrange(len(self.main["vnums"])):
+				tokens, index, iterator = self.main["vnums"][v], str(itemVnum)[-1:], str(k)
+
+				if ((tokens <= itemVnum and itemVnum <= tokens + 9) and (index == iterator)):
+					image.LoadImage("icon/item/features_tooltip/%d.tga" % (k))
+
+					image.SetPosition(self.toolTipWidth/2 - 75, self.toolTipHeight)
+					self.toolTipHeight += 18
+					self.childrenList.append(image)
+					self.ResizeToolTip()
+
+#1.) Search for:
+		self.__AdjustMaxWidth(attrSlot, itemDesc)
+		self.__SetItemTitle(itemVnum, metinSlot, attrSlot)
+#2.) Add after:
+		self.__SetFeaturesToolTip(itemVnum)
