@@ -1,0 +1,8 @@
+"You can't wear a costume weapon without have a weapon weared.";
+"You can't wear a costume weapon without have a weapon weared.";
+
+"You can't wear a costume weapon who has different type of your weapon.";
+"You can't wear a costume weapon who has different type of your weapon.";
+
+"For can do this unwear the costume weapon.";
+"For can do this unwear the costume weapon.";

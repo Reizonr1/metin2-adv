@@ -1,0 +1,4 @@
+Add new column;
+Name: gold 
+Type: bigint
+Length: 20

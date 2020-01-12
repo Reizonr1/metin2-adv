@@ -1,0 +1,3 @@
+60020	Tiket Vip	Acest tiket iti ofera posibilitatea de a deveni un player VIP.	(Durata: 30 de zile)
+60021	Tiket Vip Pro	Acest tiket iti ofera posibilitatea de a deveni un player VIP.	(Durata: 60 de zile)
+60022	Tiket Vip Ultimate	Acest tiket iti ofera posibilitatea de a deveni un player VIP.	(Durata: Nedeterminata)

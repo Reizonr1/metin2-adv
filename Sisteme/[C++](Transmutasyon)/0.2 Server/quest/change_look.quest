@@ -1,0 +1,21 @@
+quest change_look begin
+	state start begin
+		when 60003.chat."Transmutation " begin
+			say_title("Theowahdan: ")
+			say("Transmutation enables you to permanently change ")
+			say("the appearance of your equipment. The effect is ")
+			say("restricted to the level of your equipment, ")
+			say("however, and the transmutation will be reversed ")
+			say("if you improve the item. ")
+			say("Do you want to continue? ")
+
+			local confirm = select("Yes ", "No ")
+			if confirm == 2 then
+				return
+			end
+
+			setskin(NOWINDOW)
+			cmdchat("ChangeLookWindow")
+		end
+	end
+end

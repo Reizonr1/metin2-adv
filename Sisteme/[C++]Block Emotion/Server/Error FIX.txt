@@ -1,0 +1,33 @@
+// START bug fix 
+    if (victim)
+	{
+		if (victim->IsBlockMode(BLOCK_EMOTION_REQUEST)) {   
+			ch->ChatPacket(CHAT_TYPE_INFO, "%s a blocat emotiile.", victim->GetName());
+			return;
+		}
+            
+		LPDESC pkVictimDesc = victim->GetDesc();
+		if (pkVictimDesc)
+		{
+			TPacketGCWhisper pack;
+
+			char msg[450];
+			sprintf(msg, "L-ai provocat pe %s pentru o emotie.", ch->GetName());
+
+			int len = MIN(CHAT_MAX_LEN, strlen(msg) + 1);
+
+			pack.bHeader = HEADER_GC_WHISPER;
+			pack.wSize = sizeof(TPacketGCWhisper)+len;
+			pack.bType = WHISPER_TYPE_SYSTEM;
+			strlcpy(pack.szNameFrom, ch->GetName(), sizeof(pack.szNameFrom));
+
+			TEMP_BUFFER buf_wh;
+
+			buf_wh.write(&pack, sizeof(TPacketGCWhisper));
+			buf_wh.write(msg, len);
+
+			ch->PacketAround(buf_wh.read_peek(), buf_wh.size());
+		}
+	}
+}
+// END bug fix 

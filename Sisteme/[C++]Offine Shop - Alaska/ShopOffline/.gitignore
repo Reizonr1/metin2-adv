@@ -1,0 +1,7 @@
+*.sh
+*.7z
+*.zip
+*.rar
+*.patch
+nppBackup/
+ChangesLog-*.txt

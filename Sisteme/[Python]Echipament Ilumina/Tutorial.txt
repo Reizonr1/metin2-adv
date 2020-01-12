@@ -1,0 +1,73 @@
+Pentru cine vrea sa activeze slotul e?arfei în inventar:
+
+1. uiinventory.py
+
+# ----- *// Cauta:
+COD: SELECTATI TOT
+      self.wndItem.RefreshSlot()
+      if self.wndBelt:
+         self.wndBelt.RefreshSlot()
+
+# ----- *// Adauga mai jos:
+COD: SELECTATI TOT
+# -------------------------SLOT ACCE --------------------------------------******            
+   def RefreshNewSlotAcce(self):
+      getAcceVnum=player.GetItemIndex
+      
+      illumina_slot_acce = item.COSTUME_SLOT_COUNT
+      for acce_illumina in xrange(illumina_slot_acce):
+         slot_Acce = item.COSTUME_SLOT_START + acce_illumina
+         self.wndEquip.SetItemSlot(slot_Acce, getAcceVnum(slot_Acce), 0)
+
+      self.wndEquip.RefreshSlot()
+# -------------------------SLOT ACCE --------------------------------------******
+
+
+# ----- *// Cauta:
+COD: SELECTATI TOT
+   def Show(self):
+      self.__LoadWindow()
+
+# ----- *// Adauga mai jos:
+COD: SELECTATI TOT
+# -------------------------SLOT ACCE --------------------------------------******   
+      self.RefreshNewSlotAcce()
+# -------------------------SLOT ACCE --------------------------------------******   
+
+
+# ----- *// Cauta:
+COD: SELECTATI TOT
+         setItemVNum(slotNumber, getItemVNum(slotNumber), itemCount)
+         
+      getItemVNum=player.GetItemIndex
+
+# ----- *// Adauga mai jos:
+COD: SELECTATI TOT
+# -------------------------SLOT ACCE --------------------------------------******   
+      illumina_slot_acce = item.COSTUME_SLOT_COUNT
+      for acce_illumina in xrange(illumina_slot_acce):
+         slot_Acce = item.COSTUME_SLOT_START + acce_illumina
+         self.wndEquip.SetItemSlot(slot_Acce, getItemVNum(slot_Acce), 0)
+# -------------------------SLOT ACCE --------------------------------------******
+
+
+2. InventoryWindow.py:
+
+# ----- *// Cauta:
+COD: SELECTATI TOT
+import item
+
+# ----- *// Adauga mai jos:
+COD: SELECTATI TOT
+# -------------------------SLOT ACCE --------------------------------------******
+ENABLE_SLOT_ACCE = item.COSTUME_SLOT_START
+# -------------------------SLOT ACCE --------------------------------------******
+
+
+# ----- *// Cauta:
+COD: SELECTATI TOT
+                            "slot" : (
+
+# ----- *// Adauga mai jos:
+COD: SELECTATI TOT
+                              {"index":ENABLE_SLOT_ACCE+2, "x":80, "y":3, "width":32, "height":32}, # Slot Acce Illumina

@@ -1,0 +1,3 @@
+55001	Yellow Potion Enchanted
+55002	Pink Potion Enchanted
+55003	White Potion Enchanted

@@ -1,0 +1,46 @@
+OPTION_SALESTEXT_RANGE	Market ismi menzili
+SHOP_NAME	Market ismi
+SHOP_TIMEOUT	Market sona eriş süresi
+SHOP_CREATE	Market oluştur
+SHOP_CREATE_PRICE	Ücret: 
+SHOP_CREATE_HOURS	saat
+SHOP_CREATE_HOUR	saat
+SHOP_CREATE_DAY	gün
+SHOP_CREATE_DAYS	gün
+SHOP_CREATE_NORMAL	Normal market
+SHOP_NAME_EMPTY	Lütfen market ismi girin
+SHOP_TIMEOUT_EMPTY	Lütfen marketin süresini seçiniz.
+SHOP_WINDOW_NAME	Marketleriniz
+SHOP_WINDOW_CREATE	Market Oluşturma
+SHOP_GET_YANG	Parayı al
+SHOP_CHANGE_NAME	İsim değiştir
+SHOP_ENTER_NEW_NAME	Yeni bir isim gir
+SHOP_CLOSE	Marketi kapat
+SHOP_CLOSE_QUEST	"%s" isimli marketi kapatmak istiyor musun?
+SHOP_MANAGE	Yönet
+SHOP_OPEN	Market oluştur
+SHOP_EDIT	Düzenle
+SHOP_REMOVE_ITEM	Sil
+SHOP_CHANGE_PRICE	Ücreti değiştir
+SHOP_EDIT_SHOP_WINDOW	Market düzenleme
+SHOP_EDIT_SHOP_CANCEL	Düzenlemeyi iptal et
+SHOP_REMOVE_ITEM_QUEST	Bu eşyayı silmek istediğine emin misin?
+SHOP_SELECT	Seç
+SHOP_REMOVE_ITEM_QUEST:Bu eşyayı silmek istediğine emin misin?
+SHOP_NOT_EARNED_YANG	Marketin para kazanmadı!
+SHOP_YANG_QUEST	%s kadar yangı "%s" marketinden almak istiyor musun?
+SHOP_INFORMATION	Market hakkında bilgi
+SHOP_EARNED_YANG	Kazanılan para: 
+SHOP_SOLD_ITEMS	Satılan itemler: 
+SHOP_REST_ITEMS	Kalan itemler: 
+SHOP_TIME_TO_CLOSE	Marketin sona eriş süresi: 
+GIFT_WINDOW_NAME	Hediye
+GIFT_PREV_PAGE	Önceki sayfa
+GIFT_NEXT_PAGE	Sonraki sayfa
+GIFT_FROM	GIFT_FROM GELCEK BURAYA
+GIFT_REASON	Sebep
+GIFT_GET_ALL	Hepsini al
+GIFT_GET_QUEST	"%s"i almak istediğine emin misin?
+GIFT_GET_QUEST_ALL	Bütün itemlerini almak istediğine emin misin?
+GIFT_MONEY_DESC	Offline marketten kazandığın para.
+SHOP_SELECT_TIME    Seç

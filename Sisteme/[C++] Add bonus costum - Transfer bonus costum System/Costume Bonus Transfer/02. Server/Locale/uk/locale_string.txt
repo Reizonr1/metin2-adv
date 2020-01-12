@@ -1,0 +1,26 @@
+"<Attr Transfer> The Attr Transfer window is already opened.";
+"<Attr Transfer> The Attr Transfer window is already opened.";
+
+"<Attr Transfer> You have any other window opened, please close and try again.";
+"<Attr Transfer> You have any other window opened, please close and try again.";
+
+"<Attr Transfer> The window is not open.";
+"<Attr Transfer> The window is not open.";
+
+"Drag the items into the window.";
+"<Attr Transfer> Drag the items into the window.";
+
+"The bonuses has transfered to the Costume 1 succesfully!";
+"<Attr Transfer> The bonuses has transfered to the Costume 1 succesfully!";
+
+"<Attr Transfer> For do this, you must add the Transfer Scroll into their slot.";
+"<Attr Transfer> For do this, you must add the Transfer Scroll into their slot.";
+
+"<Attr Transfer> attach from inventory slot number [%d] to attr transfer slot number [%d].";
+"<Attr Transfer> attach from inventory slot number [%d] to attr transfer slot number [%d].";
+
+"<Attr Transfer> Dettach from attr transfer slot number [%d]";
+"<Attr Transfer> Dettach from attr transfer slot number [%d]";
+
+"The costume 2 must have at least 1 bonus.";
+"The costume 2 must have at least 1 bonus.";

@@ -1,0 +1,2 @@
+49000	Blue Armor Effect	This item add to your armor a blue effect, the new look is incrediblle.
+49001	Blue Weapon Effect	This item add to your weapon a blue effect, the new look is incrediblle.

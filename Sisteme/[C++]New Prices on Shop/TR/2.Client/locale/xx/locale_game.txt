@@ -1,0 +1,14 @@
+Bul 
+
+SHOP_NOT_ENOUGH_MONEY
+
+Ekle
+
+MONEY_1__	Yeterli Ep'e sahip değilsin.
+MONEY_2__	Yeterli Won'a sahip değilsin.
+DO_YOU_BUY_NEW_1	Satın almak istiyor musun? Nesne: %s Fiyat: %s Ep
+DO_YOU_BUY_NEW_2	Satın almak istiyor musun? Nesne: %s Fiyat: %s Won
+DO_YOU_BUY_NEW_1_2	Satın almak istiyor musun? Nesne: %s %s Fiyat: %s Ep
+DO_YOU_BUY_NEW_2_2	Satın almak istiyor musun? Nesne: %s %s Fiyat: %s Won
+TOOLTIP_BUYPRICE_NEW	Fiyatı: %s Won
+TOOLTIP_BUYPRICE_NEW_2	Fiyatı: %s Ep

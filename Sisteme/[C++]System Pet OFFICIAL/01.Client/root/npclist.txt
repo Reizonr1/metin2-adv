@@ -1,0 +1,8 @@
+34041	monkey_young1
+34042	monkey_young2
+34045	spider_redpoison_young1
+34046	spider_redpoison_young2
+34049	yamachun_young1
+34050	yamachun_young2
+34053	hanma_young1	
+34054	hanma_young2	

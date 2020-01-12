@@ -1,0 +1,3 @@
+55001	ETC	icon/item/potion_prestige_1.tga
+55002	ETC	icon/item/potion_prestige_2.tga
+55003	ETC	icon/item/potion_prestige_3.tga

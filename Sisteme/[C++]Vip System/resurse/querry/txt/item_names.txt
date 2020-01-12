@@ -1,0 +1,3 @@
+60020	Ticket Vip
+60021	Ticket Vip Pro
+60022	Ticket Vip Ultimate

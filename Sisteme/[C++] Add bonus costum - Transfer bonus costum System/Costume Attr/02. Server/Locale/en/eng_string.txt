@@ -1,0 +1,11 @@
+"You can use this just on costumes.";
+"You can use this just on costumes.";
+
+"This costume doesn't have any bonus.";
+"This costume doesn't have any bonus.";
+
+"You enchant succesfully the costume.";
+"You enchant succesfully the costume.";
+
+"You transform succesfully the costume.";
+"You transform succesfully the costume.";

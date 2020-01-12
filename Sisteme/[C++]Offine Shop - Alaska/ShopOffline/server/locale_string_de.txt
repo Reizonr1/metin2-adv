@@ -1,0 +1,59 @@
+"SHOP_SUCCESS_CLOSE";
+"Dein Laden wurde geschlossen, Items und das verdiente Yang wird den Geschenken hinzugefügt.";
+ 
+"SHOP_MAX_ERR";
+"Du kannst nicht mehr Läden eröffnen.";
+ 
+"INVENTORY_FULL_ERROR";
+"Es ist nicht genug Platz im Inventar.";
+ 
+"UNKNOW_ERROR";
+"Ein unbekannter Fehler ist aufgetreten.";
+ 
+"SHOP_YANG_ADD";
+"Das Yang wurde erfolgreich im Inventar hinzugefügt.";
+ 
+"SHOP_CASH_ADD";
+"Das Yang wurde erfolgreich deinem Account hinzugefügt.";
+ 
+"SHOP_TIMEOUT";
+"Bitte warte %d Sekunden bevor du deinen Laden eröffnest.";
+ 
+"GIFT_NOT_EXISTS";
+"Das Geschenk existiert nicht.";
+ 
+"GIFT_ADD_SUCCESS";
+"Das Geschenk wurde erfolgreich im Inventar hinzugefügt.";
+ 
+"GIFT_ADD_ALL_SUCCESS";
+"Deine Geschenke wurden erfolgreich im Inventar hinzugefügt.";
+ 
+"SHOP_REASON";
+": dein Laden wurde geschlossen";
+ 
+"SHOP_NAME";
+"#PLAYER_NAME# Laden";
+ 
+"SHOP_PRIV_ERROR";
+"Du hast nicht die Berechtigung einen Laden zu eröffnen.";
+ 
+"SHOP_OX_ERROR";
+"Du kannst hier keinen Laden eröffnen";
+ 
+"SHOP_MAP_MAX";
+"Du kannst keinen weiteren Läden auf dieser Map eröffnen.";
+ 
+"SHOP_CANNOT_OPEN_HERE";
+"Du kannst auf dieser Map keinen Laden eröffnen.";
+ 
+"SHOP_NEED_MONEY";
+"Du brauchst %lld Yang um deinen Laden zu eröffnen.";
+ 
+"SHOP_TEMP_OFF";
+"Das Offline Shop System ist temporär deaktiviert.";
+ 
+"SHOP_EDIT_SUCCESS";
+"Deine Items wurden erfolgreich geupdatet.";
+ 
+"SHOP_ITEM_REASON";
+": gelöschtes Item";

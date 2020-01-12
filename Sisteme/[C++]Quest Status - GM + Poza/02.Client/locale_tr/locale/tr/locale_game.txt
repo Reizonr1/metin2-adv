@@ -1,0 +1,12 @@
+Ara:
+QUEST_ZEROSEC
+
+
+Altýna Ekle:
+
+QUESTCATEGORY_0	Ana Görevler
+QUESTCATEGORY_1	Yan Görevler
+QUESTCATEGORY_2	Araþtýrma Görevleri
+QUESTCATEGORY_3	Seviye Görevleri
+QUESTCATEGORY_4	Scroll Görevler
+QUESTCATEGORY_5	Sistem Görevleri

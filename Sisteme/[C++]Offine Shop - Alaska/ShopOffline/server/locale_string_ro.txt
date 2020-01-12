@@ -1,0 +1,59 @@
+"SHOP_SUCCESS_CLOSE";
+"Magazinul a fost inchis cu succes, itemele au fost adaugate la cadouri!";
+
+"SHOP_MAX_ERR";
+"Nu poti crea mai multe magazine.";
+
+"INVENTORY_FULL_ERROR";
+"Nu ai destul spatiu in inventar.";
+
+"UNKNOW_ERROR";
+"A aparut o eroare!";
+
+"SHOP_YANG_ADD";
+"Yang-ul a fost adaugat cu succes!";
+
+"SHOP_CASH_ADD";
+"Yang-ul a fost adaugat cu succes!";
+
+"SHOP_TIMEOUT";
+"Trebuie sa astepti %d s pentru a deschide un magazin.";
+
+"GIFT_NOT_EXISTS";
+"Cadoul nu exista!";
+
+"GIFT_ADD_SUCCESS";
+"Cadoul a fost adaugat cu succes!";
+
+"GIFT_ADD_ALL_SUCCESS";
+"Cadourile a fost adaugate cu succes!";
+
+"SHOP_REASON";
+"Magazin Inchis";
+
+"SHOP_NAME";
+"#PLAYER_NAME# Shop";
+
+"SHOP_PRIV_ERROR";
+"Nu ai permisiune pentru a deschide un magazin offline.";
+
+"SHOP_OX_ERROR";
+"Nu poti deschide un magazin offline aici.";
+
+"SHOP_MAP_MAX";
+"Nu poti deschide inca un magazin.";
+
+"SHOP_CANNOT_OPEN_HERE";
+"Nu poti deschide un magazin in aceasta mapa.";
+
+"SHOP_NEED_MONEY";
+"Ai nevoie de %lld Yang pentru a deschide un magazin.";
+
+"SHOP_TEMP_OFF ";
+"Magazinele offline sun temporar inchise.";
+
+"SHOP_EDIT_SUCCESS";
+"Ai editat cu succes magazinul!";
+
+"SHOP_ITEM_REASON";
+"Magazin gol";

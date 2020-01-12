@@ -1,0 +1,2 @@
+70063	ETC	icon/item/70063.tga
+70064	ETC	icon/item/70064.tga

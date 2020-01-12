@@ -1,0 +1,59 @@
+"SHOP_SUCCESS_CLOSE";
+"Offline market kapandı, itemler ve kazanılan paralar hesabınıza eklenmiştir.";
+
+"SHOP_MAX_ERR";
+"Daha fazla pazar oluşturamazsın.";
+
+"INVENTORY_FULL_ERROR";
+"Envanterinde yeteri kadar yer yok.";
+
+"UNKNOW_ERROR";
+"Bilinmeyen bir hata oluştu.";
+
+"SHOP_YANG_ADD";
+"Gold hesabınıza başarıyla eklenmiştir.";
+
+"SHOP_CASH_ADD";
+"Nakit hesabınıza başarıyla eklenmiştir.";
+
+"SHOP_TIMEOUT";
+"Lütfen pazar açmadan önce %d saniye bekleyiniz.";
+
+"GIFT_NOT_EXISTS";
+"Hediye yok.";
+
+"GIFT_ADD_SUCCESS";
+"Hediye hesabınıza başarıyla eklenmiştir.";
+
+"GIFT_ADD_ALL_SUCCESS";
+"Hediye hesabınıza başarıyla eklenmiştir.";
+
+"SHOP_REASON";
+"Closing Shop";
+
+"SHOP_NAME";
+"#PLAYER_NAME# Marketi";
+
+"SHOP_PRIV_ERROR";
+"Offline pazar açmak için gereken haklara sahip değilsiniz.";
+
+"SHOP_OX_ERROR";
+"Burada market açamazsın.";
+
+"SHOP_MAP_MAX";
+"Bu haritada daha fazla market açamazsın.";
+
+"SHOP_CANNOT_OPEN_HERE";
+"Bu haritada market açamazsın.";
+
+"SHOP_NEED_MONEY";
+"Pazar açmak için %lld Yanga ihtiyacın var.";
+
+"SHOP_TEMP_OFF ";
+"Offline market sistemi, geçici olarak çevrimdışıdır.";
+
+"SHOP_EDIT_SUCCESS";
+"Market itemleri başarıyla güncellendi.";
+
+"SHOP_ITEM_REASON";
+"Silinmiş item";

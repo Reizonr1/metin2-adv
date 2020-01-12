@@ -1,0 +1,82 @@
+#Update:
+uiiventory.py:
+Cauta :
+def SetEquipmentPage(self, page):
+self.equipmentPageIndex = page
+self.equipmentTab[1-page].SetUp()
+self.RefreshEquipSlotWindow()
+
+adauga
+if app.ADD_INVENTORY:
+		def en_ac(self):
+			if player.GetEnvanter() < 4:
+				envanter = 2
+				self.questionDialog = uiCommon.QuestionDialog()
+				self.questionDialog.SetText(localeInfo.ENVANTER_GENIS_1 % envanter)
+				self.questionDialog.SetAcceptEvent(ui.__mem_func__(self.genislet))
+				self.questionDialog.SetCancelEvent(ui.__mem_func__(self.OnCloseQuestionDialog))
+				self.questionDialog.Open()
+				# self.questionDialog.slotIndex = slotIndex
+			elif player.GetEnvanter() == 4 or player.GetEnvanter() == 5:
+				envanter = 3
+				self.questionDialog = uiCommon.QuestionDialog()
+				self.questionDialog.SetText(localeInfo.ENVANTER_GENIS_1 % envanter)
+				self.questionDialog.SetAcceptEvent(ui.__mem_func__(self.genislet))
+				self.questionDialog.SetCancelEvent(ui.__mem_func__(self.OnCloseQuestionDialog))
+				self.questionDialog.Open()
+				# self.questionDialog.slotIndex = slotIndex
+			elif player.GetEnvanter() == 6 or player.GetEnvanter() == 7 or player.GetEnvanter() == 8:
+				envanter = 4
+				self.questionDialog = uiCommon.QuestionDialog()
+				self.questionDialog.SetText(localeInfo.ENVANTER_GENIS_1 % envanter)
+				self.questionDialog.SetAcceptEvent(ui.__mem_func__(self.genislet))
+				self.questionDialog.SetCancelEvent(ui.__mem_func__(self.OnCloseQuestionDialog))
+				self.questionDialog.Open()
+				# self.questionDialog.slotIndex = slotIndex
+			elif player.GetEnvanter() == 9 or player.GetEnvanter() == 10 or player.GetEnvanter() == 11:
+				envanter = 5
+				self.questionDialog = uiCommon.QuestionDialog()
+				self.questionDialog.SetText(localeInfo.ENVANTER_GENIS_1 % envanter)
+				self.questionDialog.SetAcceptEvent(ui.__mem_func__(self.genislet))
+				self.questionDialog.SetCancelEvent(ui.__mem_func__(self.OnCloseQuestionDialog))
+				self.questionDialog.Open()
+				# self.questionDialog.slotIndex = slotIndex
+			elif player.GetEnvanter() == 12 or player.GetEnvanter() == 13 or player.GetEnvanter() == 14:
+				envanter = 6
+				self.questionDialog = uiCommon.QuestionDialog()
+				self.questionDialog.SetText(localeInfo.ENVANTER_GENIS_1 % envanter)
+				self.questionDialog.SetAcceptEvent(ui.__mem_func__(self.genislet))
+				self.questionDialog.SetCancelEvent(ui.__mem_func__(self.OnCloseQuestionDialog))
+				self.questionDialog.Open()
+				# self.questionDialog.slotIndex = slotIndex
+			elif player.GetEnvanter() == 15 or player.GetEnvanter() == 16 or player.GetEnvanter() == 17:
+				envanter = 7
+				self.questionDialog = uiCommon.QuestionDialog()
+				self.questionDialog.SetText(localeInfo.ENVANTER_GENIS_1 % envanter)
+				self.questionDialog.SetAcceptEvent(ui.__mem_func__(self.genislet))
+				self.questionDialog.SetCancelEvent(ui.__mem_func__(self.OnCloseQuestionDialog))
+				self.questionDialog.Open()
+				# self.questionDialog.slotIndex = slotIndex
+			else:
+				self.wndPopupDialog = uiCommon.PopupDialog()
+				self.wndPopupDialog.SetText(localeInfo.ENVANTER_ZATEN_GENIS_3)
+				self.wndPopupDialog.Open()
+
+#Update 2
+Cauta in(Char_Item.cpp):
+
+bool CHARACTER::MoveItem(TItemPos Cell, TItemPos DestCell, BYTE count)
+
+Asta : 
+Warningif (DestCell.cell >= (90 + (5*Black_Envanter())))
+
+Si o stergeti.
+
+
+#Update 3
+Cauta in(Char_Item.cpp) :
+Warningif (INVENTORY == Cell.window_type && DestCell.cell >= (90 + (5*Black_Envanter())))
+
+
+Inlocuieste cu :
+Warningif (INVENTORY == Cell.window_type && DestCell.cell >= (90 + (5*Black_Envanter())) && !DestCell.IsBeltInventoryPosition())

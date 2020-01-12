@@ -1,0 +1,70 @@
+-- Quest scris de Exygo
+-- Data creeari: 06 Septembrie 2016 06:53 PM ora Romaniei
+-- csmarius.sro - Skype
+-- Modificat de oneX pe data de 28 Decembrie 2016 04:30 PM ora Romaniei
+-- nex.onex - Skype
+
+
+quest vip_system begin
+	state __FUNC__ begin
+		function get_ticket_values()
+			local tab = {
+				[60020] = 30,
+				[60021] = 60,
+				[60022] = 0,
+			}
+			return tab
+		end
+
+		function get_vip_duration_text(vnum)
+			local tab = vip_system.get_ticket_values()
+			local vnum = tab[vnum]
+			local text
+			if vnum == 0 then
+				text = "Pe viata"
+			else
+				text = string.format("%d zile",vnum)
+			end
+			return text
+		end
+
+		function say_title()
+			say_title(string.format("%s:",item_name(item.vnum)))
+		end
+
+		function use_ticket()
+			vip_system.say_title()
+			local tab = vip_system.get_ticket_values()
+			local vnum = tab[item.vnum]
+			say("Acest tichet iti ofera posibilitatea de a deveni VIP.[ENTER]")
+			say(string.format("Durata: %s",vip_system.get_vip_duration_text(item.vnum)))
+			say_reward("Sigur vrei sa folosesti acest tichet?[ENTER]")
+			local sel = select("Da","Nu")
+			if sel == 2 then
+				return
+			else
+				if pc.verify_vip_onex(pc.get_player_id()) == true then
+					vip_system.say_title()
+					say("Deja esti VIP, nu poti folosi acest tichet.")
+				else
+					if vnum > 0 then
+						peViata = 0
+					else
+						peViata = 1
+					end
+				
+					pc.remove_item(item.vnum,1)
+					pc.adauga_vip_onex(vnum,peViata)
+					setskin(0)
+				end
+			end
+		end
+
+	end -- s
+
+	state start begin
+		when 60020.use or 60021.use or 60022.use begin
+			vip_system.use_ticket()
+		end
+	end
+end

@@ -1,0 +1,14 @@
+v1.0 - Initial version
+v1.1 - Fixed: Missing GetInventoryPageIndex from InventoryWindow class in uiInventory.py
+v1.2 - Fixed: When the tartet accepted the exchange and you don't yet you are trying to put an item into exchange the slot of the item got redglow, not anymore.
+v1.3 - Itemslot locking via packet under exchange.
+	Touched files are:
+		Server:
+			common/service.h
+			game/src/packet.h
+			game/src/exchange.cpp
+		Client:
+			root/game.py
+			root/uiExchange.py
+			UserInterface/PythonNetworkStreamPhaseGame.cpp
+			UserInterface/Packet.h

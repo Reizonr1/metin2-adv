@@ -1,0 +1,4 @@
+pc.is_afk
+pc.set_afk
+pc.del_afk
+pc.is_open_shop

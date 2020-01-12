@@ -1,0 +1,13 @@
+Search:
+30000	privateshop
+30001	privateshop2
+
+Add it under:
+30005	privateshop_1
+30006	privateshop_2
+30007	privateshop_3
+30008	privateshop_7
+30009	privateshop_5
+30010	privateshop_6
+
+https://puu.sh/sgXXc/cc53aac17d.png

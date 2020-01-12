@@ -1,0 +1,101 @@
+Server:
+1.) Open gamepacket.h than search for: "typedef struct pakcet_view_equip" and replace all structure with this:
+
+
+typedef struct pakcet_view_equip
+{
+	BYTE	header;
+	DWORD	vid;
+	struct {
+		DWORD	vnum;
+		BYTE	count;
+		long	alSockets[ITEM_SOCKET_MAX_NUM];
+		TPlayerItemAttribute aAttr[ITEM_ATTRIBUTE_MAX_NUM];
+	} equips[16];
+} TPacketViewEquip;
+PS: lel "pakcet" xD nevermind Save&Close
+
+2.) Open char.cpp and search for this: "void CHARACTER::SendEquipment(LPCHARACTER ch)" and replace the event with this(Thanks ATAG):
+
+void CHARACTER::SendEquipment(LPCHARACTER ch)
+{
+	TPacketViewEquip p;
+	p.header = HEADER_GC_VIEW_EQUIP;
+	p.vid    = GetVID();
+	int pos[16] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 19, 20, 21, 22, 23 };
+	for (int i = 0; i < 16; i++)
+	{
+		LPITEM item = GetWear(pos[i]);
+		if (item)
+		{
+			p.equips[i].vnum = item->GetVnum();
+			p.equips[i].count = item->GetCount();
+
+			thecore_memcpy(p.equips[i].alSockets, item->GetSockets(), sizeof(p.equips[i].alSockets));
+			thecore_memcpy(p.equips[i].aAttr, item->GetAttributes(), sizeof(p.equips[i].aAttr));
+		}
+		else
+		{
+			p.equips[i].vnum = 0;
+		}
+	}
+	ch->GetDesc()->Packet(&p, sizeof(p));
+}
+Serverside done! - Build!
+
+
+Binary:
+1.) Open UserInterfacePacket.h than search for this: "typedef struct pakcet_view_equip" and replace with this:
+
+
+typedef struct pakcet_view_equip
+{
+	BYTE	header;
+	DWORD	dwVID;
+	TEquipmentItemSet equips[16];
+} TPacketGCViewEquip;
+PS: we met again with pakcet xD, Save&Close.
+
+2.) Open UserInterfacePythonNetworkStreamPhaseGame.cpp than search for this: "bool CPythonNetworkStream::RecvViewEquipPacket()" and replace with this:
+
+bool CPythonNetworkStream::RecvViewEquipPacket()
+{
+	TPacketGCViewEquip kViewEquipPacket;
+	if (!Recv(sizeof(kViewEquipPacket), &kViewEquipPacket))
+		return false;
+
+	PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "OpenEquipmentDialog", Py_BuildValue("(i)", kViewEquipPacket.dwVID));
+	for (int i = 0; i < 16; ++i)
+	{
+		TEquipmentItemSet & rItemSet = kViewEquipPacket.equips[i];
+		PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "SetEquipmentDialogItem", Py_BuildValue("(iiii)", kViewEquipPacket.dwVID, i, rItemSet.vnum, rItemSet.count));
+
+		for (int j = 0; j < ITEM_SOCKET_SLOT_MAX_NUM; ++j)
+			PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "SetEquipmentDialogSocket", Py_BuildValue("(iiii)", kViewEquipPacket.dwVID, i, j, rItemSet.alSockets[j]));
+
+		for (int k = 0; k < ITEM_ATTRIBUTE_SLOT_MAX_NUM; ++k)
+			PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "SetEquipmentDialogAttr", Py_BuildValue("(iiiii)", kViewEquipPacket.dwVID, i, k, rItemSet.aAttr[k].bType, rItemSet.aAttr[k].sValue));
+	}
+
+	return true;
+}
+Binaryside done! - Build!
+
+---Edit----
+Multiple opening bugfix:
+Open interFaceModule.py and search for this: "def OpenEquipmentDialog(self, vid):" if you found it replace that function with this:
+
+
+	def OpenEquipmentDialog(self, vid):
+		if self.equipmentDialogDict.has_key(vid):
+			self.equipmentDialogDict[vid].Destroy()
+			self.CloseEquipmentDialog(vid)
+
+		dlg = uiEquipmentDialog.EquipmentDialog()
+		dlg.SetItemToolTip(self.tooltipItem)
+		dlg.SetCloseEvent(ui.__mem_func__(self.CloseEquipmentDialog))
+		dlg.Open(vid)
+
+		self.equipmentDialogDict[vid] = dlg
+		
+https://www.diffchecker.com/lqi9xdb7

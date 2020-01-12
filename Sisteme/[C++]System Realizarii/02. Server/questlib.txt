@@ -1,0 +1,1 @@
+dofile(get_locale_base_path().."/quest/achievements_lib.lua")

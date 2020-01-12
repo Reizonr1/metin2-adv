@@ -1,0 +1,3 @@
+root > ../ root pack'ýnýza bu klasörde bulunan ;
+
+uiofflineshopbuilder.py ve uiofflineshop.py dosyalarýný atýn.

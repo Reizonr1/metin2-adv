@@ -1,0 +1,3 @@
+55001	Yellow Potion Enchanted	With this you will be enchanted bottles improve the look with a new title, but not every title but one prize. This object is tradable.
+55002	Pink Potion Enchanted	With this you will be enchanted bottles improve the look with a new title, but not every title but one prize. This object is tradable.
+55003	White Potion Enchanted	With this you will be enchanted bottles improve the look with a new title, but not every title but one prize. This object is tradable.

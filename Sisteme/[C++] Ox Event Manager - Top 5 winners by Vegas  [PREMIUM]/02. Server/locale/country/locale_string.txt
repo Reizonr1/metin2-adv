@@ -1,0 +1,62 @@
+"oxevent_correct_answers";
+"<OxEvent>x %d doğru cevapları var..";
+
+"oxevent_announcement_winner";
+"<OX> %s yarışmayı kazanan tebrikler!";
+
+"oxevent_err_status_a";
+"<OxManager> Etkinlik çalışmıyor.";
+
+"oxevent_err_status_b";
+"<OxManager> Etkinlik açıldı, oyuncuları bekliyor.";
+
+"oxevent_err_status_c";
+"<OxManager> Etkinlik durumu, kapılar kapalı.";
+
+"oxevent_err_status_d";
+"<OxManager> Soru çalıştır.";
+
+"oxevent_wrong_password_length";
+"<OxManager> Şifre çok uzun.";
+
+"oxevent_wrong_password";
+"<OxManager> Şifre geçersiz, erişemiyorsun.";
+
+"oxevent_error_file_quiz";
+"<OxManager> oxquiz.lua yüklenemedi, lütfen dosyalarınızı kontrol edin ve tekrar deneyin..";
+
+"oxevent_succes_file_quiz";
+"<OxManager> oxquiz.lua dosyasını başarıyla yükle.";
+
+"oxevent_succes_start";
+"<OxManager> Etkinlik başlatma!";
+
+"oxevent_start_message_1";
+"OX etkinliği birkaç dakika içinde başlıyor.";
+
+"oxevent_start_message_2";
+"Meydan okumaya girmek için Uriel ile konuş!";
+
+"oxevent_close_gates";
+"OX yarışmasının kapıları kapatıldı. Katılımcılara iyi şanslar.";
+
+"oxevent_finish";
+"OX yarışması bitti, herkes köylerine 15 saniye içinde gönderilecektir..";
+
+"oxevent_fail_question";
+"<OxManager> Bir soruya cevap alınamadı.";
+
+"oxevent_succes_question";
+"<OxManager> Soru başarılı bir şekilde yanıtladı.";
+
+"oxevent_fail_reward_count";
+"<OxManager> (s) sayımın boyutu ile ilgili sorun.";
+
+"oxevent_reward_item_chat";
+"<OX> OX yarışmasını kazandıran katılımcılar:";
+
+"oxevent_fail_reward_item";
+"<OxManager> Bu nesneyi veritabanında bulamıyorum.";
+
+"oxevent_force_close";
+"<OX> Bunun için özür dileriz, etkinlik acilen iptal edildi, biz yeni etkinlikle tekrar döneceğiz..";

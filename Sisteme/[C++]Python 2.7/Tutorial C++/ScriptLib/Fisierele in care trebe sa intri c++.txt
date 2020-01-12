@@ -1,0 +1,4 @@
+PythonLauncher.cpp
+PythonLauncher.h
+PythonMarshal.cpp
+StdAfx.h

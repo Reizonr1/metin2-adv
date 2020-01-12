@@ -1,0 +1,66 @@
+## HowTo ##
+Search: BaseModelFileName ,
+Make a new line and paste:
+
+Group AcceData
+{
+	PathName	"d:/ymir work/pc2/wolf/"
+
+	AcceDataCount 			9
+	Group AcceData00
+	{
+		AcceIndex			1
+		Model				"acce/acce_01_001.gr2"
+		SourceSkin			"acce/acce_01.dds"
+		TargetSkin			"acce/acce_01.dds"
+	}
+	Group AcceData01
+	{
+		AcceIndex			2
+		Model				"acce/acce_01_002.gr2"
+		SourceSkin			"acce/acce_01.dds"
+		TargetSkin			"acce/acce_01.dds"
+	}
+	Group AcceData02
+	{
+		AcceIndex			3
+		Model				"acce/acce_01_003.gr2"
+		SourceSkin			"acce/acce_01.dds"
+		TargetSkin			"acce/acce_01.dds"
+	}
+	Group AcceData03
+	{
+		AcceIndex			4
+		Model				"acce/acce_01_004.gr2"
+		SourceSkin			"acce/acce_01.dds"
+		TargetSkin			"acce/acce_01.dds"
+	}
+	Group AcceData04
+	{
+		AcceIndex			5
+		Model				"acce/acce_02_001.gr2"
+		SourceSkin			"acce/acce_01.dds"
+		TargetSkin			"acce/acce_01.dds"
+	}
+	Group AcceData05
+	{
+		AcceIndex			6
+		Model				"acce/acce_02_002.gr2"
+		SourceSkin			"acce/acce_01.dds"
+		TargetSkin			"acce/acce_01.dds"
+	}
+	Group AcceData06
+	{
+		AcceIndex			7
+		Model				"acce/acce_02_003.gr2"
+		SourceSkin			"acce/acce_01.dds"
+		TargetSkin			"acce/acce_01.dds"
+	}
+	Group AcceData07
+	{
+		AcceIndex			8
+		Model				"acce/acce_02_004.gr2"
+		SourceSkin			"acce/acce_01.dds"
+		TargetSkin			"acce/acce_01.dds"
+	}
+}

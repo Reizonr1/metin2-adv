@@ -1,0 +1,7 @@
+Datele serverului dedicat pentru Metin2
+
+OS: FreeBSD 9.2 64 bit
+IP: 192.203.39.230
+Port: 2018
+User: root
+Password: vAHXYZhFs5tE

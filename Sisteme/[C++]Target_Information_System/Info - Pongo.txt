@@ -1,0 +1,12 @@
+www.pvpsemti.com 
+Fix crash core:
+
+Deschide?i input_main.cpp ?i cauta?i:
+
+PCHARACTER m_pkChrTarget = CHARACTER_MANAGER::instance().Find(p->dwVID);
+
+
+Adauga?i sub acea func?ie linia urmatoare:
+
+if (!ch || !m_pkChrTarget)
+return;

@@ -1,0 +1,87 @@
+ScriptType         EnvrionmentData
+ScriptVersion      1.0000
+
+Group DirectionalLight
+{
+    Direction     0.500000 0.500000 -0.500000
+
+    Group Background
+    {
+        Enable        1
+        Diffuse       0.611765 0.360784 0.250980 1.000000
+        Ambient       0.525490 0.282353 0.188235 1.000000
+    }
+    
+    Group Character
+    {
+        Enable        1
+        Diffuse       0.611765 0.360784 0.250980 1.000000
+        Ambient       0.675490 0.432353 0.338235 1.000000
+    }
+}
+Group Material
+{
+    Diffuse       1.000000 1.000000 1.000000 1.000000
+    Ambient       0.847059 0.752941 0.709804 1.000000
+    Emissive      0.325490 0.125490 0.078431 1.000000
+}
+
+Group Fog
+{
+    Enable        1
+    NearDistance  100.000000
+    FarDistance   55000.000000
+    Color         0.470588 0.156863 0.058824 1.000000
+}
+
+Group Filter
+{
+    Enable        0
+    Color         0.298039 0.098039 0.098039 0.000000
+    AlphaSrc      2
+    AlphaDest     2
+}
+
+Group SkyBox
+{
+    bTextureRenderMode    1
+    Scale                 3500.000000 3500.000000 3500.000000
+    GradientLevelUpper    2
+    GradientLevelLower    0
+    FrontFaceFileName	   "D:\ymir work\environment\Skybox\MedetSeval_khafkef\sunset\Front_sunset.dds"
+    BackFaceFileName	   "D:\ymir work\environment\Skybox\MedetSeval_khafkef\sunset\Back_sunset.dds"
+    LeftFaceFileName	   "D:\ymir work\environment\Skybox\MedetSeval_khafkef\sunset\Left_sunset.dds"
+    RightFaceFileName	   "D:\ymir work\environment\Skybox\MedetSeval_khafkef\sunset\Right_sunset.dds"
+    TopFaceFileName	   "D:\ymir work\environment\Skybox\MedetSeval_khafkef\sunset\Top_sunset.dds"
+    BottomFaceFileName	   "D:\ymir work\environment\Skybox\MedetSeval_khafkef\sunset\Bottom_sunset.dds"
+    
+    CloudScale            200000.000000 200000.000000
+    CloudHeight           30000.000000
+    CloudTextureScale     4.000000 4.000000
+    CloudSpeed            0.001000 0.001000
+    CloudTextureFileName  ""
+    List CloudColor
+    {
+        0.000000 0.000000 0.000000 0.000000
+        0.000000 0.000000 0.000000 0.000000
+    }
+    List Gradient
+    {
+        0.772549 0.545098 0.396078 0.000000
+        0.000000 0.000000 0.000000 0.000000
+        
+        0.439216 0.317647 0.239216 0.000000
+        0.000000 0.000000 0.000000 0.000000
+    }
+}
+
+Group LensFlare
+{
+    Enable                     0
+    BrightnessColor            0.980392 0.980392 0.980392 1.000000
+    MaxBrightness              1.000000
+    MainFlareEnable            0
+    MainFlareTextureFileName   ""
+    MainFlareSize              0.200000
+}
+

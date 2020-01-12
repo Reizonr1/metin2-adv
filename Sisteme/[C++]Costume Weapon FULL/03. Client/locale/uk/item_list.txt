@@ -1,0 +1,8 @@
+46001	WEAPON	icon/item/46001.tga	d:/ymir work/item/weapon/46001.gr2
+46002	WEAPON	icon/item/46002.tga	d:/ymir work/item/weapon/46002.gr2
+46003	WEAPON	icon/item/46003.tga	d:/ymir work/item/weapon/46003.gr2
+46004	WEAPON	icon/item/46004.tga	d:/ymir work/item/weapon/46004.gr2
+46005	WEAPON	icon/item/46005.tga	d:/ymir work/item/weapon/46005.gr2
+46006	WEAPON	icon/item/46006.tga	d:/ymir work/item/weapon/46006.gr2
+46007	WEAPON	icon/item/46007.tga	d:/ymir work/item/weapon/46007.gr2
+46008	WEAPON	icon/item/46008.tga	d:/ymir work/item/weapon/46008.gr2

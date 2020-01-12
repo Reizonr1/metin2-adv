@@ -1,0 +1,109 @@
+eterPythonLib/PythonSlotWindow.h
+Cautati:
+CGraphicImageInstance * pInstance;
+
+Adaugati sub:
+CGraphicImageInstance * pInstanceLevel;
+
+Cautati:
+void Destroy();
+
+Adaugati sub:
+void SetSlotLevelImage(DWORD dwIndex, CGraphicImage * levelImage);
+
+eterPythonLib/PythonSlotWindow.cpp
+
+Cautati:
+Slot.pFinishCoolTimeEffect = NULL;
+
+Adaugati sub:
+Slot.pInstanceLevel = NULL;
+
+Cautati:
+void CSlotWindow::SetSlotCount(DWORD dwIndex, DWORD dwCount)
+
+Adaugati sub:
+void CSlotWindow::SetSlotLevelImage(DWORD dwIndex, CGraphicImage * levelImage)
+{
+   TSlot * pSlot;
+   if (!GetSlotPointer(dwIndex, &pSlot) || !levelImage)
+      return;
+   assert(NULL == pSlot->pInstanceLevel);
+   pSlot->pInstanceLevel = CGraphicImageInstance::New();
+   pSlot->pInstanceLevel->SetDiffuseColor(1.0, 1.0, 1.0, 1.0);
+   pSlot->pInstanceLevel->SetImagePointer(levelImage);
+
+}
+
+Cautati:
+pSlot->dwCenterSlotNumber = 0xffffffff;
+
+Adaugati sub:
+if (pSlot->pInstanceLevel)
+{
+   CGraphicImageInstance::Delete(pSlot->pInstanceLevel);
+   pSlot->pInstanceLevel = NULL;
+}
+
+Cautati:
+if (rSlot.bActive)
+
+Adaugati deasupra:
+if (rSlot.pInstanceLevel)
+{
+   rSlot.pInstanceLevel->SetPosition(m_rect.left + rSlot.ixPosition, (m_rect.top + rSlot.iyPosition + rSlot.byyPlacedItemSize*ITEM_HEIGHT) - 32);
+   rSlot.pInstanceLevel->Render();
+}
+
+eterPythonLib/PythonWindowManagerModule.cpp
+
+Cautati:
+void initwndMgr()
+
+Adaugati deasupra:
+PyObject * wndMgrSetSlotImage(PyObject * poSelf, PyObject * poArgs)
+{
+   UI::CWindow * pWin;
+   if (!PyTuple_GetWindow(poArgs, 0, &pWin))
+      return Py_BuildException();
+
+   int iSlotIndex;
+   if (!PyTuple_GetInteger(poArgs, 1, &iSlotIndex))
+      return Py_BuildException();
+
+   char * szImagePath;
+   if (!PyTuple_GetString(poArgs, 2, &szImagePath))
+      return Py_BuildException();
+
+   if (!pWin->IsType(UI::CSlotWindow::Type()))
+      return Py_BuildException();
+
+   UI::CSlotWindow * pSlotWin = (UI::CSlotWindow *)pWin;
+   CGraphicImage * pImage = (CGraphicImage *)CResourceManager::Instance().GetResourcePointer(szImagePath);
+   if (!pImage)
+      return Py_BuildException();
+   pSlotWin->SetSlotLevelImage(iSlotIndex, pImage);
+   return Py_BuildNone();
+}
+
+Cautati:
+{ "ShowOverInWindowName",        wndMgrShowOverInWindowName,            METH_VARARGS },
+
+Adaugati sub:
+{ "SetSlotLevelImage",            wndMgrSetSlotImage,                    METH_VARARGS },
+
+
+root/ui.py
+
+Cautati:
+wndMgr.SetSlotCount(self.hWnd, renderingSlotNumber, ItemCount)
+
+Adaugati sub:
+####Item level text/icon ###
+      itemName=item.GetItemName().strip()
+      itemNameP=item.GetItemName().rfind('+')
+      if itemNameP>0 and len(itemName)>itemNameP+1:
+         level=itemName[itemNameP+1:]
+         if level.isdigit():
+            wndMgr.SetSlotLevelImage(self.hWnd, renderingSlotNumber, ("icon/level/%d.tga"%int(level)))
+####Item level text/icon END ###

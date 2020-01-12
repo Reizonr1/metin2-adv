@@ -1,0 +1,9 @@
+*********************************
+Ora: 22:30 PM
+Data: 20.11.2018
+Drepturi: Strix. @ just4metin.ro   
+Edit: BaF
+*********************************
+
+"skybox.py" -> Acest fisier trebuie copiat in arhiva "root".
+Folderul "ymir work" -> Trebuie copiat la fel si el in arhiva "root".

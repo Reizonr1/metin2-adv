@@ -1,0 +1,11 @@
+"You must unwear the weapon effect before.";
+"You must unwear the weapon effect before.";
+
+"You must unwear the armor effect before.";
+"You must unwear the armor effect before.";
+
+"To can wear a armor effect you must have a armor weared.";
+"To can wear a armor effect you must have a armor weared.";
+
+"To can wear a weapon effect you must have a weapon weared.";
+"To can wear a weapon effect you must have a weapon weared.";

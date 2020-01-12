@@ -1,0 +1,50 @@
+-- Anyone Code
+-- Skype: any2one
+-- Website: www.anyoneservice.altervista.org/en/
+quest support_system begin
+    state start begin
+        function get_pet_info(itemVnum)
+            pet_info_map = {
+            --  [ITEM VNUM] MOB_VNUM, DEFAULT NAME, buff_idx, spawn_effect_idx
+                [53001]     = { 34001, "Support System", 0},
+            }
+
+            itemVnum = tonumber(itemVnum)
+
+            return pet_info_map[itemVnum]
+        end
+		function get_spawn_effect_file(idx)
+			effect_table = {
+				[0] = nil,
+				[1] = "d:\\\\ymir work\\\\effect\\\\etc\\\\appear_die\\\\npc2_appear.mse",
+			}
+			return effect_table [idx]
+		end
+        when 53001.use begin
+			 local any_info = support_system.get_pet_info(item.vnum)
+
+            if null != any_info then
+
+                local mobVnum = any_info[1]
+                local petName = any_info[2]
+				local spawn_effect_file_name = support_system.get_spawn_effect_file(any_info[3])
+
+                if true == supports.is_summon(mobVnum) then
+					if spawn_effect_file_name != nil then
+						supports.spawn_effect (mobVnum, spawn_effect_file_name)
+					end
+                    supports.unsummon(mobVnum)
+                else
+                    if supports.count_summoned() < 1 then
+                        supports.summon(mobVnum, petName, false)
+                    else
+                        syschat("You already call your support.")
+                    end
+					if spawn_effect_file_name != nil then
+						supports.spawn_effect (mobVnum, spawn_effect_file_name)
+					end
+                end
+            end
+        end
+    end
+end

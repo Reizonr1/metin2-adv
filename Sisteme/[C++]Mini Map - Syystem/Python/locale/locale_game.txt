@@ -1,0 +1,6 @@
+Ekleyin
+
+
+BLACK_ONLINE	|cff00CC00|Hemp|hOnline Sayýsý:|h|r
+BLACK_SARI	|cffFDD017|H|hSarý Bayrak:|h|r
+BLACK_KIRMIZI	|cffff0000|Hemp|hKýrmýzý Bayrak:|h|r

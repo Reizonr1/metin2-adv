@@ -1,0 +1,2 @@
+70063	Transfer Costume	Removes the bonuses from one of your costumes and replaces them with new ones. With a bit of luck, the number of bonuses might also change (up to max. 3).
+70064	Enchant Costume	Removes the bonuses from one of your costumes and replaces them with new ones.

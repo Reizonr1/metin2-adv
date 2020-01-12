@@ -1,0 +1,269 @@
+[*]packet.h: search for
+HEADER_CG_ITEM_DROP2       = 20,
+& paste
+Code (Text):
+HEADER_CG_ITEM_DESTROY       = 21,
+under it.
+
+[*]packet.h: search for
+typedef struct command_item_drop2
+{
+   [...]
+} TPacketCGItemDrop2;
+& paste
+typedef struct command_item_destroy
+{
+   BYTE     header;
+   TItemPos   Cell;
+} TPacketCGItemDestroy;
+under it.
+
+[*]packet_info.cpp: search for
+Set(HEADER_CG_ITEM_DROP2, sizeof(TPacketCGItemDrop2), "ItemDrop2", true);
+& paste
+Set(HEADER_CG_ITEM_DESTROY, sizeof(TPacketCGItemDestroy), "ItemDestroy", true);
+under it.
+
+[*]input_main.cpp: search for 
+void CInputMain::ItemDrop2(LPCHARACTER ch, const char * data)
+{
+   [...]
+}
+& paste
+void CInputMain::ItemDestroy(LPCHARACTER ch, const char * data)
+{
+   struct command_item_destroy * pinfo = (struct command_item_destroy *) data;
+   if (ch)
+     ch->DestroyItem(pinfo->Cell);
+}
+under it.
+[*]input_main.cpp: search for
+     case HEADER_CG_ITEM_DROP2:
+       [...]
+     break;
+& paste
+     case HEADER_CG_ITEM_DESTROY:
+       if (!ch->IsObserverMode())
+         ItemDestroy(ch, c_pData);
+     break;
+under it.
+
+[*]char_item.cpp: search for
+bool CHARACTER::DropItem(TItemPos Cell, BYTE bCount)
+& paste
+Code (Text):
+bool CHARACTER::DestroyItem(TItemPos Cell)
+{
+   LPITEM item = NULL;
+   if (!CanHandleItem())
+   {
+     if (NULL != DragonSoul_RefineWindow_GetOpener())
+       ChatPacket(CHAT_TYPE_INFO, LC_TEXT("°*È*Ã¢À» ¿¬ »óÅÂ¿¡¼*´Â ¾ÆÀÌÅÛÀ» ¿Å±æ ¼ö ¾ø½À´Ï´Ù."));
+     return false;
+   }
+   if (IsDead())
+     return false;
+   if (!IsValidItemPosition(Cell) || !(item = GetItem(Cell)))
+     return false;
+   if (item->IsExchanging())
+     return false;
+   if (true == item->isLocked())
+     return false;
+   if (quest::CQuestManager::instance().GetPCForce(GetPlayerID())->IsRunning() == true)
+     return false;
+   if (item->GetCount() <= 0)
+     return false;
+   SyncQuickslot(QUICKSLOT_TYPE_ITEM, Cell.cell, 255);
+   ITEM_MANAGER::instance().RemoveItem(item);
+   ChatPacket(CHAT_TYPE_INFO, LC_TEXT("Du hast %s zerstoert."), item->GetName());
+   return true;
+}
+above it.
+
+[*]char.h: search for
+bool       DropItem(TItemPos Cell,  BYTE bCount=0);
+& paste
+bool       DestroyItem(TItemPos Cell);
+above it.
+
+[*]input.h: search for
+void     ItemDrop2(LPCHARACTER ch, const char * data);
+& paste
+void     ItemDestroy(LPCHARACTER ch, const char * data);
+under it.
+
+
+Clientside - C++
+
+
+[*]packet.h: search for
+HEADER_CG_ITEM_DROP2                        = 20,
+& paste
+HEADER_CG_ITEM_DESTROY             = 21,
+under it.
+
+[*]packet.h: search for
+typedef struct command_item_drop2
+{
+    [...]
+} TPacketCGItemDrop2;
+& paste
+typedef struct command_item_destroy
+{
+   BYTE     header;
+   TItemPos   pos;
+} TPacketCGItemDestroy;
+under it.
+
+[*]PythonNetworkStreamPhaseGameItem.cpp: search for
+bool CPythonNetworkStream::SendItemDropPacketNew(TItemPos pos, DWORD elk, DWORD count)
+{
+   [...]
+}
+& paste
+bool CPythonNetworkStream::SendItemDestroyPacket(TItemPos pos)
+{
+   if (!__CanActMainInstance())
+     return true;
+   TPacketCGItemDestroy itemDestroyPacket;
+   itemDestroyPacket.header = HEADER_CG_ITEM_DESTROY;
+   itemDestroyPacket.pos = pos;
+   if (!Send(sizeof(itemDestroyPacket), &itemDestroyPacket))
+   {
+     Tracen("SendItemDestroyPacket Error");
+     return false;
+   }
+   return SendSequence();
+}
+under it.
+
+[*]PythonNetworkStreamModule.cpp: search for
+PyObject* netSendItemDropPacket(PyObject* poSelf, PyObject* poArgs)
+{
+   [...]
+}
+& paste
+PyObject* netSendItemDestroyPacket(PyObject* poSelf, PyObject* poArgs)
+{
+   TItemPos Cell;
+  
+   if (!PyTuple_GetInteger(poArgs, 0, &Cell.cell))
+     return Py_BuildException();
+   CPythonNetworkStream& rkNetStream = CPythonNetworkStream::Instance();
+   rkNetStream.SendItemDestroyPacket(Cell);
+   return Py_BuildNone();
+}
+under it.
+
+[*]PythonNetworkStreamModule.cpp: search for
+{ "SendItemDropPacketNew",         netSendItemDropPacketNew,         METH_VARARGS },
+& paste
+{ "SendItemDestroyPacket",         netSendItemDestroyPacket,         METH_VARARGS },
+under it.
+
+[*]PythonNetworkStream.h: search for
+bool SendItemDropPacketNew(TItemPos pos, DWORD elk, DWORD count);
+& paste
+bool SendItemDestroyPacket(TItemPos pos);
+under it.
+
+Clientside - Python
+
+
+[*]uiCommon.py: search for
+class QuestionDialog(ui.ScriptWindow):
+   [...]
+& paste
+class QuestionDialogItem(ui.ScriptWindow):
+   def __init__(self):
+     ui.ScriptWindow.__init__(self)
+     self.__CreateDialog()
+   def __del__(self):
+     ui.ScriptWindow.__del__(self)
+   def __CreateDialog(self):
+     pyScrLoader = ui.PythonScriptLoader()
+     pyScrLoader.LoadScriptFile(self, "uiscript/questiondialogitem.py")
+     self.board = self.GetChild("board")
+     self.textLine = self.GetChild("message")
+     self.acceptButton = self.GetChild("accept")
+     self.destroyButton = self.GetChild("destroy")
+     self.cancelButton = self.GetChild("cancel")
+   def Open(self):
+     self.SetCenterPosition()
+     self.SetTop()
+     self.Show()
+   def Close(self):
+     self.Hide()
+   def SetWidth(self, width):
+     height = self.GetHeight()
+     self.SetSize(width, height)
+     self.board.SetSize(width, height)
+     self.SetCenterPosition()
+     self.UpdateRect()
+   def SAFE_SetAcceptEvent(self, event):
+     self.acceptButton.SAFE_SetEvent(event)
+   def SAFE_SetCancelEvent(self, event):
+     self.cancelButton.SAFE_SetEvent(event)
+   def SetAcceptEvent(self, event):
+     self.acceptButton.SetEvent(event)
+   def SetDestroyEvent(self, event):
+     self.destroyButton.SetEvent(event)
+   def SetCancelEvent(self, event):
+     self.cancelButton.SetEvent(event)
+   def SetText(self, text):
+     self.textLine.SetText(text)
+   def SetAcceptText(self, text):
+     self.acceptButton.SetText(text)
+   def SetCancelText(self, text):
+     self.cancelButton.SetText(text)
+   def OnPressEscapeKey(self):
+     self.Close()
+     return TRUE
+under it.
+
+[*]uiScript/questiondialogitem.py: download it & pack it in your pack/uiscript.
+
+[*]game.py: search in definition __DropItem for the first
+itemDropQuestionDialog = uiCommon.QuestionDialog()
+& replace it with
+itemDropQuestionDialog = uiCommon.QuestionDialogItem()
+[*]game.py: a few lines under it you can find
+itemDropQuestionDialog.SetAcceptEvent(lambda arg=TRUE: self.RequestDropItem(arg))
+& paste
+itemDropQuestionDialog.SetDestroyEvent(lambda arg=TRUE: self.RequestDestroyItem(arg))
+under it.
+
+[*]game.py: search for
+ def RequestDropItem(self, answer):
+     [...]
+& paste
+   def RequestDestroyItem(self, answer):
+     if not self.itemDropQuestionDialog:
+       return
+     if answer:
+       dropType = self.itemDropQuestionDialog.dropType
+       dropNumber = self.itemDropQuestionDialog.dropNumber
+       if player.SLOT_TYPE_INVENTORY == dropType:
+         if dropNumber == player.ITEM_MONEY:
+           return
+         else:
+           self.__SendDestroyItemPacket(dropNumber)
+  
+     self.itemDropQuestionDialog.Close()
+     self.itemDropQuestionDialog = None
+     constInfo.SET_ITEM_DROP_QUESTION_DIALOG_STATUS(0)
+under it.
+
+[*]game.py: search for
+   def __SendDropItemPacket(self, itemVNum, itemCount, itemInvenType = player.INVENTORY):
+     [...]
+& paste
+   def __SendDestroyItemPacket(self, itemVNum, itemInvenType = player.INVENTORY):
+     if uiPrivateShopBuilder.IsBuildingPrivateShop():
+       chat.AppendChat(chat.CHAT_TYPE_INFO, localeInfo.DROP_ITEM_FAILURE_PRIVATE_SHOP)
+       return
+     net.SendItemDestroyPacket(itemVNum)
+under it.
+
+[*]locale/xx/locale_interface.txt: add there somewhere
+DESTROY   Destroy

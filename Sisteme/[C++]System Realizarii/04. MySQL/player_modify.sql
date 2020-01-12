@@ -1,0 +1,2 @@
+ALTER TABLE `player`
+ADD COLUMN `pz`  int(11) NOT NULL DEFAULT 0 AFTER `level`;

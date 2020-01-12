@@ -1,0 +1,6 @@
+chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED+40 ( + 40 mean 260)
+chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED+41 ( + 41 mean 261)
+chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED+42 ( + 42 mean 262)
+chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED+43 ( + 43 mean 263)
+chrmgr.RegisterEffect(chrmgr.EFFECT_REFINED+44 ( + 44 mean 264)
+ETC

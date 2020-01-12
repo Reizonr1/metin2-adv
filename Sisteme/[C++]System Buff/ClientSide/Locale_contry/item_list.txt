@@ -1,0 +1,9 @@
+79000	ETC	icon/item/resistbuffmastericon.tga
+79001	ETC	icon/item/resistbuffgrandicon.tga
+79002	ETC	icon/item/resistbuffperfecticon.tga
+79003	ETC	icon/item/criticalbuffmastericon.tga
+79004	ETC	icon/item/criticalbuffgrandicon.tga
+79005	ETC	icon/item/criticalbuffperfecticon.tga
+79006	ETC	icon/item/reflectbuffmastericon.tga
+79007	ETC	icon/item/reflectbuffgrandicon.tga
+79008	ETC	icon/item/reflectbuffperfecticon.tga

@@ -1,0 +1,3 @@
+COMB_TITLE	Bonus Transfer
+COMB_APPEARANCE	Costume 1
+COMB_ATTRIBUTE	Costume 2

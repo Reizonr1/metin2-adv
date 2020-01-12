@@ -1,0 +1,23 @@
+Locale_xx > locale_xx > xx > offlineshop klasörünü bu dizine atýn
+
+locale_game.txt açýn ve müsait bir yere alttakileri ekleyin.
+
+
+
+OFFLINE_SHOP	Offline Shop
+OFFLINE_SHOP_CHANGE_TIME	Pazar süresi (%d) olarak deðiþtirildi.
+OFFLINE_SHOP_CHANGE_TIME2	Pazar süresi sýnýrsýz olarak deðiþtirildi.
+OFFLINE_SHOP_SELECT_TIME	Pazar süresi belirleyin. (%d)
+OFFLINE_SHOP_SELECT_TIME2	Pazar süresini sýnýrsýz olarak seçersiniz.
+OFFLINE_SHOP_WARNING1	<Sistem> Eðer bu iþlemi aktif ederseniz, hiçbir onay almadan herþeyi satýn alacaksýnýz.
+OFFLINE_SHOP_WARNING2	<Sistem> Lütfen bu iþleme dikkat et.
+DROP_ITEM_FAILURE_OFFLINE_SHOP	Pazar penceresi açýk iken nesne düþüremessin.
+MOVE_ITEM_FAILURE_OFFLINE_SHOP	Pazar penceresi açýk iken nesne taþýyamassýn.
+OFFLINE_SHOP_CANNOT_SELL_ITEM	Bu nesne pazarda satýlamaz.
+USE_ITEM_FAILURE_OFFLINE_SHOP	Pazar penceresi açýk iken nesne kullanamazsýn.
+
+
+
+locale_interface.txt açýn ve müsait bir yere alttakileri ekleyin.
+
+OFFLINE_SHOP_TITLE	Pazarý Kapat

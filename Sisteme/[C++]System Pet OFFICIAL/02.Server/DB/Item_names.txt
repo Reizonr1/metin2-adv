@@ -1,0 +1,32 @@
+55001	Biscuit cu Proteine
+55002	Cutie de Transport
+55003	Carte Insotitor Tanar
+55004	Carte Insotitor Salbatic
+55005	Carte Insotitor Curajos
+55009	Cufar Carte Insotitor
+55010	Rezistenta (Razboinic)
+55011	Rezistenta (Sura)
+55012	Rezistenta (Ninja)
+55013	Rezistenta (Saman)
+55014	Rezistenta (Lycan)
+55015	Carte Berserker
+55016	Carte Anti-Magie
+55017	Carte Graba	Dupa
+55018	Carte Antrenament
+55019	Carte Restaurare
+55020	Carte de Vampirism
+55021	Carte de Spiritism
+55022	Carte de Obstructie
+55023	Carte Reflexie
+55024	Carte Drop Yang
+55025	Carte Distanta
+55026	Carte Imortalitate
+55027	Carte Remediu
+55401	Ou
+55402	Ou
+55403	Ou
+55404	Ou
+55701	Pui de Maimuta (Sigiliu)
+55702	Pui de Paianjen	(Sigiliu)
+55703	Pui de Razador	(Sigiliu)
+55704	Pui de Nemere	(Sigiliu)

@@ -1,0 +1,59 @@
+"SHOP_SUCCESS_CLOSE";
+"Sklep zosta³ zamkniêty, pozosta³e przedmioty oraz zarobione yang zosta³y dodane do podarków.";
+
+"SHOP_MAX_ERR";
+"Nie mo¿esz stworzyæ wiêcej sklepów";
+
+"INVENTORY_FULL_ERROR";
+"Nie masz miejsca w ekwipunku";
+
+"UNKNOW_ERROR";
+"Wystapi³ b³¹d";
+
+"SHOP_YANG_ADD";
+"Yangi zostan¹ dodane do twojego ekwipunku";
+
+"SHOP_CASH_ADD";
+"Smocze Monety zosta³y dodane do twojego konta";
+
+"SHOP_TIMEOUT";
+"Proszê odczekaæ %ds zanim otworzysz kolejny sklep";
+
+"GIFT_NOT_EXISTS";
+"Przedmiot nie istnieje";
+
+"GIFT_ADD_SUCCESS";
+"Przedmiot zosta³ dodany do twojego ekwipunku";
+
+"GIFT_ADD_ALL_SUCCESS";
+"Przedmioty zosta³y dodane do twojego ekwipunku";
+
+"SHOP_REASON";
+"Zamkniecie sklepu";
+
+"SHOP_ITEM_REASON";
+"Usuniecie przedmiotu";
+
+"SHOP_NAME";
+"Sklep #PLAYER_NAME#";
+
+"SHOP_PRIV_ERROR";
+"Tworzenie sklepów dla twojej posady zosta³o zablokowane!";
+
+"SHOP_OX_ERROR";
+"Nie mo¿esz otworzyæ sklepu tutaj.";
+
+"SHOP_CANNOT_OPEN_HERE";
+"Nie mo¿esz otworzyæ sklepu tutaj.";
+
+"SHOP_NEED_MONEY";
+"Potrzebujesz %lld Yang by otworzyæ taki rodzaj sklepu";
+
+"SHOP_MAP_MAX";
+"Nie mo¿esz stworzyæ wiêcej sklepów na tej mapie.";
+
+"SHOP_TEMP_OFF ";
+"Tworzenie sklepów jest tymczasowo wy³¹czone";
+
+"SHOP_EDIT_SUCCESS";
+"Przedmioty zosta³y pomyœnie zaktualizowane.";

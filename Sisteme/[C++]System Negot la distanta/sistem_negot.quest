@@ -1,0 +1,32 @@
+quest sistem_negot begin
+    state start begin
+        function GetName()
+            cmdchat("getinputbegin")
+            name = input(cmdchat("sistem_negot_verificare_nume"))
+            cmdchat("getinputend")
+            return name
+        end
+    
+        function GetVid(n)
+            local name = n
+            local vid = find_pc_by_name(name)
+            if name == "" then return end
+            if name == pc.get_name() then return end
+            if vid == 0 then return end
+            local myvid = pc.select(vid)
+            local vicvid = pc.get_vid()
+            pc.select(myvid)
+            return tonumber(vicvid)
+        end
+    
+        when login begin
+            cmdchat("sistem_negot_map "..q.getcurrentquestindex())
+        end
+    
+        when button or info begin
+            local name = sistem_negot.GetName()
+            local vid = sistem_negot.GetVid(name)
+            cmdchat("sistem_negot_deschidere_fereastra "..vid.."")
+        end
+    end
+end

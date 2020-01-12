@@ -1,0 +1,1 @@
+#define ENABLE_GM_AFFECTS

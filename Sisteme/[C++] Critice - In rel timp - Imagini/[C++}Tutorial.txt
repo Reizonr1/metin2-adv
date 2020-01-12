@@ -1,0 +1,201 @@
+[File: src/Server/common/service.h] && [File: src/Client/UserInterface/Locale_inc.h]
+
+#define ENABLE_NEW_AFFECT_POTION
+[File: src/Client/UserInterface/InstanceBase.h]
+
+//1.) Search:
+
+			NEW_AFFECT_NOG_POCKET_ABILITY = 302,
+//2.) Add bellow:
+
+#ifdef ENABLE_NEW_AFFECT_POTION
+			AFFECT_POTION_1 = 303,
+			AFFECT_POTION_2 = 304,
+			AFFECT_POTION_3 = 305,
+			AFFECT_POTION_4 = 306,
+			AFFECT_POTION_5 = 307,
+			AFFECT_POTION_6 = 308,
+#endif
+[File: src/Client/UserInterface/PythonCharacterModule.cpp]
+
+//1.) Search:
+
+	PyModule_AddIntConstant(poModule, "NEW_AFFECT_DRAGON_SOUL_DECK2",		CInstanceBase::NEW_AFFECT_DRAGON_SOUL_DECK2);
+//2.) Add bellow:
+
+#ifdef ENABLE_NEW_AFFECT_POTION
+	PyModule_AddIntConstant(poModule, "AFFECT_POTION_1",		CInstanceBase::AFFECT_POTION_1);
+	PyModule_AddIntConstant(poModule, "AFFECT_POTION_2",		CInstanceBase::AFFECT_POTION_2);
+	PyModule_AddIntConstant(poModule, "AFFECT_POTION_3",		CInstanceBase::AFFECT_POTION_3);
+	PyModule_AddIntConstant(poModule, "AFFECT_POTION_4",		CInstanceBase::AFFECT_POTION_4);
+	PyModule_AddIntConstant(poModule, "AFFECT_POTION_5",		CInstanceBase::AFFECT_POTION_5);
+	PyModule_AddIntConstant(poModule, "AFFECT_POTION_6",		CInstanceBase::AFFECT_POTION_6);
+#endif	
+[File: src/Client/UserInterface/PythonApplicationModule.cpp]
+
+//1.) Search:
+
+#ifdef ENABLE_COSTUME_SYSTEM
+	PyModule_AddIntConstant(poModule, "ENABLE_COSTUME_SYSTEM",	1);
+#else
+	PyModule_AddIntConstant(poModule, "ENABLE_COSTUME_SYSTEM",	0);
+#endif
+//2.) Add bellow:
+
+#ifdef ENABLE_NEW_AFFECT_POTION
+	PyModule_AddIntConstant(poModule, "ENABLE_NEW_AFFECT_POTION",	1);
+#else
+	PyModule_AddIntConstant(poModule, "ENABLE_NEW_AFFECT_POTION",	0);
+#endif
+[File: src/Server/game/src/affect.h]
+
+//1.) Search:
+
+	AFFECT_HOLLY_STONE_POWER = 303,
+//2.) Delete and replaced with:
+
+#ifdef ENABLE_NEW_AFFECT_POTION	
+	AFFECT_POTION_1,
+	AFFECT_POTION_2,
+	AFFECT_POTION_3,
+	AFFECT_POTION_4,
+	AFFECT_POTION_5,
+	AFFECT_POTION_6,
+#endif
+[File: src/Server/game/src/char.h]
+
+//1.) Search:
+
+		void			FlushDelayedSaveItem();
+//2.) Add bellow:
+
+#ifdef ENABLE_NEW_AFFECT_POTION	
+		bool			SetAffectPotion(LPITEM item);
+#endif	
+[File: src/Server/game/src/char_item.cpp]
+
+//1.) Search:
+
+void CHARACTER::UseSilkBotary(void)
+{
+	if (m_bNoOpenedShop) {
+		DWORD dwPlayerID = GetPlayerID();
+		db_clientdesc->DBPacket(HEADER_GD_MYSHOP_PRICELIST_REQ, GetDesc()->GetHandle(), &dwPlayerID, sizeof(DWORD));
+		m_bNoOpenedShop = false;
+	} else {
+		__OpenPrivateShop();
+	}
+}
+//2.) Add bellow:
+
+#ifdef ENABLE_NEW_AFFECT_POTION
+bool CHARACTER::SetAffectPotion(LPITEM item)
+{
+	int blend_get_affect[] = {AFFECT_POTION_1, AFFECT_POTION_2, AFFECT_POTION_3, AFFECT_POTION_4, AFFECT_POTION_5, AFFECT_POTION_6};
+	
+	int blend_null[] = {APPLY_NONE, AFF_NONE, 0, false};
+	
+	int blend_list[] = {50821, 50822, 50823, 50824, 50825, 50826};
+	
+	const char* blend_succes = {"<Affect Potion> Set icon ingame for item: |cFFc9ff00|H|h[%s]"};
+	
+	int	blend_time	= item->GetSocket(2);
+	
+	switch (item->GetVnum())
+	{
+		case 50821:
+			AddAffect(blend_get_affect[0], blend_null[0], blend_null[2], blend_null[1], blend_time, blend_null[2], blend_null[3], blend_null[3]);	
+			break;
+		case 50822:
+			AddAffect(blend_get_affect[1], blend_null[0], blend_null[2], blend_null[1], blend_time, blend_null[2], blend_null[3], blend_null[3]);
+			break;
+		case 50823:
+			AddAffect(blend_get_affect[2], blend_null[0], blend_null[2], blend_null[1], blend_time, blend_null[2], blend_null[3], blend_null[3]);	
+			break;
+		case 50824:
+			AddAffect(blend_get_affect[3], blend_null[0], blend_null[2], blend_null[1], blend_time, blend_null[2], blend_null[3], blend_null[3]);	
+			break;	
+		case 50825:
+			AddAffect(blend_get_affect[4], blend_null[0], blend_null[2], blend_null[1], blend_time, blend_null[2], blend_null[3], blend_null[3]);	
+			break;	
+		case 50826:
+			AddAffect(blend_get_affect[5], blend_null[0], blend_null[2], blend_null[1], blend_time, blend_null[2], blend_null[3], blend_null[3]);	
+			break;	
+	}	
+		ChatPacket(CHAT_TYPE_INFO, blend_succes, item->GetName());	
+}
+#endif
+//3.) Search:
+
+							AddAffect(affect_type, apply_type, apply_value, 0, apply_duration, 0, false);
+//4.) Add before:
+
+						#ifdef ENABLE_NEW_AFFECT_POTION
+							SetAffectPotion(item);
+						#endif
+ 
+
+[File: root/uiAffectShower.py]
+
+//1.) Search:
+
+		if type < 500:
+			return
+//2.) Delete and replaced with:
+
+		if app.ENABLE_NEW_AFFECT_POTION:
+			if type < 500 and not type == AFFECT_POTION["affect"][0] and not type == AFFECT_POTION["affect"][1] and not type == AFFECT_POTION["affect"][2] and not type == AFFECT_POTION["affect"][3] and not type == AFFECT_POTION["affect"][4] and not type == AFFECT_POTION["affect"][5]:
+				return
+		else:
+			if type < 500:
+				return	
+//3.) Search:
+
+import math
+//4.) Add bellow:
+
+if app.ENABLE_NEW_AFFECT_POTION:				
+	AFFECT_POTION = {
+		"affect"  : {
+			0 : 303,
+			1 : 304,
+			2 : 305,
+			3 : 306,
+			4 : 307,
+			5 : 308,
+		},
+		#"modulePython"  : {
+			#0 : str(pkAffect),
+			#1 : int(pRemove_vegas),
+		#},
+		"image"  : {
+			0 : "icon/item/50821.tga",
+			1 : "icon/item/50822.tga",
+			2 : "icon/item/50823.tga",
+			3 : "icon/item/50824.tga",
+			4 : "icon/item/50825.tga",
+			5 : "icon/item/50826.tga",
+		},
+	}
+//5.) Search:
+
+	if app.ENABLE_DRAGON_SOUL_SYSTEM:
+		AFFECT_DATA_DICT[chr.NEW_AFFECT_DRAGON_SOUL_DECK1] = (localeInfo.TOOLTIP_DRAGON_SOUL_DECK1, "d:/ymir work/ui/dragonsoul/buff_ds_sky1.tga")
+		AFFECT_DATA_DICT[chr.NEW_AFFECT_DRAGON_SOUL_DECK2] = (localeInfo.TOOLTIP_DRAGON_SOUL_DECK2, "d:/ymir work/ui/dragonsoul/buff_ds_land1.tga")
+//6.) Add bellow:
+
+	if app.ENABLE_NEW_AFFECT_POTION:	
+		AFFECT_DATA_DICT[AFFECT_POTION["affect"][0]] = (localeInfo.TOOLTIP_AFFECT_POTION_1, AFFECT_POTION["image"][0])
+		AFFECT_DATA_DICT[AFFECT_POTION["affect"][1]] = (localeInfo.TOOLTIP_AFFECT_POTION_2, AFFECT_POTION["image"][1])
+		AFFECT_DATA_DICT[AFFECT_POTION["affect"][2]] = (localeInfo.TOOLTIP_AFFECT_POTION_3, AFFECT_POTION["image"][2])
+		AFFECT_DATA_DICT[AFFECT_POTION["affect"][3]] = (localeInfo.TOOLTIP_AFFECT_POTION_4, AFFECT_POTION["image"][3])
+		AFFECT_DATA_DICT[AFFECT_POTION["affect"][4]] = (localeInfo.TOOLTIP_AFFECT_POTION_5, AFFECT_POTION["image"][4])
+		AFFECT_DATA_DICT[AFFECT_POTION["affect"][5]] = (localeInfo.TOOLTIP_AFFECT_POTION_6, AFFECT_POTION["image"][5])
+[File: locale/xx/locale_game.txt]
+
+TOOLTIP_AFFECT_POTION_1	Potion Red	SNA
+TOOLTIP_AFFECT_POTION_2	Potion Orange	SNA
+TOOLTIP_AFFECT_POTION_3	Potion Yellow	SNA
+TOOLTIP_AFFECT_POTION_4	Potion Green	SNA
+TOOLTIP_AFFECT_POTION_5	Potion Blue	SNA
+TOOLTIP_AFFECT_POTION_6	Potion White	SNA

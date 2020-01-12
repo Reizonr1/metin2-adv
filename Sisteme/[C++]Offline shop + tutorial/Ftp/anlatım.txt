@@ -1,0 +1,3 @@
+ftp > /usr/game/cores/... > channel ve auth klasörlerinin bulunduðu yere atýn.
+
+NOT : Kaç kanal varsa o kadarýný atýn config dosyalarý ayný içeriktedir kolaylýk olsun diye klasörledim.

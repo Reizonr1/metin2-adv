@@ -1,0 +1,18 @@
+1	Resistenza (guerriero)	jijoong	PASSIVE	Resistenza contro gli attacchi dei guerrieri (passiva)	0
+2	Resistenza (sura)	jijoong	PASSIVE	Resistenza contro gli attacchi dei sura (passiva)	0
+3	Resistenza (ninja)	jijoong	PASSIVE	Resistenza contro gli attacchi dei ninja (passiva)	0
+4	Resistenza (shamani)	jijoong	PASSIVE	Resistenza contro gli attacchi degli shamani (passiva)	0
+5	Resistenza (lican)	jijoong	PASSIVE	Resistenza contro gli attacchi dei lican (passiva)	0
+6	Berserker	pacheon	PASSIVE	Il valore d'attacco aumenta (passiva)	0
+7	Anti-magia	cheonryeong	PASSIVE	La magia dell'avversario viene interrotta (passiva)	0
+8	Accelerazione	banya	PASSIVE	Il tempo di ricarica delle abilità diminuisce (passiva)	0
+9	Perforazione	choehoenbimu	PASSIVE	Possibilità di colpo perforante incrementata (passiva)	0
+10	Rinnovo	heal	AUTO	Gli HP vengono ripristinati non appena scendono sotto i 20	480
+11	Vampiro	stealhp	PASSIVE	All'avversario vengono sottratti degli HP (passiva)	0
+12	Fanstasmi	stealmp	PASSIVE	All'avversario vengono sottratti degli MP (passiva)	0
+13	Intoppo	block	PASSIVE	I danni fisici vengono bloccati (passiva)	0
+14	Riflesso	reflect_melee	PASSIVE	I danni subiti si riflettono sull'avversario (passiva)	0
+15	Drop di Yang	gold_drop	PASSIVE	Il tasso di drop di Yang aumenta (passiva)	0
+16	Portata	bow_distance	PASSIVE	La portata del tuo arco aumenta (passiva)	0
+17	Invincibilità	invincibility	AUTO	Possibilità di essere invincibile per un lasso di tempo limitato.	600
+18	Guarigione	removal	AUTO	Possibilità di eliminare gli effetti di avvelenamento, di sanguinamento e di rallentamento.	480

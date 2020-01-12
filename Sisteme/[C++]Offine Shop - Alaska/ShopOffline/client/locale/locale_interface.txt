@@ -1,0 +1,46 @@
+OPTION_SALESTEXT_RANGE	Shop name range
+SHOP_NAME	Shop name
+SHOP_TIMEOUT	Shop timeout
+SHOP_CREATE	Create shop
+SHOP_CREATE_PRICE	Cost: 
+SHOP_CREATE_HOURS	hours
+SHOP_CREATE_HOUR	hour
+SHOP_CREATE_DAY	day
+SHOP_CREATE_DAYS	days
+SHOP_CREATE_NORMAL	Normal shop
+SHOP_NAME_EMPTY	Please enter shop name
+SHOP_TIMEOUT_EMPTY	Please select shop timeout
+SHOP_WINDOW_NAME	Your shops
+SHOP_WINDOW_CREATE	Shop creating
+SHOP_GET_YANG	Get money
+SHOP_CHANGE_NAME	Change name
+SHOP_ENTER_NEW_NAME	Enter new name
+SHOP_CLOSE	Close shop
+SHOP_CLOSE_QUEST	Are you sure want close shop "%s"?
+SHOP_MANAGE	Manage
+SHOP_OPEN	Create shop
+SHOP_EDIT	Edit
+SHOP_REMOVE_ITEM	Delete
+SHOP_CHANGE_PRICE	Change price
+SHOP_EDIT_SHOP_WINDOW	Shop editing
+SHOP_EDIT_SHOP_CANCEL	Cancel edit
+SHOP_REMOVE_ITEM_QUEST	Are you sure want delete this item ?
+SHOP_SELECT	Select
+SHOP_NOT_EARNED_YANG	Your shop isn't earned money!
+SHOP_YANG_QUEST	Are you sure want get %s from shop "%s" ?
+SHOP_INFORMATION	Information about shop 
+SHOP_EARNED_YANG	Earned money: 
+SHOP_SOLD_ITEMS	Sold items: 
+SHOP_REST_ITEMS	Rest items: 
+SHOP_TIME_TO_CLOSE	Shop timeout: 
+GIFT_WINDOW_NAME	Gift's
+GIFT_PREV_PAGE	Prev page
+GIFT_NEXT_PAGE	Next page
+GIFT_FROM	From
+GIFT_REASON	Reason
+GIFT_GET_ALL	Get all
+GIFT_GET_QUEST	Are you sure want get "%s"?
+GIFT_GET_QUEST_ALL	Are you sure want get all items?
+GIFT_MONEY_DESC	Your earned money from offline shop.
+SHOP_SELECT_TIME    Select
+

@@ -1,0 +1,45 @@
+OPTION_SALESTEXT_RANGE	Rază Magazine
+SHOP_NAME	Nume Magazin
+SHOP_TIMEOUT	Timp
+SHOP_CREATE	Crează magazin
+SHOP_CREATE_PRICE	Preţ: 
+SHOP_CREATE_HOURS	ore
+SHOP_CREATE_HOUR	oră
+SHOP_CREATE_DAY	zi
+SHOP_CREATE_DAYS	zile
+SHOP_CREATE_NORMAL	Magazin normal
+SHOP_NAME_EMPTY	Introdu numele magazinului.
+SHOP_TIMEOUT_EMPTY	Selectează timpul.
+SHOP_WINDOW_NAME	Magazinele tale
+SHOP_WINDOW_CREATE	Crează magazin
+SHOP_GET_YANG	Retrage Yang
+SHOP_CHANGE_NAME	Schimbă numele
+SHOP_ENTER_NEW_NAME	Introdu numele nou.
+SHOP_CLOSE	Inchide magazinul
+SHOP_CLOSE_QUEST	Eşti sigur că vrei să închizi magazinul "%s"?
+SHOP_MANAGE	PANOU
+SHOP_OPEN	Crează magazin
+SHOP_EDIT	Editează
+SHOP_REMOVE_ITEM	Retrage
+SHOP_CHANGE_PRICE	Schimbă preţul
+SHOP_EDIT_SHOP_WINDOW	Editează
+SHOP_EDIT_SHOP_CANCEL	Anulare
+SHOP_REMOVE_ITEM_QUEST	Eşti sigur că vrei să retragi acest item ?
+SHOP_SELECT	Selectează
+SHOP_NOT_EARNED_YANG	Nu ai Yang de retras!
+SHOP_YANG_QUEST	Eşti sigur că vrei să retragi %s din magazinul "%s" ?
+SHOP_INFORMATION	Informaţii despre 
+SHOP_EARNED_YANG	Yang strâns: 
+SHOP_SOLD_ITEMS	Iteme vândute: 
+SHOP_REST_ITEMS	Iteme rămase: 
+SHOP_TIME_TO_CLOSE	Timp rămas: 
+GIFT_WINDOW_NAME	Cadou!
+GIFT_PREV_PAGE	Înapoi
+GIFT_NEXT_PAGE	Înainte
+GIFT_FROM	Din
+GIFT_REASON	Motiv
+GIFT_GET_ALL	Retrage tot
+GIFT_GET_QUEST	Eşti sigur că vrei să retragi "%s"?
+GIFT_GET_QUEST_ALL	Eşti sigur că vrei să retragi toate itemele?
+GIFT_MONEY_DESC	Yang-ul strâns din magazinul tău offline.
+SHOP_SELECT_TIME	Selectează

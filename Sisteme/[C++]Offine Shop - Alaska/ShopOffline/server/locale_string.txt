@@ -1,0 +1,59 @@
+"SHOP_SUCCESS_CLOSE";
+"Shop has been closed, items and earned yang from yout shop is have been added to gifts";
+
+"SHOP_MAX_ERR";
+"You can't create more own shops";
+
+"INVENTORY_FULL_ERROR";
+"You don't have enough space in inventory";
+
+"UNKNOW_ERROR";
+"An unknown error has occurred";
+
+"SHOP_YANG_ADD";
+"Gold has been addeted your inventory sucessful";
+
+"SHOP_CASH_ADD";
+"Cash has been addeted your account sucessful";
+
+"SHOP_TIMEOUT";
+"Please wait %d s before open shop";
+
+"GIFT_NOT_EXISTS";
+"Gift not exists";
+
+"GIFT_ADD_SUCCESS";
+"Gift has been addeted your inventory sucessful";
+
+"GIFT_ADD_ALL_SUCCESS";
+"Gift's has been addeted your inventory sucessful";
+
+"SHOP_REASON";
+"Closing Shop";
+
+"SHOP_NAME";
+"#PLAYER_NAME# Shop";
+
+"SHOP_PRIV_ERROR";
+"You don't have privileges to open private shop.";
+
+"SHOP_OX_ERROR";
+"You can't open private shop here.";
+
+"SHOP_MAP_MAX";
+"You can't open new private shop on this map";
+
+"SHOP_CANNOT_OPEN_HERE";
+"You can't open private shop on this map";
+
+"SHOP_NEED_MONEY";
+"You need %lld Yang for this open shops";
+
+"SHOP_TEMP_OFF ";
+"Offline shop system is temporary offline";
+
+"SHOP_EDIT_SUCCESS";
+"Shop item's has been sucessful updated";
+
+"SHOP_ITEM_REASON";
+"Deleted item";

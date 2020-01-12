@@ -1,0 +1,10 @@
+newpet.getevo
+newpet.getlevel
+newpet.increaseevo
+newpet.increaseskill
+newpet.restorepet
+newpet.EggRequest
+newpet.count_summoned
+newpet.is_summon
+newpet.summon
+newpet.unsummon

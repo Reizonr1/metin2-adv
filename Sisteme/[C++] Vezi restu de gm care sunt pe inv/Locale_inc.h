@@ -1,0 +1,1 @@
+#define ENABLE_CANSEEHIDDENTHING_FOR_GM // xkozed nr1 adv va zic. muie la dusmani.

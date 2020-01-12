@@ -1,0 +1,5 @@
+#pragma comment( lib, "python22.lib" )
+
+with
+
+#pragma comment( lib, "python27.lib" )

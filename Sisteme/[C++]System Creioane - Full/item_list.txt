@@ -1,0 +1,4 @@
+30126	ETC	icon/item/creion_rosu.tga
+30127	ETC	icon/item/creion_verde.tga
+30128	ETC	icon/item/creion_albastru.tga
+30129	ETC	icon/item/creion_galben.tga

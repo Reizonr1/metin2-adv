@@ -1,0 +1,60 @@
+section
+npc	20406
+item 	85001	1
+reward	85002	1
+abs_chance_min	5
+abs_chance_max	5
+gold	100000
+percent	80
+end
+		 
+section
+npc	20406
+item 	85002	1
+reward	85003	1
+abs_chance_min	10
+abs_chance_max	10
+gold	200000
+percent	70
+end
+		 
+section
+npc	20406
+item 	85003	1
+reward	85004	1
+abs_chance_min	11
+abs_chance_max	20
+gold	300000
+percent	60
+end
+		 
+section
+npc	20406
+item 	85005	1
+reward	85006	1
+abs_chance_min	5
+abs_chance_max	5
+gold	100000
+percent	80
+end
+		 
+section
+npc	20406
+item 	85006	1
+reward	85007	1
+abs_chance_min	10
+abs_chance_max	10
+gold	200000
+percent	70
+end
+		 
+section
+npc	20406
+item 	85007	1
+reward	85008	1
+abs_chance_min	11
+abs_chance_max	20
+gold	300000
+percent	60
+end
+		 

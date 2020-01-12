@@ -1,0 +1,1 @@
+create \game_api\off_msg folder in ..\share\locale\...\quest

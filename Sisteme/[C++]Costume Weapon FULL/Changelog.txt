@@ -1,0 +1,3 @@
+0.1:
+	-> After last update, when you use the /ip (item purge) command with a weapon costume weared the skin don't disappear.
+	-> Changes in ..//source//server//game//src//cmd_gm.cpp.

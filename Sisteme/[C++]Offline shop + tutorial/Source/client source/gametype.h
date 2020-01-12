@@ -1,0 +1,5 @@
+Arat ;
+	SLOT_TYPE_DRAGON_SOUL_INVENTORY,
+	
+Altına ekle ;
+	SLOT_TYPE_OFFLINE_SHOP,

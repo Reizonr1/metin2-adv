@@ -1,0 +1,47 @@
+GIFT_WINDOW_NAME	Geschenke
+GIFT_PREV_PAGE	Vorherige Seite
+GIFT_NEXT_PAGE	Nächste Seite
+GIFT_COUNT	Anzahl
+GIFT_FROM	Von
+GIFT_REASON	Grund
+GIFT_GET	Abholen
+GIFT_GET_ALL	Alle Items
+GIFT_GET_QUEST	Bist du sicher das du %s haben möchtest?
+GIFT_GET_QUEST_ALL	Bist du sicher das du alle Items haben möchtest?
+GIFT_MONEY_DESC	Du hast das Yang deines Offline Shops erhalten.
+SHOP_NAME	Ladenname
+SHOP_TIMEOUT	Laufzeit des Ladens:
+SHOP_CREATE	Laden eröffnen
+SHOP_CREATE_PRICE	Kosten:
+SHOP_CREATE_HOURS	Stunden
+SHOP_CREATE_HOUR	Stunde
+SHOP_CREATE_DAY	Tag
+SHOP_CREATE_DAYS	Tage
+SHOP_CREATE_NORMAL	Normaler Laden
+SHOP_NAME_EMPTY	Bitte gebe einen Ladennamen ein
+SHOP_TIMEOUT_EMPTY	Bitte wähle eine Laufzeit für deinen Laden
+SHOP_WINDOW_NAME	Deine Läden
+SHOP_WINDOW_SHOP_NAME	Laden
+SHOP_WINDOW_CREATE	Laden eröffnen
+SHOP_GET_YANG	Yang abheben
+SHOP_CHANGE_NAME	Namen ändern
+SHOP_ENTER_NEW_NAME	Gebe bitte einen neuen Namen ein
+SHOP_CLOSE	Laden schließen
+SHOP_CLOSE_QUEST	Bist du dir sicher das du den Laden %s schließen willst?
+SHOP_MANAGE	Verwalten
+SHOP_OPEN	Laden eröffnen
+SHOP_EDIT	Bearbeiten
+SHOP_REMOVE_ITEM	Entfernen
+SHOP_CHANGE_PRICE	Preis ändern
+SHOP_EDIT_SHOP_WINDOW	Bearbeiten
+SHOP_EDIT_SHOP_CANCEL	Schließen
+SHOP_SELECT	Auswahl
+SHOP_REMOVE_ITEM_QUEST	Bist du sicher das du dieses Item entfernen willst?
+SHOP_NOT_EARNED_YANG	Dein Laden hat bis jetzt noch kein Yang verdient! HAHA
+SHOP_YANG_QUEST	Möchtest du %s von Laden %s kaufen?
+SHOP_INFORMATION	Ladenname:
+SHOP_EARNED_YANG	Verdientes Yang:
+SHOP_SOLD_ITEMS	Verkaufte Items:
+SHOP_REST_ITEMS	Restliche Items:
+SHOP_TIME_TO_CLOSE	Zeit:
+SHOP_SELECT_TIME	Auswählen

@@ -1,0 +1,12 @@
+ACCE_ABSORB_COST	Absorption price: %d
+ACCE_DEL_ABSORDITEM	Absorb item, destroying it in the process?
+ACCE_DEL_SERVEITEM	Sash 2 will be destroyed should the combination fail.
+ACCE_MAXGRADE	This has already been customized.
+ACCE_NOTABSORBITEM	You cannot use a weapon or armor piece that has already been absorbed.
+ACCE_NOT_SEALITEM	You cannot use any soulbound items.
+ACCE_NOT_USINGITEM	You cannot combine an equipped item.
+ACCE_NOT_WINDOWOPEN	You cannot use the item when the window for combination is open.
+ACCE_POSSIBLE_ACCE	You can only use Shoulder Sashes.
+ACCE_POSSIBLE_ACCEITEM	You can only extract bonuses from weapons and armor.
+ACCE_ABSORB_CHANCE	Absorption rate: %d%%
+ACCE_DO_YOU_REMOVE_ATTR	Do you want to remove all bonuses available on this item?

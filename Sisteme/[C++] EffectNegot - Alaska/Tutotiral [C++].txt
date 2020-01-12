@@ -1,0 +1,20 @@
+Intra în /usr/src/game_source/Srcs/Server/game/src 
+
+Deschide exchange.cpp
+
+Dute la linia 485 ?i cauta:
+
+
+if (item->GetVnum() >= 80003 && item->GetVnum() <= 80007)
+            {
+                LogManager::instance().GoldBarLog(victim->GetPlayerID(), item->GetID(), EXCHANGE_TAKE, "");
+                LogManager::instance().GoldBarLog(GetOwner()->GetPlayerID(), item->GetID(), EXCHANGE_GIVE, "");
+            }
+
+
+Adauga:
+
+m_pOwner->CreateFly(FLY_SP_MEDIUM, victim);
+for (int i = 0; i < 3; i++){
+    m_pOwner->CreateFly(FLY_SP_SMALL, victim);
+}

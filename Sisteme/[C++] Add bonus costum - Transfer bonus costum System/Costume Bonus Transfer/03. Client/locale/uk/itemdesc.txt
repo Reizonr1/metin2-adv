@@ -1,0 +1,1 @@
+70065	Transfer Scroll	Turn the bonuses from a costume to another costume. This process will destroy of the costume.

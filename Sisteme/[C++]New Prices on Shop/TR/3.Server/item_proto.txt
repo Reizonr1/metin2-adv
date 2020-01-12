@@ -1,0 +1,14 @@
+Herhangi bir item'de bulun antiflag kısmını bulun
+Örnek:
+ANTI_DROP |
+None'de olabilir
+
+Bu şekilde Değiştirin:
+ANTI_DROP | ANTIFLAG_SHOP_TRIPLE
+Veya
+ANTI_DROP | ANTIFLAG_SHOP_SECONDARY
+
+Sonuna | koymayı unutmayın
+Örnek:
+
+ANTI_DROP | ANTIFLAG_SHOP_SECONDARY | ANTI_SELL

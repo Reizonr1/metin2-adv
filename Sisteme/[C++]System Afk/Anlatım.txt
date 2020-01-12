@@ -1,0 +1,10 @@
+Client;
+sand.tga, ui_wrapper.py, autoafk.py dosyalarını root'a atın
+diğer dosyalarda yazan işlemleri yapın
+
+Server;
+quest_functions da ki fonksiyonları kendi quest_functions dosyanızın herhangi bir yerine diğer ekli fonksiyonlar gibi ekleyin
+questi quest klasörünüze atıp qc ile compile edin ve oyundan /reload q yazın yada reboot atın
+
+Game;
+dosyalarda yazan işlemleri yapın

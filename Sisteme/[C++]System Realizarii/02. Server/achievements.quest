@@ -1,0 +1,134 @@
+quest achievementsystem begin
+	state start begin
+		
+		when login begin
+			cmdchat("ACHIEVEMENTS QID#"..q.getcurrentquestindex())
+			achievements.check_if_first()
+			achievements.create_categorys()
+			achievements.load_achievements()
+			achievements.load_last_finished_achievements()
+			achievements.set_achievementshop_categories()
+			achievements.load_achievementshop_items()
+			loop_timer('achievements_level_flogin_check', 5)
+			loop_timer('achievementstime_achievements_flogin_check', 1)
+		end
+		
+		when logout or disconnect begin
+			cleartimer('time_achievements')
+		end
+		
+		when button begin
+			cmdchat('ACHIEVEMENTS INPUT#1')
+			local ashop = split(input(cmdchat('ACHIEVEMENTS SEND#')), '#')
+			cmdchat('ACHIEVEMENTS INPUT#0')
+			if ashop[1] == 'BUY_ITEM' then
+				achievements.buy_achievementshop_item(tonumber(ashop[2]), tonumber(ashop[3]))
+			end
+		end
+		
+		when levelup begin
+			local info_level = achievements.get_next_achievement("level", 'Level')
+			if type(info_level) ~= 'table' then return end
+			cmdchat(string.format('ACHIEVEMENTS UPDATE_ACHIEVEMENT#%d#%d', 1, pc.get_level()))
+			cmdchat('ACHIEVEMENTS REFRESH_ACHIEVEMENTS#')
+			if pc.get_level() >= info_level[1] then
+				achievements.set_finished(1, info_level[1], info_level[2], 0)
+				achievements.set_ap(info_level[2])
+				achievements.setf("level", achievements.getf("level")+1)
+			end
+		end	
+		
+		when kill with not npc.is_pc() and not npc.is_boss() and not npc.is_metin() begin
+			local npcRace = npc.get_race()
+			local achievementMobInfo,mobInfo,mobKills = achievements.getAchievementInfo(npcRace, 'Mobs'),achievements.getf(string.format("mob_info_%d", npcRace))+1,achievements.getf(string.format("mob_kills_%d", npcRace))+1
+			if table.getn(achievementMobInfo) < mobInfo then return end
+			cmdchat('ACHIEVEMENTS UPDATE_ACHIEVEMENT#2#'..mobKills..'#'..npcRace)
+			cmdchat('ACHIEVEMENTS REFRESH_ACHIEVEMENTS#')
+			achievementMobInfo = achievementMobInfo[mobInfo]
+			achievements.setf(string.format("mob_kills_%d", npcRace), mobKills)
+			if mobKills >= achievementMobInfo[1] then
+				achievements.set_finished(2, achievementMobInfo[1], achievementMobInfo[2], npcRace)
+				achievements.set_ap(achievementMobInfo[2])
+				achievements.setf(string.format("mob_info_%d", npcRace), mobInfo)
+			end
+		end
+		
+		when kill with npc.is_boss() begin
+			local npcRace = npc.get_race()
+			local achievementBossInfo,bossInfo,bossKills = achievements.getAchievementInfo(npcRace, 'Bosses'),achievements.getf(string.format("boss_info_%d", npcRace))+1,achievements.getf(string.format("boss_kills_%d", npcRace))+1
+			if table.getn(achievementBossInfo) < bossInfo then return end
+			cmdchat('ACHIEVEMENTS UPDATE_ACHIEVEMENT#3#'..bossKills..'#'..npcRace)
+			cmdchat('ACHIEVEMENTS REFRESH_ACHIEVEMENTS#')
+			achievementBossInfo = achievementBossInfo[bossInfo]
+			achievements.setf(string.format("boss_kills_%d", npcRace), bossKills)
+			if bossKills >= achievementBossInfo[1] then
+				achievements.set_finished(3, achievementBossInfo[1], achievementBossInfo[2], npcRace)
+				achievements.set_ap(achievementBossInfo[2])
+				achievements.setf(string.format("boss_info_%d", npcRace), bossInfo)
+			end
+		end
+		
+		when kill with npc.is_metin() begin
+			local npcRace = npc.get_race()
+			local achievementMetinInfo,metinInfo,metinKills = achievements.getAchievementInfo(npcRace, 'Metins'),achievements.getf(string.format("metin_info_%d", npcRace))+1,achievements.getf(string.format("metin_kills_%d", npcRace))+1
+			if table.getn(achievementMetinInfo) < metinInfo then return end
+			cmdchat('ACHIEVEMENTS UPDATE_ACHIEVEMENT#4#'..metinKills..'#'..npcRace)
+			cmdchat('ACHIEVEMENTS REFRESH_ACHIEVEMENTS#')
+			achievementMetinInfo = achievementMetinInfo[metinInfo]
+			achievements.setf(string.format("metin_kills_%d", npcRace), metinKills)
+			if metinKills >= achievementMetinInfo[1] then
+				achievements.set_finished(4, achievementMetinInfo[1], achievementMetinInfo[2], npcRace)
+				achievements.set_ap(achievementMetinInfo[2])
+				achievements.setf(string.format("metin_info_%d", npcRace), metinInfo)
+			end
+		end
+
+		when kill with npc.is_pc() begin
+			local pvp,info_pvp = achievements.getf("pc_kills")+1,achievements.get_next_achievement("pvp", 'Pvp')
+			achievements.setf("pc_kills", pvp)
+			if type(info_pvp) ~= 'table' then return end
+			cmdchat(string.format('ACHIEVEMENTS UPDATE_ACHIEVEMENT#%d#%d', 6, pvp))
+			cmdchat('ACHIEVEMENTS REFRESH_ACHIEVEMENTS#')
+			if pvp >= info_pvp[1] then
+				achievements.set_finished(6, info_pvp[1], info_pvp[2], 0)
+				achievements.set_ap(info_pvp[2])
+				achievements.setf("pvp", achievements.getf("pvp")+1)
+			end
+		end
+
+		when time_achievements.timer begin
+			chat('time_achievements: 180sec')
+			local info_time = achievements.get_next_achievement("time", 'PlayedTime')
+			if type(info_time) ~= 'table' then return end
+			cmdchat(string.format('ACHIEVEMENTS UPDATE_ACHIEVEMENT#%d#%d', 5, pc.get_playtime()))
+			cmdchat('ACHIEVEMENTS REFRESH_ACHIEVEMENTS#')
+			if pc.get_playtime() >= info_time[1] then
+				achievements.set_finished(5, info_time[1], info_time[2], 0)
+				achievements.set_ap(info_time[2])
+				achievements.setf("time", achievements.getf("time")+1)
+			end
+		end
+		
+		when achievementstime_achievements_flogin_check.timer begin
+			cleartimer('achievementstime_achievements_flogin_check') loop_timer('achievementstime_achievements_flogin_check', 10)
+			local info_time = achievements.get_next_achievement("time", 'PlayedTime')
+			if type(info_time) ~= 'table' then cleartimer('achievementstime_achievements_flogin_check') loop_timer('time_achievements', 60*3) return end
+			if pc.get_playtime() >= info_time[1] then
+				achievements.set_finished(5, info_time[1], info_time[2], 0)
+				achievements.set_ap(info_time[2])
+				achievements.setf("time", achievements.getf("time")+1)
+			end
+		end
+		
+		when achievements_level_flogin_check.timer begin
+			local info_level = achievements.get_next_achievement("level", 'Level')
+			if type(info_level) ~= 'table' then cleartimer('achievements_level_flogin_check') return end
+			if pc.get_level() >= info_level[1] then
+				achievements.set_finished(1, info_level[1], info_level[2], 0)
+				achievements.set_ap(info_level[2])
+				achievements.setf("level", achievements.getf("level")+1)
+			end
+		end
+
+	end
+end

@@ -1,0 +1,506 @@
+Intram in src/game/echange.cpp si cautam:
+?
+Code (Text):
+if (iDist >= EXCHANGE_MAX_DISTANCE)
+    return false;
+
+si inlocuiti cu:
+
+Code (Text):
+///////////////////////////// [Sistem Negot] /////////////////////////////////////
+//if (iDist >= EXCHANGE_MAX_DISTANCE)
+//    return false;
+
+Pasul 2 [Python]
+
+Intram in game.py si cautam:
+
+Code (Text):
+    def __ServerCommand_Build(self):
+        serverCommandList={
+iar mai jos adaugati:
+
+Code (Text):
+            #Sistem de negot cu un player - Fara distanta [START]
+            "sistem_negot_map"    : self.__sistem_negot_map,
+            "sistem_negot_verificare_nume"        : self.__Sistem_negot_verificare_nume,
+            "sistem_negot_deschidere_fereastra"    : self.__sistem_negot_deschidere_fereastra,
+            #Sistem de negot cu un player - Fara distanta [SFARSIT]
+iar jos de tot sau unde vreti voi adaugati tot codul acesta:
+?
+Code (Text):
+    #Sistem de negot cu un player - Fara distanta [START]
+    #Functii
+    def __Sistem_negot_verificare_nume(self):
+        net.SendQuestInputStringPacket(str(constInfo.NegotFereastraNume))
+
+    def __sistem_negot_map(self, questindex):
+        constInfo.sistem_negot_map = questindex
+
+    def __sistem_negot_deschidere_fereastra(self, vid):
+        player_vid = int(vid)
+        net.SendExchangeStartPacket(player_vid)
+
+    def __DeschidereFereastra(self):
+        self.Fereastra_Negot_Map_Fereastra2 = ui.BoardWithTitleBar()
+        self.Fereastra_Negot_Map_Fereastra2.SetSize(210, 115)
+        self.Fereastra_Negot_Map_Fereastra2.SetCenterPosition()
+        self.Fereastra_Negot_Map_Fereastra2.AddFlag('float')
+        self.Fereastra_Negot_Map_Fereastra2.AddFlag('movable')
+        self.Fereastra_Negot_Map_Fereastra2.SetTitleName("Comertul cu un player")#titlu fereastra
+        self.Fereastra_Negot_Map_Fereastra2.Show()
+
+        self.Fereastra_Negot_Map_Text = ui.TextLine()
+        self.Fereastra_Negot_Map_Text.SetParent(self.Fereastra_Negot_Map_Fereastra2)
+        self.Fereastra_Negot_Map_Text.SetText("        Introdu numele jucatorului")
+        self.Fereastra_Negot_Map_Text.SetPosition(7,27)
+        self.Fereastra_Negot_Map_Text.SetFontColor(1.0, 1.0, 1.0)#modificare culoare text
+        self.Fereastra_Negot_Map_Text.Show()
+
+        self.Fereastra_Negot_Map_Value1 = ui.SlotBar()
+        self.Fereastra_Negot_Map_Value1.SetParent(self.Fereastra_Negot_Map_Fereastra2)
+        self.Fereastra_Negot_Map_Value1.SetSize(120, 18)
+        self.Fereastra_Negot_Map_Value1.SetPosition(50, 50)
+        self.Fereastra_Negot_Map_Value1.Show()
+
+        self.Fereastra_Negot_Map_Value = ui.EditLine()
+        self.Fereastra_Negot_Map_Value.SetParent(self.Fereastra_Negot_Map_Value1)
+        self.Fereastra_Negot_Map_Value.SetSize(120, 18)
+        self.Fereastra_Negot_Map_Value.SetPosition(4, 1)
+        self.Fereastra_Negot_Map_Value.SetMultiLine()
+        self.Fereastra_Negot_Map_Value.SetMax(12)
+        self.Fereastra_Negot_Map_Value.SetText("")
+        self.Fereastra_Negot_Map_Value.SetFocus()
+        self.Fereastra_Negot_Map_Value.Show()
+
+        self.Fereastra_Negot_Map_Test1 = ui.Button()
+        self.Fereastra_Negot_Map_Test1.SetEvent(self.__OpenFereastra_Negot_Map_Fereastra2)
+        self.Fereastra_Negot_Map_Test1.SetParent(self.Fereastra_Negot_Map_Fereastra2)
+        self.Fereastra_Negot_Map_Test1.SetPosition(10, 75)
+        self.Fereastra_Negot_Map_Test1.SetUpVisual("d:/ymir work/ui/public/XLarge_Button_01.sub")
+        self.Fereastra_Negot_Map_Test1.SetOverVisual("d:/ymir work/ui/public/XLarge_button_02.sub")
+        self.Fereastra_Negot_Map_Test1.SetDownVisual("d:/ymir work/ui/public/XLarge_button_03.sub")
+        self.Fereastra_Negot_Map_Test1.SetText("Initiealizeaza Comertul")
+        self.Fereastra_Negot_Map_Test1.Show()
+
+#<----------------------------------------------------------->#
+#     _ +----------------------------------------------+ _    #
+#    /o)|           Coded by VegaS                     |(o\   #
+#   / / |                                              | \ \  #
+#  ( (_ |  _   Client Titan2 - All Copryght         _  | _) ) #
+# ((\ \)+-/o)--------------------------------------(o\-+(/ /))#
+#(\\\ \_/ /                                        \ \_/ ///) #
+# \      /                                          \      /  #
+#  \____/                                            \____/   #
+#  - Coded by VegaS - Client  for Titan  II                    #
+#  - Skype:        sacadatt.amazon                                 #
+#  - Phone:    0748576910 / 0764295843                           #
+#  - Y!M:        contact_titan2@yahoo.com                        #
+#  - Y!M2:        dany.sem76@yahoo.com                              #
+#  - Website:   www.titan2.ro  / www.neleus2.ro               #
+#  - Author:    VegaS                                                #
+#<----------------------------------------------------------->#
+
+    def __OpenFereastra_Negot_Map_Fereastra2(self):
+        import event
+        ExName = self.Fereastra_Negot_Map_Value.GetText()
+        #Verificare deschidere negot in caz ca te afli intr-o alta mapa impusa de mai jos
+        if self.__ProtectieNegot():
+            chat.AppendChat(1, "[SERVER] Nu poti negocia cu un jucator in aceasta harta!") #import chat la inceputul modulului
+            return    #fereastra ramane activa nu se inchide in caz ca protectia a depistat ca te afli intr-o alta harta
+        #Verificare in caz ca numele este sub 4 caractere
+        if len(ExName) >= 4:
+            self.Fereastra_Negot_Map_Fereastra2.Hide() #deschiderea ferestrei a sistemului initiata cu succes in caz ca corespunde cu protectiile de mai sus
+            constInfo.NegotFereastraNume = ExName
+            event.QuestButtonClick(int(constInfo.sistem_negot_map))
+        else: #inchidere fereastra in caz ca protectia a fost activata - fereastra activa
+            self.Fereastra_Negot_Map_Text.SetText("Numele trebuie sa fie de peste 3 caractere!")
+            self.Fereastra_Negot_Map_Text.SetFontColor(1.0, 0.0, 0.0) #modificare culoare text
+    def __ProtectieNegot(self):
+        protectie_mape = [
+            "season1/metin2_map_oxevent",
+            "mape_dungeon/metin2_map_skipia_dungeon_boss",
+            "mape_dungeon/metin2_map_skipia_dungeon_boss2",
+            "mape_dungeon/metin2_map_devilsCatacomb",
+            "mape_dungeon/metin2_map_deviltower1",
+            "mape_vegas/metin2_map_wedding_01",
+            "mape_dungeon/metin2_map_spiderdungeon_02",#Pentru verificarea voastra voi puneti doar de exemplu : metin2_map_spiderdungeon_02 stergeti mape_dungeon/
+            "mape_beta/Metin2_map_CapeDragonHead",
+            "mape_beta/metin2_map_Mt_Thunder",
+            "mape_beta/metin2_map_dawnmistwood",
+            "mape_beta/metin2_map_BayBlackSand",
+            "mape_noi/farmmap1",
+            "mape_dungeon/metin2_map_spiderdungeon_03",
+            "mape_vegas/metin2_map_duel",
+            "mape_dungeon/metin2_map_n_flame_dungeon_01",
+            "mape_dungeon/metin2_map_n_snow_dungeon_01"
+        ]
+        if str(background.GetCurrentMapName()) in protectie_mape: #import background la inceputul modulului
+            return TRUE
+        return FALSE    
+
+
+Intram in uiexchange.py si cautam functia:
+
+PHP:
+    def OpenDialog(self):
+si o inlocuiti cu asta:
+
+PHP:
+#<----------------------------------------------------------->#
+#     _ +----------------------------------------------+ _    #
+#    /o)|           Coded by VegaS                     |(o\   #
+#   / / |                                              | \ \  #
+#  ( (_ |  _   Client Titan2 - All Copryght         _  | _) ) #
+# ((\ \)+-/o)--------------------------------------(o\-+(/ /))#
+#(\\\ \_/ /                                        \ \_/ ///) #
+# \      /                                          \      /  #
+#  \____/                                            \____/   #
+#  - Coded by VegaS - Client  for Titan  II                    #
+#  - Skype:        sacadatt.amazon                                 #
+#  - Phone:    0748576910 / 0764295843                           #
+#  - Y!M:        contact_titan2@yahoo.com                        #
+#  - Y!M2:        dany.sem76@yahoo.com                              #
+#  - Website:   www.titan2.ro  / www.neleus2.ro               #
+#  - Author:    VegaS                                                #
+#<----------------------------------------------------------->#
+   def OpenDialog(self):
+        self.TitleName.SetText(localeInfo.EXCHANGE_TITLE % (exchange.GetNameFromTarget()))
+        if exchange.GetNameFromTarget() == "":
+            import constInfo
+            self.TitleName.SetText(localeInfo.EXCHANGE_TITLE % (str(constInfo.NegotFereastraNume)))
+        self.AcceptButton.Enable()
+        self.AcceptButton.SetUp()
+        self.Show()
+
+        (self.xStart, self.yStart, z) = player.GetMainCharacterPosition()
+
+Deschidem constInfo.py si adaugam mai jos:
+
+PHP:
+NegotFereastraVid = 0
+NegotFereastraNume = "un jucator"
+sistem_negot_map = 0
+Pentru functiile din quest pentru a va functiona:
+
+Intram in game.py si cautam:
+
+PHP:
+    def __ServerCommand_Build(self):
+        serverCommandList={
+si mai jos adaugam:
+
+PHP:
+            #Comert - Functi input
+           "getinputbegin"            : self.__Input_Get_Vegas_1,
+            "getinputend"            : self.__Input_Get_Vegas_2,
+            "getinput"            : self.__Input_Get_Vegas_3,        
+iar jos de tot adaugam:
+
+PHP:
+    def __Input_Get_Vegas_1(self):
+        constInfo.INPUT_IGNORE = 1
+
+    def __Input_Get_Vegas_2(self):
+        constInfo.INPUT_IGNORE = 0
+
+    def __Input_Get_Vegas_3(self):
+        net.SendQuestInputStringPacket("1")    
+Cautati tot in game.py functia:
+
+PHP:
+def OpenQuestWindow(self, skin, idx):
+si o inlocuiti cu aceasta:
+
+PHP:
+    def OpenQuestWindow(self, skin, idx):
+        if constInfo.INPUT_IGNORE == 1:
+            return
+        else:
+            self.interface.OpenQuestWindow(skin, idx)
+Deschide constInfo.py si adauga mai jos:
+
+PHP:
+INPUT_IGNORE = 0
+Pentru deschidere intrati in game.py si cautati:
+
+PHP:
+    def __BuildKeyDict(self):
+        onPressKeyDict = {}
+iar mai jos adaugati:
+
+PHP:
+        onPressKeyDict[app.DIK_F6]    = lambda : self.__DeschidereFereastra()
+
+Pasul 3 [Quest]
+?
+UnHidden Content:
+Code (Text):
+----------------------------------------------------
+----- Quest:  Sistem negocieaza cu un player   -----
+----- Server: Test                              -----
+----- Author: VegaS & Rafa                     -----
+----------------------------------------------------
+quest sistem_negot begin
+    state start begin
+        function GetName()
+            cmdchat("getinputbegin")
+            name = input(cmdchat("sistem_negot_verificare_nume"))
+            cmdchat("getinputend")
+            return name
+        end
+    
+        function GetVid(n)
+            local name = n
+            local vid = find_pc_by_name(name)
+            if name == "" then return end
+            if name == pc.get_name() then return end
+            if vid == 0 then return end
+            local myvid = pc.select(vid)
+            local vicvid = pc.get_vid()
+            pc.select(myvid)
+            return tonumber(vicvid)
+        end
+    
+        when login begin
+            cmdchat("sistem_negot_map "..q.getcurrentquestindex())
+        end
+    
+        when button or info begin
+            local name = sistem_negot.GetName()
+            local vid = sistem_negot.GetVid(name)
+            cmdchat("sistem_negot_deschidere_fereastra "..vid.."")
+        end
+    end
+end
+
+
+Update 06.08.2015 / 00:40
+
+Sistemul a fost adaugat in soapta la cererea lui @Juppsy si @DareDevil multumiri.
+
+DareDevil said: ?
+Up, sustin ideea cu butonu pm !
+
+Juppsy said: ?
+Ar fi frumos sa fie un buton la PM cu negot, care sa foloseasca numele de la PM la negot.
+
+
+Sa nu mai spuneti ca sunt rau...am facut si asa:
+
+
+Intra in uiwhisper.py /root
+
+1. Cauta:
+
+PHP:
+            self.minimizeButton = GetObject("minimizebutton")
+
+
+mai jos cu un rand adauga:
+
+PHP:
+            self.comert_vegas_button = GetObject("comert_vegas_button")        
+
+
+2. Cauta:
+
+PHP:
+        self.minimizeButton.SetEvent(ui.__mem_func__(self.Minimize))
+
+
+mai jos cu un rand adauga:
+
+Code (Text):
+        #Comercieaza cu un jucator  - System
+        self.comert_vegas_button.SetEvent(ui.__mem_func__(self.comert_vegas_button_functie))
+
+3. Cauta:
+
+PHP:
+        self.minimizeButton = None
+
+
+mai jos cu un rand adauga:
+
+PHP:
+        #self.comert_vegas_button = None    #ascunderea lui dupa ce il folositi [default ramane activat]
+
+
+4. Cauta:
+
+PHP:
+                self.minimizeButton.SetPosition(width-42, 12)
+
+
+mai jos cu un rand adauga:
+
+PHP:
+                #self.comert_vegas_button.SetPosition(width-175, 10)    ##eliminat [button preluat din whisperdialog]
+
+
+5. Cauta:
+
+Code (Text):
+    def OnScroll(self):
+        chat.SetWhisperPosition(self.targetName, self.scrollBar.GetPos())
+
+mai jos cu un rand adauga:
+
+UnHidden Content:
+Code (Text):
+#<----------------------------------------------------------->#
+#     _ +----------------------------------------------+ _    #
+#    /o)|           Coded by VegaS                     |(o\   #
+#   / / |                                              | \ \  #
+#  ( (_ |  _   Client Titan2 - All Copryght         _  | _) ) #
+# ((\ \)+-/o)--------------------------------------(o\-+(/ /))#
+#(\\\ \_/ /                                        \ \_/ ///) #
+# \      /                                          \      /  #
+#  \____/                                            \____/   #
+#  - Coded by VegaS - Client  for Titan  II                    #
+#  - Skype:        sacadatt.amazon                                 #
+#  - Phone:    0748576910 / 0764295843                           #
+#  - Y!M:        contact_titan2@yahoo.com                        #
+#  - Y!M2:        dany.sem76@yahoo.com                              #
+#  - Website:   www.titan2.ro  / www.neleus2.ro               #
+#  - Author:    VegaS                                                #
+#<-----------------------------------------------------------># 
+    def comert_vegas_button_functie(self):
+        self.Fereastra_Negot_Map_Fereastra2 = ui.BoardWithTitleBar()
+        self.Fereastra_Negot_Map_Fereastra2.SetSize(210, 115)
+        self.Fereastra_Negot_Map_Fereastra2.SetCenterPosition()
+        self.Fereastra_Negot_Map_Fereastra2.AddFlag('float')
+        self.Fereastra_Negot_Map_Fereastra2.AddFlag('movable')
+        self.Fereastra_Negot_Map_Fereastra2.SetTitleName("Comertul cu un player")
+        self.Fereastra_Negot_Map_Fereastra2.Show()
+ 
+        self.Fereastra_Negot_Map_Text = ui.TextLine()
+        self.Fereastra_Negot_Map_Text.SetParent(self.Fereastra_Negot_Map_Fereastra2)
+        self.Fereastra_Negot_Map_Text.SetText("        Introdu numele jucatorului")
+        self.Fereastra_Negot_Map_Text.SetPosition(12,27)
+        self.Fereastra_Negot_Map_Text.SetFontColor(1.0, 1.0, 1.0)
+        self.Fereastra_Negot_Map_Text.Show()
+ 
+        self.Fereastra_Negot_Map_Value1 = ui.SlotBar()
+        self.Fereastra_Negot_Map_Value1.SetParent(self.Fereastra_Negot_Map_Fereastra2)
+        self.Fereastra_Negot_Map_Value1.SetSize(120, 18)
+        self.Fereastra_Negot_Map_Value1.SetPosition(50, 50)
+        self.Fereastra_Negot_Map_Value1.Show()
+
+        self.Fereastra_Negot_Map_Value = ui.EditLine()
+        self.Fereastra_Negot_Map_Value.SetParent(self.Fereastra_Negot_Map_Value1)
+        self.Fereastra_Negot_Map_Value.SetSize(120, 18)
+        self.Fereastra_Negot_Map_Value.SetPosition(4, 1)
+        self.Fereastra_Negot_Map_Value.SetMultiLine()
+        self.Fereastra_Negot_Map_Value.SetMax(12)
+        self.Fereastra_Negot_Map_Value.SetText("")
+        self.Fereastra_Negot_Map_Value.SetFocus()
+        self.Fereastra_Negot_Map_Value.Show()
+  
+        self.Fereastra_Negot_Map_Test1 = ui.Button()
+        self.Fereastra_Negot_Map_Test1.SetEvent(self.__OpenFereastra_Negot_Map_Fereastra2)
+        self.Fereastra_Negot_Map_Test1.SetParent(self.Fereastra_Negot_Map_Fereastra2)
+        self.Fereastra_Negot_Map_Test1.SetPosition(10, 75)
+        self.Fereastra_Negot_Map_Test1.SetUpVisual("d:/ymir work/ui/public/XLarge_Button_01.sub")
+        self.Fereastra_Negot_Map_Test1.SetOverVisual("d:/ymir work/ui/public/XLarge_button_02.sub")
+        self.Fereastra_Negot_Map_Test1.SetDownVisual("d:/ymir work/ui/public/XLarge_button_03.sub")
+        self.Fereastra_Negot_Map_Test1.SetText("Initiealizeaza Comertul")
+        self.Fereastra_Negot_Map_Test1.Show()
+ 
+    def __OpenFereastra_Negot_Map_Fereastra2(self):
+        import event
+        import chat
+        ExName = self.Fereastra_Negot_Map_Value.GetText()
+        if self.__ProtectieNegot():
+            chat.AppendChat(1, "[SERVER] Nu poti negocia cu un jucator in aceasta harta!")
+            return 
+        if len(ExName) >= 4:
+            self.Fereastra_Negot_Map_Fereastra2.Hide()
+            constInfo.NegotFereastraNume = ExName
+            event.QuestButtonClick(int(constInfo.sistem_negot_map))
+        else:
+            self.Fereastra_Negot_Map_Text.SetText("Numele trebuie sa fie de peste 3 caractere!")
+            self.Fereastra_Negot_Map_Text.SetFontColor(1.0, 0.0, 0.0)
+     
+    def __ProtectieNegot(self):
+        protectie_mape = [
+            "season1/metin2_map_oxevent",
+            "mape_dungeon/metin2_map_skipia_dungeon_boss",
+            "mape_dungeon/metin2_map_skipia_dungeon_boss2",
+            "mape_dungeon/metin2_map_devilsCatacomb",
+            "mape_dungeon/metin2_map_deviltower1",
+            "mape_vegas/metin2_map_wedding_01", 
+            "mape_dungeon/metin2_map_spiderdungeon_02",
+            "mape_beta/Metin2_map_CapeDragonHead",
+            "mape_beta/metin2_map_Mt_Thunder",
+            "mape_beta/metin2_map_dawnmistwood",
+            "mape_beta/metin2_map_BayBlackSand",
+            "mape_noi/farmmap1",
+            "mape_dungeon/metin2_map_spiderdungeon_03",     
+            "mape_vegas/metin2_map_duel",
+            "mape_dungeon/metin2_map_n_flame_dungeon_01",
+            "mape_dungeon/metin2_map_n_snow_dungeon_01"
+        ]
+        if str(background.GetCurrentMapName()) in protectie_mape:
+            return TRUE
+        return FALSE
+
+Intra in whispherdialog.py/uiscript
+
+1. Cauta:
+
+Code (Text):
+                {
+                    "name" : "closebutton",
+                    "type" : "button",
+
+                    "x" : 280 - 24,
+                    "y" : 12,
+
+                    "tooltip_text" : uiScriptLocale.CLOSE,
+
+                    "default_image" : "d:/ymir work/ui/public/close_button_01.sub",
+                    "over_image" : "d:/ymir work/ui/public/close_button_02.sub",
+                    "down_image" : "d:/ymir work/ui/public/close_button_03.sub",
+                },
+
+mai jos cu un rand adauga:
+
+Code (Text):
+#<----------------------------------------------------------->#
+#     _ +----------------------------------------------+ _    #
+#    /o)|           Coded by VegaS                     |(o\   #
+#   / / |                                              | \ \  #
+#  ( (_ |  _   Client Titan2 - All Copryght         _  | _) ) #
+# ((\ \)+-/o)--------------------------------------(o\-+(/ /))#
+#(\\\ \_/ /                                        \ \_/ ///) #
+# \      /                                          \      /  #
+#  \____/                                            \____/   #
+#  - Coded by VegaS - Client  for Titan  II                    #
+#  - Skype:        sacadatt.amazon                                 #
+#  - Phone:    0748576910 / 0764295843                           #
+#  - Y!M:        contact_titan2@yahoo.com                        #
+#  - Y!M2:        dany.sem76@yahoo.com                              #
+#  - Website:   www.titan2.ro  / www.neleus2.ro               #
+#  - Author:    VegaS                                                #
+#<----------------------------------------------------------->#         
+                {
+                    "name" : "comert_vegas_button",
+                    "type" : "button",
+
+                    "x" : 205,
+                    "y" : 10,
+
+                    "text" : uiScriptLocale.OPTIUNE_NEGOT_JUCATOR_PRIVAT,
+
+                    "default_image" : "d:/ymir work/ui/public/small_thin_button_01.sub",
+                    "over_image" : "d:/ymir work/ui/public/small_thin_button_02.sub",
+                    "down_image" : "d:/ymir work/ui/public/small_thin_button_03.sub",
+                },      
+
+Intra in locale/xx/locale_interface.txt si adauga in prima linie:
+
+PHP:
+OPTIUNE_NEGOT_JUCATOR_PRIVAT    Negociaza
+

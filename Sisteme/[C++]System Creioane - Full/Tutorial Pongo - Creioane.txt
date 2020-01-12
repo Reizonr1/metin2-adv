@@ -1,0 +1,76 @@
+1. Intrati in game/unique_item.h si adaugati
+
+TEXT_COLOR_RED = cod item,
+TEXT_COLOR_GREEN = cod item,
+TEXT_COLOR_BLUE = cod item,
+TEXT_COLOR_YELLOW = cod item,
+
+2. Intrati in game/input_main.cpp si deasupra la 
+
+const TPacketCGChat* pinfo = reinterpret_cast<const TPacketCGChat*>(data);
+ 
+Adaugati
+int len;
+2.1 Stergeti linia
+
+int len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s", ch->GetName(), buf);
+ 
+2.2 Cauti linia
+
+if (CHAT_TYPE_SHOUT == pinfo->type)
+ 
+Si sub ea adaugi
+
+if (ch->IsEquipNewRingItem(TEXT_COLOR_RED))
+{
+    // RED
+    len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s %s", ch->GetName(), "|cFFFF0000|H|h", buf);
+}
+else if (ch->IsEquipNewRingItem(TEXT_COLOR_GREEN))
+{
+    // GREEN
+    len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s %s", ch->GetName(), "|cFF00FF00|H|h", buf);
+}
+else if (ch->IsEquipNewRingItem(TEXT_COLOR_BLUE))
+{
+    // BLUE
+    len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s %s", ch->GetName(), "|cFF0080FF|H|h", buf);
+}
+else if (ch->IsEquipNewRingItem(TEXT_COLOR_YELLOW))
+{
+    // YELLOW
+    len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s %s", ch->GetName(), "|cFFFFFF00|H|h", buf);
+}
+else
+{
+    // DEFAULT COLOR
+    len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s", ch->GetName(), buf);
+}
+3. Intrati in game/char.cpp si adaugati
+
+bool CHARACTER::IsEquipNewRingItem(DWORD dwItemVnum) const
+{
+    {
+        LPITEM u = GetWear(WEAR_RING1);
+        if (u && u->GetVnum() == dwItemVnum)
+        {
+            return true;
+        }
+    }
+    {
+        LPITEM u = GetWear(WEAR_RING2);
+        if (u && u->GetVnum() == dwItemVnum)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+4. Intrati in game/char.h si sub linia
+
+bool            IsEquipUniqueGroup(DWORD dwGroupVnum) const;
+ 
+Adaugati
+
+bool            IsEquipNewRingItem(DWORD dwItemVnum) const;
+ 

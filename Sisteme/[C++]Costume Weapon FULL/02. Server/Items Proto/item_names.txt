@@ -1,0 +1,8 @@
+46001	Costume Sword
+46002	Costume T.-Hand
+46003	Costume Dagger
+46004	Costume Bow
+46005	Costume Bell
+46006	Costume Fan
+46007	Costume Claw
+46008	Costume M.-Sword

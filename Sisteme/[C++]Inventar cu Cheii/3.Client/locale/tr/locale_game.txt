@@ -1,0 +1,4 @@
+ENVANTER_ANAH_LAZIM	envanter geniþletmesine daha ihtiyacýn var.
+ENVANTER_UYARI	Pazar açýkken envanter geniþletemezsiniz.
+ENVANTER_GENIS_1	Envanterini %s envanter geniþletmesiyle büyütmek mi istiyorsun?
+ENVANTER_ZATEN_GENIS_3	Zaten Bütün Envanterler Geniþletilmiþ.

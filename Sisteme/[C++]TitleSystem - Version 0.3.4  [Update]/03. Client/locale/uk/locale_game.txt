@@ -1,0 +1,139 @@
+TITLE_NAME	System Professional Title's - by VegaS
+TITLE_CHARACTER	Characteristics of current character
+TITLE_CURRENT_NAME	Name Current Title:
+TITLE_LEVEL	Level character:
+TITLE_TOTAL_AMOUNT	Total amount:
+TITLE_MINUTES_PLAYED	Minutes played:
+TITLE_SELECT_INFO	Select a title from the list on the left for info!
+TITLE_UNBLOCK	Unlock title:
+TITLE_LIST_NAME	Title name:
+TITLE_INFO_ACTIVATE	What should you complete activation:
+TITLE_WELCOME	Hello
+TITLE_PREMIUM	<- Premium Titles - >
+TITLE_FREE	<- Free Titles - >
+TITLE_SHOPPING_AREA	Shopping Area
+TITLE_CHANGE_FREE	Free title change
+TITLE_CHANGE_TITLE_PREMIUM	Change the title premium
+TITLE_TRANSFORM_PREMIUM	Transform title in object
+TITLE_QUESTIONDIALOG_CHANGE	Are you sure you want to accept this title?
+TITLE_NEED_ACTIVATE_INFO	Information needed to activate a title premium:
+TITLE_BUY_POTIONS_INFO	You can buy magic potion shopping area with dragon coins!
+TITLE_TRANSFORM_DIALOGQUESTION	Are you sure you want to remove the title premium?
+TITLE_QUESTIONDIALOG_POTION	Would you buy this potion?
+TITLE_QUESTWARNING_POTION	First select a potion what to buy!
+TITLE_POTION_INFO	Information purchasing potion for title:
+TITLE_WARNING_DIALOG	First select a title then choose to change it ! Think carefully before choosing the title to change it!
+TITLE_REQUEST_INFO	Information needed to activate a title:
+TITLE_POTION_	Buy potion premium for title
+TITLE_POTION_SELECT	<- Select the potion that you want to buy - >
+TITLE_POTION_TITLE	Store shopping
+TITLE_POTION_TEXT_1	Select a title from the list on the left for info!
+TITLE_POTION_TEXT_2	This potion is for the title:
+TITLE_POTION_TEXT_3	Title name:
+TITLE_POTION_TEXT_4	The requirements for the purchase potion are:
+TITLE_TARGETS_LEVEL_0	There are no goals!
+TITLE_TARGETS_LEVEL_1	Level to wear this title is at least 7.
+TITLE_TARGETS_LEVEL_2	Level to wear this title is at least 14.
+TITLE_TARGETS_LEVEL_3	Level to wear this title is at least 21.
+TITLE_TARGETS_LEVEL_4	Level to wear this title is at least 28.
+TITLE_TARGETS_LEVEL_5	Level to wear this title is at least 35.
+TITLE_TARGETS_LEVEL_6	Level to wear this title is at least 42.
+TITLE_TARGETS_LEVEL_7	Level to wear this title is at least 49.
+TITLE_TARGETS_LEVEL_8	Level to wear this title is at least 56.
+TITLE_TARGETS_LEVEL_9	Level to wear this title is at least 63.
+TITLE_TARGETS_LEVEL_10	Level to wear this title is at least 70.
+TITLE_TARGETS_LEVEL_11	Level to wear this title is at least 77.
+TITLE_TARGETS_LEVEL_12	Level to wear this title is at least 84.
+TITLE_TARGETS_LEVEL_13	Level to wear this title is at least 91.
+TITLE_TARGETS_LEVEL_14	Level to wear this title is at least 98.
+TITLE_TARGETS_LEVEL_15	Level to wear this title is at least 100.
+TITLE_TARGETS_LEVEL_16	Level to wear this title is at least 103.
+TITLE_TARGETS_MONEY_0	There are no goals!
+TITLE_TARGETS_MONEY_1	You need a minimum of 500,000 yang.
+TITLE_TARGETS_MONEY_2	You need a minimum of 800,000 yang.
+TITLE_TARGETS_MONEY_3	You need a minimum of 1,500,000 yang.
+TITLE_TARGETS_MONEY_4	You need a minimum of 1,800,000 yang.
+TITLE_TARGETS_MONEY_5	You need a minimum of 2,500,000 yang.
+TITLE_TARGETS_MONEY_6	You need a minimum of 3,000,000 yang.
+TITLE_TARGETS_MONEY_7	You need a minimum of 4,000,000 yang.
+TITLE_TARGETS_MONEY_8	You need a minimum of 5,000,000 yang.
+TITLE_TARGETS_MONEY_9	You need a minimum of 10,000,000 yang.
+TITLE_TARGETS_MONEY_10	You need a minimum of 15,000,000 yang.
+TITLE_TARGETS_MONEY_11	You need a minimum of 25,000,000 yang.
+TITLE_TARGETS_MONEY_12	You need a minimum of 50,000,000 yang.
+TITLE_TARGETS_MONEY_13	You need a minimum of 75,000,000 yang.
+TITLE_TARGETS_MONEY_14	You need a minimum of 100,000,000 yang.
+TITLE_TARGETS_MONEY_15	You need a minimum of 150,000,000 yang.
+TITLE_TARGETS_MONEY_16	You need a minimum of 300,000,000 yang.
+TITLE_TARGETS_MINUTES_PLAYED_0	There are no goals!
+TITLE_TARGETS_MINUTES_PLAYED_1	You need a minimum of 5 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_2	You need a minimum of 15 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_3	You need a minimum of 40 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_4	You need a minimum of 50 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_5	You need a minimum of 60 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_6	You need a minimum of 75 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_7	You need a minimum of 90 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_8	You need a minimum of 110 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_9	You need a minimum of 130 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_10	You need a minimum of 150 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_11	You need a minimum of 170 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_12	You need a minimum of 200 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_13	You need a minimum of 500 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_14	You need a minimum of 700 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_15	You need a minimum of 1200 minutes played this character.
+TITLE_TARGETS_MINUTES_PLAYED_16	You need a minimum of 1500 minutes played this character.
+TITLE_PREMIUM_INFO_OBJECT_0	You need x1 Potion Yellow Enchanted.
+TITLE_PREMIUM_INFO_OBJECT_1	You need x1 Potion Pink Enchanted.
+TITLE_PREMIUM_INFO_OBJECT_2	You need x1 Potion White Enchanted.
+TITLE_PREMIUM_INFO_BONUS_0	Bonus: Max. HP + 3000
+TITLE_PREMIUM_INFO_BONUS_1	Bonus: Loudly against monsters + 20%
+TITLE_PREMIUM_INFO_BONUS_2	Bonus: Hard against the Max Critical +10%
+TITLE_POTION_COLOR_0	Yellow_Potion_Enchanted
+TITLE_POTION_COLOR_1	Pink_Potion_Enchanted
+TITLE_POTION_COLOR_2	White_Potion_Enchanted
+TITLE_POTION_NAME_0 Yellow Potion Enchanted
+TITLE_POTION_NAME_1 Pink Potion Enchanted
+TITLE_POTION_NAME_2 White Potion Enchanted
+TITLE_POTION_PRICE_COINS_COLOR_0	Price cost: 50 Dragon coins
+TITLE_POTION_PRICE_COINS_COLOR_1	Price cost: 100 Dragon coins
+TITLE_POTION_PRICE_COINS_COLOR_2	Price cost: 150 Dragon coins
+TITLE_INDEX_0	Disable
+TITLE_INDEX_1	[Beginner]
+TITLE_INDEX_2	[Romantic]
+TITLE_INDEX_3	[Friends_for_Life]
+TITLE_INDEX_4	[Gypsy]
+TITLE_INDEX_5	[Professional_Mathematician]
+TITLE_INDEX_6	[VERSACE]
+TITLE_INDEX_7	[Iluminati]
+TITLE_INDEX_8	[Ghost_Rider]
+TITLE_INDEX_9	[Exchanger_Fate]
+TITLE_INDEX_10	[Charmer_Pets]
+TITLE_INDEX_11	[Demon_Magicians]
+TITLE_INDEX_12	[Titanium]
+TITLE_INDEX_13	[Fashion_Expert]
+TITLE_INDEX_14	[Retouches]
+TITLE_INDEX_15	[Category_Supreme]
+TITLE_INDEX_16	[Invincible_Supreme]
+TITLE_INDEX_17	[Premium_Title_I]
+TITLE_INDEX_18	[Premium_Title_II]
+TITLE_INDEX_19	[Premium_Title_III]
+TITLE_0	Disable
+TITLE_1	[Beginner]
+TITLE_2	[Romantic]
+TITLE_3	[Friends for Life]
+TITLE_4	[Gypsy]
+TITLE_5	[Professional Mathematician]
+TITLE_6	[VERSACE]
+TITLE_7	[Iluminati]
+TITLE_8	[Ghost Rider]
+TITLE_9	[Exchanger Fate]	
+TITLE_10	[Charmer Pets]
+TITLE_11	[Demon Magicians]
+TITLE_12	[Titanium]
+TITLE_13	[Fashion Expert]
+TITLE_14	[Retouches]
+TITLE_15	[Category Supreme]
+TITLE_16	[Invincible Supreme]
+TITLE_17	[Premium Title I]
+TITLE_18	[Premium Title II]
+TITLE_19	[Premium Title III]

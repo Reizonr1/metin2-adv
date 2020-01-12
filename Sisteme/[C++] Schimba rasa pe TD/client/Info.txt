@@ -1,0 +1,1 @@
+uichangerace.py si folderul "change_race" se adauga in root.

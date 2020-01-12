@@ -1,0 +1,3 @@
+60020	ETC	icon/item/viponex.tga
+60021	ETC	icon/item/viponex.tga
+60022	ETC	icon/item/viponex.tga

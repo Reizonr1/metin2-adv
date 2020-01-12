@@ -1,0 +1,28 @@
+1.Despachetăm root.eix/.epk
+2.Intrăm in game.py și adăugăm linia :
+COD: SELECTAŢI TOT
+
+import uiwiki
+3.Căutăm linia:
+COD: SELECTAŢI TOT
+
+def __init__(self, stream):
+4.Adaugă după :
+COD: SELECTAŢI TOT
+
+self.wiki = uiwiki.AgeofPlatonWiki()
+5.Caută linia:
+COD: SELECTAŢI TOT
+
+onPressKeyDict[app.DIK_F5]
+6.Adaugă după:
+COD: SELECTAŢI TOT
+
+onPressKeyDict[app.DIK_F6] = lambda : self.__OnWiki()
+7.Jos de tot adaugă :
+COD: SELECTAŢI TOT
+
+def __OnWiki(self): 
+[TAB][TAB][TAB]if self.wiki.IsShow(): 
+[TAB][TAB][TAB][TAB]self.wiki.Hide() 
+[TAB][TAB][TAB]else: self.wiki.Show()

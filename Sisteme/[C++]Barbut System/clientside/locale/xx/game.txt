@@ -1,0 +1,8 @@
+DICE_SYSTEM_TITLE	%s adlı oyuncuyla bahis
+DICE_SYSTEM_ACILDI	<System>: Bahis yapmak istediğin itemleri pencereye sürükle!
+DICE_SYSTEM_OYNAYAMAZSIN	<System>: Zaten biriyle bahis oynuyorsun.
+DICE_SYSTEM_TEKLIF	%s adlı oyuncu sana bahis teklifi yapıyor?
+DICE_SYSTEM_ITEMKOYAMAZSIN	<System>: Şuanda panele item koyamazsın.
+DICE_SYSTEM_CIKAMAZSIN	<System>: Şuanda pencereyi kapatamazsın.
+DICE_SYSTEM_KAZANDIN	%s-%s kazandın!
+DICE_SYSTEM_KAYBETTIN	%s-%s kaybettin!

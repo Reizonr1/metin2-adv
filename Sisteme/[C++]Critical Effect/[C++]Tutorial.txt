@@ -1,0 +1,21 @@
+UserInterface/InstanceBaseEffect.cpp open and search;
+
+    else if (flag & DAMAGE_CRITICAL)
+    {
+        //rkEftMgr.CreateEffect(ms_adwCRCAffectEffect[EFFECT_DAMAGE_CRITICAL],v3Pos,v3Rot);
+        //return; ??? ??.
+    }
+thus replaced;
+
+    else if (flag & DAMAGE_CRITICAL)
+    {
+        rkEftMgr.CreateEffect(ms_adwCRCAffectEffect[EFFECT_DAMAGE_CRITICAL],v3Pos,v3Rot);
+        //return; ??? ??.
+    }
+	
+root/playersettingmodule.py open and search;
+
+#chrmgr.RegisterCacheEffect(chrmgr.EFFECT_DAMAGE_CRITICAL, "", "d:/ymir work/effect/affect/damagevalue/critical.mse")
+thus replaced;
+
+chrmgr.RegisterCacheEffect(chrmgr.EFFECT_DAMAGE_CRITICAL, "", "d:/ymir work/effect/affect/damagevalue/critical.mse")

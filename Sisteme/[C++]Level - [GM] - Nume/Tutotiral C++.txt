@@ -1,0 +1,17 @@
+Client Source.
+
+Cautam în InstanceBaseEffect.cpp:
+sprintf(szText, "Lv %d", level);
+
+Imagine
+Adaugam dupa:
+ if (IsGameMaster())
+ {
+  sprintf(szText, "|cFFFF0000 [GM] |cFFADFF2FLv %d", level);
+  CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+ }
+ else if (!IsGameMaster())
+ {
+  sprintf(szText, "|cFFADFF2FLv %d", level);
+  CPythonTextTail::Instance().AttachLevel(GetVirtualID(), szText, s_kLevelColor);
+ }

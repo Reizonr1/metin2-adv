@@ -1,0 +1,46 @@
+OPTION_SALESTEXT_RANGE	Widoczność sklepów
+SHOP_NAME	Nazwa sklepu
+SHOP_TIMEOUT	Czas trwania sklepu
+SHOP_CREATE	Stwórz
+SHOP_CREATE_PRICE	Koszt: 
+SHOP_CREATE_DAY	dzień
+SHOP_CREATE_DAYS	dni
+SHOP_CREATE_HOUR	godz.
+SHOP_CREATE_HOURS	godz.
+SHOP_CREATE_NORMAL	Normalny sklep
+SHOP_NAME_EMPTY	Proszę wpisać nazwę sklepu
+SHOP_TIMEOUT_EMPTY	Proszę wybrać czas trwania sklepu
+SHOP_WINDOW_NAME	Twoje sklepy
+SHOP_WINDOW_CREATE	Tworzenie sklepu
+SHOP_GET_YANG	Pobierz Yang
+SHOP_CHANGE_NAME	Zmień nazwę
+SHOP_ENTER_NEW_NAME	Wpisz nową nazwę
+SHOP_CLOSE	Zamknij sklep
+SHOP_CLOSE_QUEST	Czy jesteś pewny że chcesz zamknąć sklep "%s"?
+SHOP_OPEN	Otwórz sklep
+SHOP_MANAGE	Zarządzaj
+SHOP_EDIT	Edytuj
+SHOP_REMOVE_ITEM	Usuń
+SHOP_CHANGE_PRICE	Zmień cenę
+SHOP_EDIT_SHOP_WINDOW	Edytowanie sklepu
+SHOP_EDIT_SHOP_CANCEL	Anuluj edycje
+SHOP_SELECT	Wybierz
+SHOP_REMOVE_ITEM_QUEST	Czy na pewno chcesz usunąć ten przedmiot?
+SHOP_NOT_EARNED_YANG	Sklep nie zarobił żadnych Yang do tej pory!
+SHOP_YANG_QUEST	Czy jesteś pewny że chcesz pobrać %s ze sklepu "%s" ?
+SHOP_REMOVE_ITEM_QUEST	Czy na pewno chcesz usunąć ten przedmiot?
+SHOP_INFORMATION	Informacje o sklepie 
+SHOP_EARNED_YANG	Zarobionych yang: 
+SHOP_SOLD_ITEMS	Sprzedanych przedmiotów: 
+SHOP_REST_ITEMS	Pozostałe przedmioty: 
+SHOP_TIME_TO_CLOSE	Pozostało do zamknięcia: 
+GIFT_WINDOW_NAME	Twoje podarki
+GIFT_PREV_PAGE	Poprzednia strona
+GIFT_NEXT_PAGE	Następna strona
+GIFT_FROM	Wysłał
+GIFT_REASON	Powód
+GIFT_GET_ALL	Odbierz wszystkie
+GIFT_GET_QUEST	Czy jesteś pewny że chcesz odebrać przedmiot "%s"?
+GIFT_GET_QUEST_ALL	Czy jesteś pewny że chcesz odebrać wszystkie przedmioty ?
+GIFT_MONEY_DESC	Twoje zarobione Yangi z sklepu.
+SHOP_SELECT_TIME    Wybierz

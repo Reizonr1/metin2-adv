@@ -1,0 +1,10 @@
+85000	Fine Cloth	A Shoulder Sash is made from this material.
+85001	Lord Sash (basic)	This sash takes 1% of the bonuses from the weapon or armor that you use for absorption.
+85002	Lord Sash (fine)	This sash takes 5% of the bonuses from the weapon or armor that you use for absorption.
+85003	Lord Sash (noble)	This sash takes 10% of the bonuses from the weapon or armor that you use for absorption.
+85004	Lord Sash (custom)	This sash takes 11~20% of the bonuses from the weapon or armor that you use for absorption.
+85005	Master Sash (basic)	This sash takes 1% of the bonuses from the weapon or armor that you use for absorption.
+85006	Master Sash (fine)	This sash takes 5% of the bonuses from the weapon or armor that you use for absorption.
+85007	Master Sash (noble)	This sash takes 10% of the bonuses from the weapon or armor that you use for absorption.
+85008	Master Sash (custom)	This sash takes 11~20% of the bonuses from the weapon or armor that you use for absorption.
+85009	Certificate of Reversal+	Use the Certificate of Reversal to remove bonuses from a Shoulder Sash.

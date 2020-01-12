@@ -1,0 +1,13 @@
+[File: Src/Client/UserInterface/PythonApplicationModule.cpp]
+#1.) Search:
+if (!rkApp.Create(poSelf, szName, width, height, Windowed))
+#2.) Replace with:
+#ifdef ENABLE_SERVERNAME_FROM_SOURCE	
+	if (!rkApp.Create(poSelf, ENABLE_SERVERNAME, width, height, Windowed))
+#else
+	if (!rkApp.Create(poSelf, szName, width, height, Windowed))
+#endif
+
+[File: Src/Client/UserInterface/Locale_inc.h]
+#define ENABLE_SERVERNAME_FROM_SOURCE
+#define ENABLE_SERVERNAME "Metin2 - Action Oriental MMORPG"

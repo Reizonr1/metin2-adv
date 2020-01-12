@@ -1,0 +1,2 @@
+49000	ETC	icon/item/49000.tga
+49001	ETC	icon/item/49001.tga

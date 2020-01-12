@@ -1,0 +1,10 @@
+85000	Fine Cloth
+85001	Lord Sash (basic)
+85002	Lord Sash (fine)
+85003	Lord Sash (noble)
+85004	Lord Sash (custom)
+85005	Master Sash (basic)
+85006	Master Sash (fine)
+85007	Master Sash (noble)
+85008	Master Sash (custom)
+85009	Certificate of Reversal+

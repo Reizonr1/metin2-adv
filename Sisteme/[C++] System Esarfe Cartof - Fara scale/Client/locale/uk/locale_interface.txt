@@ -1,0 +1,5 @@
+ACCE_ABSORB	Bonus Absorption
+ACCE_COMBINE	Combination
+ACCE_MAIN	Sash 1
+ACCE_RESULT	Result
+ACCE_SERVE	Sash 2

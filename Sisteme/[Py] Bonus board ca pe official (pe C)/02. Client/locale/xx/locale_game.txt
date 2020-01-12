@@ -1,0 +1,177 @@
+DETAILS_TITLE	Details
+DETAILS_CATE_1	Schaden/Verteidigung
+DETAILS_CATE_2	Elementarboni
+DETAILS_CATE_3	Klassenboni
+DETAILS_CATE_4	Waffenboni
+DETAILS_CATE_5	Sonstige Boni
+DETAILS_CATE_6	Spezialboni
+DETAILS_1	St. vs. Halbmenschen
+DETAILS_2	Wid. vs. Halbmenschen
+DETAILS_3	Stark vs. Orks
+DETAILS_4	Stark vs. Untote
+DETAILS_5	Stark vs. Monster
+DETAILS_6	St. vs. Zodiak-Monster
+DETAILS_7	Stark vs. Tiere
+DETAILS_8	Stark vs. Esoterische
+DETAILS_9	Stark vs. Teufel
+DETAILS_10	St. vs. Wüstenmonster
+DETAILS_11	Stark vs. Insekten
+DETAILS_12	Angriffswert
+DETAILS_13	Verteidigungswert
+DETAILS_14	Durchschnittsschaden
+DETAILS_15	Wid. Durchschnittssch.
+DETAILS_16	Fähigkeitsschaden
+DETAILS_17	Wid. Fähigkeitssch.
+DETAILS_18	Magie-/Nahkampfangriff
+DETAILS_19	Magischer Angriff
+DETAILS_20	Krit. Trefferchance
+DETAILS_21	Durchb. Treffer
+DETAILS_22	Wid. krit. Treffer
+DETAILS_23	Wid. durchb. Treffer
+DETAILS_24	Blitzwiderstand
+DETAILS_25	Eiswiderstand
+DETAILS_26	Wid. vs. Dunkelheit
+DETAILS_27	Feuerwiderstand
+DETAILS_28	Windwiderstand
+DETAILS_29	Erdwiderstand
+DETAILS_30	Kraft der Blitze
+DETAILS_31	Kraft des Eises
+DETAILS_32	Kraft der Dunkelheit
+DETAILS_33	Kraft des Feuers
+DETAILS_34	Kraft des Windes
+DETAILS_35	Kraft der Erde
+DETAILS_36	Stark vs. Krieger
+DETAILS_37	Stark vs. Ninja
+DETAILS_38	Stark vs. Sura
+DETAILS_39	Stark vs. Schamanen
+DETAILS_40	Stark vs. Lykaner
+DETAILS_41	Abwehr vs. Krieger
+DETAILS_42	Abwehr vs. Ninja
+DETAILS_43	Abwehr vs. Sura
+DETAILS_44	Abw. vs. Schamanen
+DETAILS_45	Abwehr vs. Lykaner
+DETAILS_46	Schwertverteidigung
+DETAILS_47	Zweihandverteidigung
+DETAILS_48	Dolchverteidigung
+DETAILS_49	Krallenverteidigung
+DETAILS_50	Glockenverteidigung
+DETAILS_51	Fächerverteidigung
+DETAILS_52	Pfeilverteidigung
+DETAILS_53	Ohnmachtschance
+DETAILS_54	Verlangsamungschance
+DETAILS_55	Vergiftungschance
+DETAILS_56	Giftwiderstand
+DETAILS_57	Blutungsangriff
+DETAILS_58	Wid. Blutungsangriff
+DETAILS_59	Lebensraub
+DETAILS_60	MP-Raub
+DETAILS_61	TP-Wiederherstellung
+DETAILS_62	MP-Wiederherstellung
+DETAILS_63	Angriff blocken
+DETAILS_64	Pfeilangriff ausweichen
+DETAILS_65	Nahkampftr. reflekt.
+DETAILS_66	TP-Wdsg. beim Töten
+DETAILS_67	MP-Wdsg. beim Töten
+DETAILS_68	2-fach EXP
+DETAILS_69	2-fach Yang
+DETAILS_70	Dropchance
+DETAILS_71	Angriffswert
+DETAILS_72	Verteidigung
+DETAILS_73	EXP
+DETAILS_74	Dropchance
+DETAILS_75	2-fach Yang
+DETAILS_76	Magiewiderstand
+DETAILS_77	Magiebruch
+DETAILS_TOOLTIP_1	Stark gegen Halbmenschen: Fügt Halbmenschen größeren Schaden zu.
+DETAILS_TOOLTIP_2	Widerstand gegen Halbmenschen: Verringert den Schaden, den man von Halbmenschen erleidet.
+DETAILS_TOOLTIP_3	Stärke gegen Orks: Fügt Orks größeren Schaden zu.
+DETAILS_TOOLTIP_4	Stark gegen Untote: Fügt Untoten größeren Schaden zu.
+DETAILS_TOOLTIP_5	Stark gegen Monster: Fügt Monstern größeren Schaden zu.
+DETAILS_TOOLTIP_6	Stark gegen Zodiak-Monster: Fügt Zodiak-Monstern größeren Schaden zu.
+DETAILS_TOOLTIP_7	Stark gegen Tiere: Fügt Wildtieren größeren Schaden zu.
+DETAILS_TOOLTIP_8	Stark gegen Esoterische: Fügt Esoterischen größeren Schaden zu.
+DETAILS_TOOLTIP_9	Stark gegen Teufel: Fügt Teufel größeren Schaden zu.
+DETAILS_TOOLTIP_10	Stark gegen Wüstenmonster: Fügt Wüstenmonstern größeren Schaden zu.
+DETAILS_TOOLTIP_11	Stark gegen Insekten: Fügt Insekten größeren Schaden zu.
+DETAILS_TOOLTIP_12	Erhöht deinen Angriffswert.
+DETAILS_TOOLTIP_13	Erhöht deinen Verteidigungswert.
+DETAILS_TOOLTIP_14	Vergrößert den Durchschnittsschaden, den du Gegnern bei einem Angriff zufügst.
+DETAILS_TOOLTIP_15	Widerstand gegen Durchschnittsschaden: Verringert den Schaden, den du bei einem Angriff erleidest.
+DETAILS_TOOLTIP_16	Erhöht den Schaden, den eine Fertigkeit verursacht.
+DETAILS_TOOLTIP_17	Widerstand gegen Fertigkeitsschaden: Verringert den Schaden, der dir durch eine Fertigkeit zugefügt wird.
+DETAILS_TOOLTIP_18	Sowohl der körperliche als auch der magische Angriffswert wird erhöht.
+DETAILS_TOOLTIP_19	Erhöht den Schaden, den du Gegnern durch einen magischen Angriff zufügst.
+DETAILS_TOOLTIP_20	Steigert die Chance, einen kritischen Treffer zu erwirken.
+DETAILS_TOOLTIP_21	Chance auf einen durchbohrenden Treffer: Steigert die Chance, einen durchbohrenden Treffer zu landen.
+DETAILS_TOOLTIP_22	Widerstand gegen kritischen Treffer: Verringert den Schaden, der durch einen kritischen Treffer verusacht wird.
+DETAILS_TOOLTIP_23	Widerstand gegen durchbohrenden Treffer: Verringert den Schaden, der durch einen durchbohrenden Treffer verusacht wird.
+DETAILS_TOOLTIP_24	Verringert den Schaden, den man durch bestimmte Monster erleidet.
+DETAILS_TOOLTIP_25	Verringert den Schaden, den man durch bestimmte Monster erleidet.
+DETAILS_TOOLTIP_26	Widerstand gegen Dunkelheit: Verringert den Schaden, den man durch bestimmte Monster erleidet.
+DETAILS_TOOLTIP_27	Verringert den Schaden, den man durch bestimmte Monster erleidet.
+DETAILS_TOOLTIP_28	Verringert den Schaden, den man durch bestimmte Monster erleidet.
+DETAILS_TOOLTIP_29	Verringert den Schaden, den man durch bestimmte Monster erleidet.
+DETAILS_TOOLTIP_30	Erhöht den Schaden, den du verursachst, durch die Kraft der Blitze.
+DETAILS_TOOLTIP_31	Erhöht den Schaden, den du verursachst, durch die Kraft des Eises.
+DETAILS_TOOLTIP_32	Erhöht den Schaden, den du verursachst, durch die Kraft der Dunkelheit.
+DETAILS_TOOLTIP_33	Erhöht den Schaden, den du verursachst, durch die Kraft des Feuers.
+DETAILS_TOOLTIP_34	Erhöht den Schaden, den du verursachst, durch die Kraft des Windes.
+DETAILS_TOOLTIP_35	Erhöht den Schaden, den du verursachst, durch die Kraft der Erde.
+DETAILS_TOOLTIP_36	Stark gegen Krieger: Fügt Kriegern größeren Schaden zu.
+DETAILS_TOOLTIP_37	Stark gegen Ninja: Fügt Ninja größeren Schaden zu.
+DETAILS_TOOLTIP_38	Stark gegen Sura: Fügt Sura größeren Schaden zu.
+DETAILS_TOOLTIP_39	Stark gegen Schamanen: Fügt Schamanen größeren Schaden zu.
+DETAILS_TOOLTIP_40	Stark gegen Lykaner: Fügt Lykanern größeren Schaden zu.
+DETAILS_TOOLTIP_41	Abwehrchance gegen Kriegerangriffe: Verringert den Schaden, den man durch Krieger erleidet.
+DETAILS_TOOLTIP_42	Abwehrchance gegen Ninjaangriffe: Verringert den Schaden, den man durch Ninja erleidet.
+DETAILS_TOOLTIP_43	Abwehrchance gegen Suraangriffe: Verringert den Schaden, den man durch Sura erleidet.
+DETAILS_TOOLTIP_44	Abwehrchance gegen Schamanenangriffe: Verringert den Schaden, den man durch Schamanen erleidet.
+DETAILS_TOOLTIP_45	Abwehrchance gegen Lykanerangriffe: Verringert den Schaden, den man durch Lykaner erleidet.
+DETAILS_TOOLTIP_46	Verringert den Schaden, der durch ein Schwert verursacht wird.
+DETAILS_TOOLTIP_47	Verringert den Schaden, der durch eine Zweihandwaffe verursacht wird.
+DETAILS_TOOLTIP_48	Verringert den Schaden, der durch einen Dolch verursacht wird.
+DETAILS_TOOLTIP_49	Verringert den Schaden, der durch eine Kralle verursacht wird.
+DETAILS_TOOLTIP_50	Verringert den Schaden, der durch eine Glocke verursacht wird.
+DETAILS_TOOLTIP_51	Verringert den Schaden, der durch einen Fächer verursacht wird.
+DETAILS_TOOLTIP_52	Verringert den Schaden, der durch Pfeil und Bogen verursacht wird.
+DETAILS_TOOLTIP_53	Steigert die Chance, einen Gegner in Ohnmacht zu versetzen.
+DETAILS_TOOLTIP_54	Steigert die Chance, einen Gegner zu verlangsamen.
+DETAILS_TOOLTIP_55	Steigert die Chance, einen Gegner zu vergiften.
+DETAILS_TOOLTIP_56	Verringert den Schaden, der durch Gift verursacht wird.
+DETAILS_TOOLTIP_57	Steigert die Chance, einen Blutungsangriff zu erwirken.
+DETAILS_TOOLTIP_58	Widerstand gegen Blutungsangriff: Verringert den Schaden, der durch einen Blutungsangriff verursacht wird.
+DETAILS_TOOLTIP_59	Entzieht deinem Gegner TP, wenn du ihn triffst.
+DETAILS_TOOLTIP_60	Entzieht deinem Gegner MP, wenn du ihn triffst.
+DETAILS_TOOLTIP_61	Beschleunigt die Regeneration deiner Trefferpunkte.
+DETAILS_TOOLTIP_62	Beschleunigt die Regeneration deiner Manapunkte.
+DETAILS_TOOLTIP_63	Chance, Nahkampfangriff abzublocken: Steigert die Chance, einem Nahkampfangriff auszuweichen.
+DETAILS_TOOLTIP_64	Chance, Pfeilangriff auszuweichen: Steigert die Chance, einem Pfeil- oder Fernangriff eines Monsters auszuweichen.
+DETAILS_TOOLTIP_65	Chance, Nahkampftreffer zu reflektieren: Ein Teil des Nahkampfschadens wird auf den Gegner zurückgeworfen.
+DETAILS_TOOLTIP_66	TP-Wiederherstellung beim Töten: Wenn du einen Gegner tötest, erhöhen sich deine Trefferpunkte.
+DETAILS_TOOLTIP_67	MP-Wiederherstellung beim Töten: Wenn du einen Gegner tötest, erhöhen sich deine Manapunkte.
+DETAILS_TOOLTIP_68	Chance, doppelte Erfahrung zu bekommen: Steigert die Chance auf einen EXP-Bonus, wenn du deinen Gegner besiegt hast.
+DETAILS_TOOLTIP_69	Chance, eine doppelte Menge Yang fallen zu lassen: Steigert deine Chance, die doppelte Menge Yang zu erhalten.
+DETAILS_TOOLTIP_70	Chance, Gegenstände fallen zu lassen: Steigert die Chance, Gegenstände doppelt zu erbeuten.
+DETAILS_TOOLTIP_71	Erhöht deinen Angriffswert.
+DETAILS_TOOLTIP_72	Erhöht deinen Verteidigungswert.
+DETAILS_TOOLTIP_73	Erhöht das Sammeln von Erfahrung.
+DETAILS_TOOLTIP_74	Dropchance von Gegenständen: Steigert deine Chance, Gegenstände zu erbeuten.
+DETAILS_TOOLTIP_75	Dropchance Yang: Steigert deine Chance, mehr Yang zu erbeuten.
+DETAILS_TOOLTIP_76	Verringert den Schaden, den du durch einen magischen Angriff erleidest.
+DETAILS_TOOLTIP_77	Verringert den Magiewiderstand deines Gegners.
+DETAILS_TOOLTIP_ATTBONUS_BELL	Bruch von Glockenverteidigung: Reduziert die Glockenverteidigung deines Gegners.
+DETAILS_TOOLTIP_ATTBONUS_BOW	Bruch von Pfeilverteidigung: Reduziert die Pfeilverteidigung deines Gegners.
+DETAILS_TOOLTIP_ATTBONUS_CLAW	Bruch von Krallenverteidigung: Reduziert die Krallenverteidigung deines Gegners.
+DETAILS_TOOLTIP_ATTBONUS_DAGGER	Bruch von Dolchverteidigung: Reduziert die Dolchverteidigung deines Gegners.
+DETAILS_TOOLTIP_ATTBONUS_FAN	Bruch von Fächerverteidigung: Reduziert die Fächerverteidigung deines Gegners.
+DETAILS_TOOLTIP_ATTBONUS_SWORD	Bruch von Schwertverteidigung: Reduziert die Schwertverteidigung deines Gegners.
+DETAILS_TOOLTIP_ATTBONUS_TWOHAND	Bruch von Zweihandverteidigung: Reduziert die Zweihandverteidigung deines Gegners.
+DETAILS_TOOLTIP_RESIST_MOUNT_FALL	Widerstand gegen Sturz: Verringert die Wahrscheinlichkeit, dass du von deinem Reittier stürzt.
+DETAILS_ATTBONUS_BELL	Bruch von Glocke
+DETAILS_ATTBONUS_BOW	Bruch von Pfeil
+DETAILS_ATTBONUS_CLAW	Bruch von Kralle
+DETAILS_ATTBONUS_DAGGER	Bruch von Dolch
+DETAILS_ATTBONUS_FAN	Bruch von Fächer
+DETAILS_ATTBONUS_SWORD	Bruch von Schwert
+DETAILS_ATTBONUS_TWOHAND	Bruch von Zweihand
+DETAILS_RESIST_MOUNT_FALL	Widerstand g. Sturz

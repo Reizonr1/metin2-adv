@@ -1,0 +1,1 @@
+72325	Transmutation Reversal	Reverses the transmutation of an item.

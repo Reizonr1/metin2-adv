@@ -1,0 +1,2 @@
+#Add
+envanter = 0

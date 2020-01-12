@@ -1,0 +1,17 @@
+UserInterface/PythonTextTail.cpp in search
+
+#include "PythonSystem.h"
+Add :
+
+#include "PythonPlayer.h"
+Try PythonTextTail.cpp in search
+
+pTextTail->pOwnerTextInstance->SetColor(1.0f, 1.0f, 0.0f);
+Under add :
+
+CInstanceBase * pInstanceBase = CPythonCharacterManager::Instance().GetMainInstancePtr();
+if (pInstanceBase)
+{
+    if (strcmp(pInstanceBase->GetNameString(), c_szName))
+        pTextTail->pOwnerTextInstance->SetColor(1.0f, 0.0f, 0.0f);
+}

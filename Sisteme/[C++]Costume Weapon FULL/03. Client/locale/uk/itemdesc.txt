@@ -1,0 +1,7 @@
+46001	devil1_weapon1	A costume sword weapon for the fashion-conscious fighters.
+46002	devil1_weapon2	A costume two-hand weapon for the fashion-conscious fighters.
+46003	devil1_weapon3	A costume dagger weapon for the fashion-conscious fighters.
+46004	devil1_weapon4	A costume bow weapon for the fashion-conscious fighters.
+46005	devil1_weapon5	A costume bell weapon for the fashion-conscious fighters.
+46006	devil1_weapon6	A costume fan weapon for the fashion-conscious fighters.
+46007	devil1_weapon8	A costume magic sword weapon for the fashion-conscious fighters.

@@ -1,0 +1,27 @@
+OXEVENT_MANAGER_LOGIN_PASSWORD	Type password:
+OXEVENT_MANAGER_LOGIN_CONNECT	Login
+OXEVENT_MANAGER_LOGIN_CANCEL	Close
+OXEVENT_MANAGER_LOGIN_TITLENAME	GM: OX Event Administration
+OXEVENT_MANAGER_BTN_LOGIN	Try to connect on event manager...
+OXEVENT_MANAGER_BTN_REWARD	Give a reward
+OXEVENT_MANAGER_BTN_CLEAR	Clear
+OXEVENT_MANAGER_HORIZONTALBAR_TEXT	Offers for participants a prize.
+OXEVENT_MANAGER_NAME_ITEM	Name item:
+OXEVENT_MANAGER_COUNT	Count(s):
+OXEVENT_MANAGER_QUEST_OPEN_GATES	You want to open competition now?
+OXEVENT_MANAGER_QUEST_CLOSE_GATES	Are you sure want to closed gates?
+OXEVENT_MANAGER_QUEST_FINISH_EVENT	You want to finish competition and get winner?
+OXEVENT_MANAGER_QUEST_GIVE_REWARD	ItemVnum: [%s] - Name: [%s] - Count's: [%s]
+OXEVENT_MANAGER_QUEST_RUN_QUIZ	You want to run a question?
+OXEVENT_MANAGER_QUEST_FORCE_CLOSE	Are you sure? even want to do this?
+OXEVENT_MANAGER_QUEST_CLEAR_REWARD	Clear setting rewards from window?
+OXEVENT_MANAGER_TITLENAME	GM: Panel competition OX
+OXEVENT_MANAGER_USER_TEXT	Total counters (participants/observers):
+OXEVENT_MANAGER_USER_COUNT	|cFFffe700%d / %d
+OXEVENT_TOOLTIP_EMPTY	EMPTY
+OXEVENT_TOOLTIP_NAME	Name character: %s
+OXEVENT_TOOLTIP_LEVEL	Level: %s
+OXEVENT_TOOLTIP_GUILD	Guild name: %s
+OXEVENT_TOOLTIP_EMPIRE	Empire: %s
+OXEVENT_TOOLTIP_DATE	Date winner: %s
+OXEVENT_TOOLTIP_ANSWERS	Total correct answers: %s

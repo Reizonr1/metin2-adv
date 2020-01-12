@@ -1,0 +1,5 @@
+InstanceBase.h
+si inlocuiti:
+AFFECT_VIP = 40,
+cu:
+AFFECT_VIP = 39,

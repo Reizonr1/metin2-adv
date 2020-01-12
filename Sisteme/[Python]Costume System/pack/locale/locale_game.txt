@@ -1,0 +1,1 @@
+TOOLTIP_COSTUME_ATTR_BONUS	Bonus costum %d%%	SA

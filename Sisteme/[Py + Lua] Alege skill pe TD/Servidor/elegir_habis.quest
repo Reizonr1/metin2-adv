@@ -1,0 +1,64 @@
+quest elegir_habis begin
+	state start begin
+		
+		function getjobname(job)
+			if job == 0 or job == 4 then	return tostring("Guerrero")
+			elseif job == 1 or job == 5 then	return tostring("Ninja")
+			elseif job == 2 or job == 6 then	return tostring("Sura")
+			elseif job == 3 or job == 7 then	return tostring("Chaman")
+			end
+		end
+		
+		function getskillgroupname(skillgroup)
+			local job = pc.get_job()
+			if skillgroup == 1 and job == 0 or job == 4 then	return tostring("Corporal")
+			elseif skillgroup == 2 and job == 0 or job == 4 then 	return tostring("Mental")
+			elseif skillgroup == 1 and job == 1 or job == 5 then 	return tostring("Daguero")
+			elseif skillgroup == 2 and job == 1 or job == 5 then 	return tostring("Arquero")
+			elseif skillgroup == 1 and job == 2 or job == 6 then 	return tostring("Espejo")
+			elseif skillgroup == 2 and job == 2 or job == 6 then 	return tostring("Magia Negra")
+			elseif skillgroup == 1 and job == 3 or job == 7 then 	return tostring("Dragon")
+			elseif skillgroup == 2 and job == 3 or job == 7 then 	return tostring("Curacion")
+			end
+		end
+		
+		when login begin
+			cmdchat("HABILIDADES QID|"..q.getcurrentquestindex())
+		end
+		
+		when login or levelup with pc.get_level() >= 5 and pc.get_skill_group() == 0 begin
+			local job = pc.get_job()
+			if job == 0 or job == 4 then		-- Guerrero
+				cmdchat("HABILIDADES RAZA|1")
+			elseif job == 1 or job == 5 then	-- Ninja
+				cmdchat("HABILIDADES RAZA|2")
+			elseif job == 2 or job == 6 then	-- Sura
+				cmdchat("HABILIDADES RAZA|3")
+			elseif job == 3 or job == 7 then	-- Chaman
+				cmdchat("HABILIDADES RAZA|4")
+			end
+		end
+		
+		when button or info begin
+			cmdchat("input1")
+			local cmd = input(cmdchat("HABILIDADES GRUPO|"))
+			cmdchat("input0")
+			--syschat(cmd)
+			local puntos = pc.level -1
+			if cmd == "GRUPO1" then
+				pc.set_skill_group(1)	-- Guerrero Corporal, Ninja Asesino, Sura Espejo, Chaman Dragon
+				pc.clear_skill()
+				syschat("¡Has elegido la doctrina de "..elegir_habis.getjobname(pc.get_job()).." "..elegir_habis.getskillgroupname(pc.get_skill_group())..", enhorabuena!")
+				syschat("¡Recibes "..puntos.." puntos de habilidad!")
+			elseif cmd == "GRUPO2" then
+				pc.set_skill_group(2)	-- Guerrero Mental, Ninja Arquero, Sura Magia Negra, Chaman Curacion
+				pc.clear_skill()
+				syschat("¡Has elegido la doctrina de "..elegir_habis.getjobname(pc.get_job()).." "..elegir_habis.getskillgroupname(pc.get_skill_group())..", enhorabuena!")
+				syschat("¡Recibes "..puntos.." puntos de habilidad!")
+			else
+				syschat("¡Error!")
+			end
+		end
+	
+	end
+end

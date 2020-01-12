@@ -1,0 +1,2 @@
+49000	Blue Armor Effect
+49001	Blue Weapon Effect

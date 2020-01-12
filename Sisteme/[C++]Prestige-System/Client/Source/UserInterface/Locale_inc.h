@@ -1,0 +1,5 @@
+// Unter :
+#define ENABLE_NEW_EQUIPMENT_SYSTEM
+// Add :
+#define ENABLE_NEW_PRESTIGE_SYSTEM 1
+#define PRESTIGE_MAX 12

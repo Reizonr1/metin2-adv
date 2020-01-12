@@ -1,0 +1,1 @@
+dofile(get_locale_base_path().."/quest/systems_config.lua")

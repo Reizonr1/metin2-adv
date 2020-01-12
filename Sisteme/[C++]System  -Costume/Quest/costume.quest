@@ -1,0 +1,22 @@
+quest costume begin
+	state start begin
+		when login begin
+			cmdchat("costume "..q.getcurrentquestindex())
+		end
+		when button or info begin
+			
+			
+			say("Hello "..pc.get_name().." !")
+			say("")
+			say("Whats your desire; ")
+			local s = select("Costume visible ", "Costume unvisible ")
+			if s == 1 then
+				chat("Done! ")
+				pc.costume(0)
+			elseif s == 2 then
+				chat("Done! ")
+				pc.costume(1)
+			end
+		end
+	end
+end	

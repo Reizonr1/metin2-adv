@@ -1,0 +1,5 @@
+dbg	MAIN_QUEST
+warehouse	MAIN_QUEST
+test2	MAIN_QUEST
+test	LEVELUP_QUEST
+test3	SYSTEM_QUEST

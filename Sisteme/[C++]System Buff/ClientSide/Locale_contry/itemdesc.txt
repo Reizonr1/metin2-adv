@@ -1,0 +1,9 @@
+79000	Blessing	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.
+79001	Blessing	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.
+79002	Blessing	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.
+79003	Dragon's Strength	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.
+79004	Dragon's Strength	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.
+79005	Dragon's Strength	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.
+79006	Reflection	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.
+79007	Reflection	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.
+79008	Reflection	Stolen from Water Dragon in the last fight, this item has the power to bless as a shaman.

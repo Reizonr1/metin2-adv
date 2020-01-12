@@ -1,0 +1,13 @@
+achievements.check_if_first
+achievements.create_categorys
+achievements.getAchievementInfo
+achievements.get_next_achievement
+achievements.getf
+achievements.load_achievements
+achievements.set_ap
+achievements.setf
+achievements.set_finished
+achievements.load_last_finished_achievements
+achievements.buy_achievementshop_item
+achievements.set_achievementshop_categories
+achievements.load_achievementshop_items

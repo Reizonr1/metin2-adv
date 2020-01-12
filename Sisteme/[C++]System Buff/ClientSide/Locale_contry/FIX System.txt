@@ -1,0 +1,46 @@
+Deschideti char_item.cpp din game, sursa server
+cautati 
+if (item->GetVnum() == 50200 | item->GetVnum() == 71049)
+	{
+		if (GetExchange() || GetMyShop() || GetShopOwner() || IsOpenSafebox() || IsCubeOpen() || IsAcceOpen())
+		{
+			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("???,?? ?? ? ????? ???,?????? ???? ????."));
+			return false;
+		}
+
+	}
+
+adaugati dedesupt 
+if (item->GetVnum() == 70418)
+	{
+		if (GetExchange() || GetMyShop() || GetShopOwner() || IsOpenSafebox() || IsCubeOpen() || IsAcceOpen())
+		{
+			ChatPacket(CHAT_TYPE_INFO, "Nu poti folosi itemul cand ai o casuta deschisa");
+			return false;
+		}
+		else
+		{
+			AddAffect(SKILL_HOSIN, POINT_RESIST_NORMAL_DAMAGE, 40, AFF_HOSIN, 360, 0, true, true);
+			AddAffect(SKILL_REFLECT, POINT_REFLECT_MELEE, 40, AFF_BOHO, 360, 0, true, true);
+			AddAffect(SKILL_GICHEON, POINT_CRITICAL_PCT, 40, AFF_GICHEON, 360, 0, true, true);
+			item->SetCount(item->GetCount() - 1);
+			ChatPacket(CHAT_TYPE_INFO, "Ai primit 40% binecuvantare/forta/reflexie, buffurile tin 360secunde.");
+		}
+	}
+
+Schimbati codul 70418 cu codul itemului la care vreti sa va dea bufurile, iar perioada cât sa tina buffurile active o schimbati în secunde aici: AFF_HOSIN, 360, 0, înloc de 360 puneti câte secunde vreti sa tina activ, sau puteti sa va faceti 3 functii cu 3 iteme fiecare cu buful lui 
+Cine doreste ca itemul cu buff sa fie permanent schimbati la functia:
+item->SetCount(item->GetCount() - 1);
+în:
+item->SetCount(item->GetCount() - 0);
+sau comentati linia(stergeti):
+//item->SetCount(item->GetCount() - 1);
+
+
+Daca vre?i ca itemul de buff sa nu dispara dupa folosire , modifica?i aici :
+Show
+item->SetCount(item->GetCount() - 1);
+În:
+
+Show
+item->SetCount(item->GetCount() - 0);

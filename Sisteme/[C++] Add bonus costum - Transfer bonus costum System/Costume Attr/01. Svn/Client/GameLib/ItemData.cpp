@@ -1,0 +1,8 @@
+// 1) Search: return DEF_STR(USE_PUT_INTO_RING_SOCKET);
+// 2) Make a new line and paste:
+#ifdef ENABLE_COSTUME_ATTR_SYSTEM
+		case USE_COSTUME_ENCHANT:
+			return DEF_STR(USE_COSTUME_ENCHANT);
+		case USE_COSTUME_TRANSFORM:
+			return DEF_STR(USE_COSTUME_TRANSFORM);
+#endif

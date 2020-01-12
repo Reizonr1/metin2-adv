@@ -1,0 +1,94 @@
+
+	Go in folder SvnClientUserInterface and add this file
+	Download
+		httpsmega.nz#!vBw1UITR!8rJ1RbFVa47e ... XgdIzMdI2A
+
+	If you want to obtaining md5 from files, you need only to drag file on box, and will show you Current file MD5 checksum value.
+	Download
+		httpwww.winmd5.comdownloadwinmd5free.zip
+
+
+@SvnClientUserInterfaceLocale_inc.h
+Add where you want
+#define ENABLE_CHECK_FILES_MD5
+
+@SvnClientUserInterfaceUserInterface.cpp
+1.) Search for
+#include Version.h
+2.) Add bellow
+#ifdef ENABLE_CHECK_FILES_MD5
+	#include md5.h
+	#include windows.h
+#endif
+
+1.) Search for
+static const char  sc_apszPythonLibraryFilenames[] =
+{
+	[........]
+};
+2.) Add after
+#ifdef ENABLE_CHECK_FILES_MD5
+	#define MAX_ROWS_MD5 21
+	static char  ar_szMD5FileNames[MAX_ROWS_MD5][2] =
+	{
+		 Example of list
+		{ lib__future__.pyc, d2505c6e64dc44a1745dda0905f4e787 },
+		{ libcopy_reg.pyc,   5e996d35b598676b253dd25fa3809ef2 },
+		{ liblinecache.pyc,  c4c28529b05b4093f629fb7b23603cd2 },
+		{ libntpath.pyc,     966048f390a65bebf60f912845441110 },
+		{ libos.pyc,         9e1e72faaafcde16dfd0e643a31f0b74 },
+		{ libsite.pyc,       8336371539a459e72d7110f0cb1ed84f },
+		{ libstat.pyc,       3dc2d3d11ba4c668a0097fbd631c7be6 },
+		{ libstring.pyc,     39c29074226b2196e7f13ce93560d3d0 },
+		{ libtraceback.pyc,  009e6647dfac211b6e69c6b3f1ed5600 },
+		{ libtypes.pyc,      2bff75340aa1d94b88bfc7915a291564 },
+		{ libUserDict.pyc,   aabdd94dfe3a1b0092f0a414a935c091 },
+
+		{ milesmssdsp.flt,   cb71b1791009eca618e9b1ad4baa4fa9 },
+		{ milesmsssoft.m3d,  bdc9ad58ade17dbd939522eee447416f },
+		{ milesmssa3d.m3d,   e089ce52b0617a6530069f22e0bdba2a },
+		{ milesmss32.dll,    6400e224b8b44ece59a992e6d8233719 },
+
+		{ packIndex,         8823ca827dfc980798856e97f3568cef },
+		{ packroot.eix,      ce13b7c96f725b7d7c39cbe1ae2f8b4d },
+		{ packETC.eix,       7c0b756d079a9c76a220a724b9594eeb },
+		{ packlocale_en.eix,	5b1aea18b89330481e16eca94673951c },
+		{ packuiscript.eix,	d211c0a83ff2c771946d73554916bd9a },
+
+		{ python27.dll,       d219c0a8aff2c771946d73554916bd9a }
+		
+			Unlimited files
+		
+	};
+#endif
+
+1.) Search for
+bool __IsLocaleVersion(LPSTR lpCmdLine)
+{
+	return (strcmp(lpCmdLine, --perforce-revision) == 0);
+}
+2.) Add bellow
+#ifdef ENABLE_CHECK_FILES_MD5
+	void CheckMD5Filenames()
+	{
+		MD5 md5;
+		for (int it = 0; it  _countof(ar_szMD5FileNames); it++)
+		{
+			if (strcmp(md5.digestFile(ar_szMD5FileNames[it][0]), ar_szMD5FileNames[it][1]))
+			{
+				char szBuf[512 + 1];
+				snprintf(szBuf, sizeof(szBuf), A file %s has been modified, please update autopatcher., ar_szMD5FileNames[it][0]);
+				MessageBoxA(NULL, szBuf, #Metin2, NULL);
+				exit(0);
+			}
+		}
+	}
+#endif
+
+1.) Search for
+	if (strstr(lpCmdLine, --hackshield) != 0)
+		return 0;
+2.) Add after
+#ifdef ENABLE_CHECK_FILES_MD5
+	CheckMD5Filenames();
+#endif

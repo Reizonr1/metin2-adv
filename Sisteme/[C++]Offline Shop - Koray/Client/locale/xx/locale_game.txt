@@ -1,0 +1,22 @@
+Search:
+DO_YOU_BUY_ITEM1	
+
+Add it under:
+DO_YOU_BUY_ITEM1_1	Do you want buy? Item: %s
+
+DO_YOU_BUY_ITEM2_1	Do you want buy? Item: %s %s
+
+DO_YOU_BUY_ITEM1_2	Price: %s, %s, %s, %s
+
+https://puu.sh/sgS4O/576ca80711.png
+---
+
+Search:
+SHOP_NOT_ENOUGH_MONEY_EX
+
+Add it under:
+SHOP_NOT_ENOUGH_MONEY_COIN	Have not enough coin
+SHOP_NOT_ENOUGH_MONEY_GOLDBAR	Have not enough gold bar
+SHOP_NOT_ENOUGH_MONEY_WON	Have not enough won
+
+https://puu.sh/sgS8q/7a6b447c87.png

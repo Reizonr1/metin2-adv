@@ -1,0 +1,72 @@
+###################### EN ###########################################################################
+Features
+- Player can open normal shop or offline shop
+- Dynamic shop duration with cost managed in player.shop_cost
+- Player can edit shop/name from every channel
+- Player can close shop/get earned gold from every channel
+- After open shop, name will change color in blue 
+- After crash core/restarting server shops still appear
+- Anty lag's which you have full shop's on map
+- Auto close shop when other player buy last item
+- Item prices cache for creating shop
+- Offline shop's have custom color npc name and minimap color
+- Support unlimited gold in inventory
+- Support for Acce System
+- System is only for source 
+- System is protected for exploit's/attack's
+- System is fully optimized for best performace
+- Support languages: Polish,English,German,Romanian
+
+Commands:
+/delete_shop <type> <arg> 
+Types:
+	shopid - Delete shop using ID
+	player - Delete all player shops by player name
+Example:
+	/delete_shop player Best4ever
+	/delete_shop shopid 1
+/update_shop <shop id> - Reload shop items when you edit it in MySQL
+
+Event flags:
+/e shop_max <count> - Setting max shop for player, default is 2
+/e shop_off 1 - Disable offline shop system in game
+/e shop_off 0 - Enable offline shop system in game
+/e shop_dist <0 - 10000> - Show shops effect like WoM2 pos distance setting. 0 to disable this
+
+###################### PL ###########################################################################
+Funkcje
+- Gracz może otworzyć zwykly sklep jak i offline 
+- Dynamiczne ceny i czas otwarcia sklepu offline ustawiane w bazie
+- Gracz może edytować sklep/nazwę sklepu bez konieczności stania obok sklepu
+- Gracz może pobrać zarobione Yangi ze sklepu jak i go zamknąć bez konieczności stania obok sklepu
+- Po otworzeniu sklepu nazwa zmieni kolor na niebieski (Zapamiętywanie przeglądnietych już sklepów)
+- Po restarcie serwera bądź awarii (crashu) sklepy będą stały tam gdzie wcześniej
+- Możliwość wyłączenia pokazywania nazw npc sklepów (Zmniejsza lagi przy większej ilości sklepów)
+- Automatyczne zamykanie sklepu gdy gracz kupi ostatni przedmiot
+- Zapisywanie cen przy tworzeniu sklepu
+- Ustawienie widoczności nazw sklepów poprzez dystans w Opcjach Gry
+- Sklepy offline mają własny kolor nazw jak i na minimapie
+- Sklepy współpracują z usuniętym limitem Yang
+- Sklepy współpracują z systemem szarf
+- Sklepy są zabezpieczone przed wszelkimi próbami ataków
+- System jest w pełni zoptymalizowany do jak najlepszej i jak najstabilniejszej pracy
+- Sklepy są przetłumaczone na 3 języki: Polski,Angielski,Niemiecki,Rumuński
+
+Komendy:
+/delete_shop <rodzaj> <argument> 
+Rodzaje:
+	shopid - Usuwanie sklepu po ID
+	player - Usuwanie wszystkich sklepów po nicku gracza
+Przykłady:
+	/delete_shop player Best4ever
+	/delete_shop shopid 1
+/update_shop <ID sklepu> - Przeładowanie itemów w sklepie jeśli je edytowałeś w bazie
+
+Nowe event flagi:
+/e shop_max <count> - Maksymalna ilość sklepów na jednej postaci, domyślnie limit to 2 sklepy
+/e shop_off 1 - Wyłączenie tworzenia sklepów w grze
+/e shop_off 0 - Włączenie tworzenia sklepów w grze
+/e shop_dist <0 - 10000> - Ustawienie dystansu w jakim ma pokazywać NPC sklepó, domyślnie system został wyłączony
+
+
+

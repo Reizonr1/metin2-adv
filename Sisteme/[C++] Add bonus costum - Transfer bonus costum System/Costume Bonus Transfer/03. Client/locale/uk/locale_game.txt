@@ -1,0 +1,7 @@
+COMB_ALERT	Costume 2 destroying it in the process?
+COMB_ALERT1	For can do this, you must add the Transfer Scroll in their slot.
+COMB_ALERT2	For can do this, you first must add the Costume 1.
+COMB_ALERT3	You can transfer just the bonuses from costumes.
+COMB_ALERT4	You can transfer just the bonuses from same type of costumes.
+COMB_ALERT5	You can transfer just the bonuses from body costumes.
+COMB_ALERT6	You can transfer the bonuses just from same type of costume.

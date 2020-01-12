@@ -1,0 +1,106 @@
+root/uiSystemOption.py Open..
+
+
+Search;
+
+Kod:
+self.tilingModeButtonList = []
+
+
+Add;
+
+Kod:
+self.ctrlShadowQuality = 0
+
+
+Search;
+
+Kod:
+self.tilingApplyButton=GetObject("tiling_apply")
+
+Add;
+
+Kod:
+self.ctrlShadowQuality = GetObject("shadow_bar")
+ 
+
+
+ 
+Search;
+
+Kod:
+self.ctrlSoundVolume.SetEvent(ui.__mem_func__(self.OnChangeSoundVolume))
+
+Add;
+
+Kod:
+        self.ctrlShadowQuality.SetSliderPos(float(systemSetting.GetShadowLevel()) / 5.0)
+        self.ctrlShadowQuality.SetEvent(ui.__mem_func__(self.OnChangeShadowQuality))
+
+
+Search;
+
+Kod:
+    def OnChangeSoundVolume(self):
+        pos = self.ctrlSoundVolume.GetSliderPos()
+        snd.SetSoundVolumef(pos)
+        systemSetting.SetSoundVolumef(pos)
+
+
+Add;
+
+Kod:
+    def OnChangeShadowQuality(self):
+        pos = self.ctrlShadowQuality.GetSliderPos()
+        systemSetting.SetShadowLevel(int(pos / 0.2))
+ 
+
+
+uiscript/SystemOptionDialog.py Open..
+
+ 
+Search;
+
+Kod:
+                {
+                    "name" : "tiling_apply",
+                    "type" : "button",
+
+
+                    "x" : 90+100,
+                    "y" : 185,
+
+
+                    "text" : uiScriptLocale.OPTION_TILING_APPLY,
+
+
+                    "default_image" : ROOT_PATH + "middle_Button_01.sub",
+                    "over_image" : ROOT_PATH + "middle_Button_02.sub",
+                    "down_image" : ROOT_PATH + "middle_Button_03.sub",
+                },
+
+
+
+Add;
+
+Kod:
+                {
+                    "name" : "shadow_mode",
+                    "type" : "text",
+
+
+                    "x" : 30,
+                    "y" : 210,
+
+
+                    "text" : uiScriptLocale.OPTION_SHADOW,
+                },
+                
+                {
+                    "name" : "shadow_bar",
+                    "type" : "sliderbar",
+
+
+                    "x" : 110,
+                    "y" : 210,
+                },
