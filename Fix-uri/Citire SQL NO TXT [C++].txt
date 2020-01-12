@@ -1,0 +1,361 @@
+ Deschidem db/src/Main.cpp si adaugam:
+
+COD: SELECTATI TOT
+// NOTXT_STARTUP_BEGIN
+BOOL g_noTXT = false;
+// NOTXT_STARTUP_END
+
+
+Cautam int iDisableHotBackup; si sub aceasta functie adaugam:
+
+COD: SELECTATI TOT
+// NOTXT_STARTUP_BEGIN
+   int iNoTXT;
+   if (CConfig::instance().GetValue("NO_TXT", &iNoTXT))
+   {
+      if (iNoTXT)
+      {
+         sys_log(0, "CONFIG: NO_TXT");
+         g_noTXT = true;
+      }
+   }
+   // NOTXT_STARTUP_END
+
+
+Deschidem db/src/ClientManager.h si inlocuim
+
+COD: SELECTATI TOT
+bool      InitializeMobTable();
+   bool      InitializeItemTable();
+
+
+cu
+
+COD: SELECTATI TOT
+// NOTXT_STARTUP_BEGIN
+      bool      InitializeMobTableTXT();
+      bool      InitializeItemTableTXT();
+      bool      InitializeMobTableSQL();
+      bool      InitializeItemTableSQL();
+      // NOTXT_STARTUP_END
+
+
+Deschidem db/src/ClientManagerBoot.cpp si adaugam
+
+COD: SELECTATI TOT
+// NOTXT_STARTUP_BEGIN
+extern int g_noTXT;
+// NOTXT_STARTUP_END
+
+
+Cautam bool CClientManager::InitializeMobTable() si o inlocuim cu:
+
+COD: SELECTATI TOT
+bool CClientManager::InitializeMobTableTXT()
+
+
+Acum cautam bool CClientManager::InitializeItemTable() si inlocuim cu:
+
+COD: SELECTATI TOT
+bool CClientManager::InitializeItemTableTXT()
+
+
+Acum cautam bool CClientManager::InitializeTables() si inlocuim
+
+COD: SELECTATI TOT
+if (!InitializeMobTable())
+   {
+      sys_err("InitializeMobTable FAILED");
+      return false;
+   }
+   if (!MirrorMobTableIntoDB())
+   {
+      sys_err("MirrorMobTableIntoDB FAILED");
+      return false; 
+   }
+
+   if (!InitializeItemTable())
+   {
+      sys_err("InitializeItemTable FAILED");
+      return false; 
+   }
+
+   if (!MirrorItemTableIntoDB())
+   {
+      sys_err("MirrorItemTableIntoDB FAILED");
+      return false; 
+   }
+
+cu
+COD: SELECTATI TOT
+// NOTXT_STARTUP_BEGIN
+   if (g_noTXT) // item and mob proto
+   {
+      if (!InitializeMobTableSQL())
+      {
+         sys_err("InitializeMobTableSQL FAILED");
+         return false;
+      }
+      if (!InitializeItemTableSQL())
+      {
+         sys_err("InitializeItemTableSQL FAILED");
+         return false;
+      }
+   }
+   else
+   {
+      if (!InitializeMobTableTXT())
+      {
+         sys_err("InitializeMobTableTXT FAILED");
+         return false;
+      }
+
+      if (!MirrorMobTableIntoDB())
+      {
+         sys_err("MirrorMobTableIntoDB FAILED");
+         return false;
+      }
+
+      if (!InitializeItemTableTXT())
+      {
+         sys_err("InitializeItemTableTXT FAILED");
+         return false;
+      }
+
+      if (!MirrorItemTableIntoDB())
+      {
+         sys_err("MirrorItemTableIntoDB FAILED");
+         return false;
+      }
+   }
+   // NOTXT_STARTUP_END
+
+
+Iar la sfarsit adaugam:
+
+// NOTXT_STARTUP_BEGIN
+bool CClientManager::InitializeMobTableSQL()
+{
+   char query[4096];
+   snprintf(query, sizeof(query),
+      "SELECT vnum, name, %s, type, rank, battle_type, level, "
+      "size+0, ai_flag+0, setRaceFlag+0, setImmuneFlag+0, "
+      "on_click, empire, drop_item, resurrection_vnum, folder, "
+      "st, dx, ht, iq, damage_min, damage_max, max_hp, regen_cycle, regen_percent, exp, "
+      "gold_min, gold_max, def, attack_speed, move_speed, "
+      "aggressive_hp_pct, aggressive_sight, attack_range, polymorph_item, "
+      "enchant_curse, enchant_slow, enchant_poison, enchant_stun, enchant_critical, enchant_penetrate, "
+      "resist_sword, resist_twohand, resist_dagger, resist_bell, resist_fan, resist_bow, "
+      "resist_fire, resist_elect, resist_magic, resist_wind, resist_poison, "
+      "dam_multiply, summon, drain_sp, "
+      "skill_vnum0, skill_level0, skill_vnum1, skill_level1, skill_vnum2, skill_level2,"
+      "skill_vnum3, skill_level3, skill_vnum4, skill_level4 , sp_berserk, sp_stoneskin, "
+      "sp_godspeed, sp_deathblow, sp_revive "
+      "FROM mob_proto%s ORDER BY vnum",
+      g_stLocaleNameColumn.c_str(), GetTablePostfix());
+
+   std::auto_ptr<SQLMsg> pkMsg(CDBManager::instance().DirectQuery(query));
+   SQLResult * pRes = pkMsg->Get();
+
+   if (!pRes->uiNumRows)
+   {
+      sys_err("Could not load mob_proto. No results!");
+      return false;
+   }
+
+   sys_log(0, "MOB_PROTO loading...");
+
+   if (!m_vec_mobTable.empty())
+   {
+      sys_log(0, "RELOAD: mob_proto");
+      m_vec_mobTable.clear();
+   }
+
+   m_vec_mobTable.resize(pRes->uiNumRows);
+   memset(&m_vec_mobTable[0], 0, sizeof(TMobTable) * m_vec_mobTable.size());
+   TMobTable * mob_table = &m_vec_mobTable[0];
+
+   MYSQL_ROW data;
+   int col;
+   while ((data = mysql_fetch_row(pRes->pSQLResult)))
+   {
+      col = 0;
+      str_to_number(mob_table->dwVnum, data[col++]);
+      strlcpy(mob_table->szName, data[col++], sizeof(mob_table->szName));
+      strlcpy(mob_table->szLocaleName, data[col++], sizeof(mob_table->szLocaleName));
+      str_to_number(mob_table->bType, data[col++]);
+      str_to_number(mob_table->bRank, data[col++]);
+      str_to_number(mob_table->bBattleType, data[col++]);
+      str_to_number(mob_table->bLevel, data[col++]);
+      str_to_number(mob_table->bSize, data[col++]);
+      str_to_number(mob_table->dwAIFlag, data[col++]);
+      str_to_number(mob_table->dwRaceFlag, data[col++]);
+      str_to_number(mob_table->dwImmuneFlag, data[col++]);
+      str_to_number(mob_table->bOnClickType, data[col++]);
+      str_to_number(mob_table->bEmpire, data[col++]);
+      str_to_number(mob_table->dwDropItemVnum, data[col++]);
+      str_to_number(mob_table->dwResurrectionVnum, data[col++]);
+      strlcpy(mob_table->szFolder, data[col++], sizeof(mob_table->szFolder));
+      str_to_number(mob_table->bStr, data[col++]);
+      str_to_number(mob_table->bDex, data[col++]);
+      str_to_number(mob_table->bCon, data[col++]);
+      str_to_number(mob_table->bInt, data[col++]);
+      str_to_number(mob_table->dwDamageRange[0], data[col++]);
+      str_to_number(mob_table->dwDamageRange[1], data[col++]);
+      str_to_number(mob_table->dwMaxHP, data[col++]);
+      str_to_number(mob_table->bRegenCycle, data[col++]);
+      str_to_number(mob_table->bRegenPercent, data[col++]);
+      str_to_number(mob_table->dwExp, data[col++]);
+      str_to_number(mob_table->dwGoldMin, data[col++]);
+      str_to_number(mob_table->dwGoldMax, data[col++]);
+      str_to_number(mob_table->wDef, data[col++]);
+      str_to_number(mob_table->sAttackSpeed, data[col++]);
+      str_to_number(mob_table->sMovingSpeed, data[col++]);
+      str_to_number(mob_table->bAggresiveHPPct, data[col++]);
+      str_to_number(mob_table->wAggressiveSight, data[col++]);
+      str_to_number(mob_table->wAttackRange, data[col++]);
+      str_to_number(mob_table->dwPolymorphItemVnum, data[col++]);
+
+      int i;
+      for (i = 0; i < MOB_ENCHANTS_MAX_NUM; ++i)
+         str_to_number(mob_table->cEnchants[i], data[col++]);
+
+      for (i = 0; i < MOB_RESISTS_MAX_NUM; ++i)
+         str_to_number(mob_table->cResists[i], data[col++]);
+
+      str_to_number(mob_table->fDamMultiply, data[col++]);
+      str_to_number(mob_table->dwSummonVnum, data[col++]);
+      str_to_number(mob_table->dwDrainSP, data[col++]);
+
+      for (i = 0; i < MOB_SKILL_MAX_NUM; ++i)
+      {
+         str_to_number(mob_table->Skills[i].dwVnum, data[col++]);
+         str_to_number(mob_table->Skills[i].bLevel, data[col++]);
+      }
+
+      str_to_number(mob_table->bBerserkPoint, data[col++]);
+      str_to_number(mob_table->bStoneSkinPoint, data[col++]);
+      str_to_number(mob_table->bGodSpeedPoint, data[col++]);
+      str_to_number(mob_table->bDeathBlowPoint, data[col++]);
+      str_to_number(mob_table->bRevivePoint, data[col++]);
+
+      sys_log(1, "MOB #%-5d %-24s %-24s level: %-3u rank: %u empire: %d", mob_table->dwVnum, mob_table->szName, mob_table->szLocaleName, mob_table->bLevel, mob_table->bRank, mob_table->bEmpire);
+      ++mob_table;
+   }
+
+   sort(m_vec_mobTable.begin(), m_vec_mobTable.end(), FCompareVnum());
+   sys_log(0, "CClientManager::InitializeMobTable:: %d mobs loaded.n", m_vec_mobTable.size());
+   return true;
+}
+
+bool CClientManager::InitializeItemTableSQL()
+{
+   char query[4096];
+   snprintf(query, sizeof(query),
+      "SELECT vnum, name, %s, type, subtype, gold, shop_buy_price, weight, size, flag, wearflag, "
+      "antiflag, immuneflag+0, refined_vnum, refine_set, magic_pct, socket_pct, addon_type, "
+      "limittype0, limitvalue0, limittype1, limitvalue1, "
+      "applytype0, applyvalue0, applytype1, applyvalue1, applytype2, applyvalue2, "
+      "value0, value1, value2, value3, value4, value5 "
+      "FROM item_proto%s ORDER BY vnum",
+      g_stLocaleNameColumn.c_str(), GetTablePostfix());
+
+   std::auto_ptr<SQLMsg> pkMsg(CDBManager::instance().DirectQuery(query));
+   SQLResult * pRes = pkMsg->Get();
+
+   if (!pRes->uiNumRows)
+   {
+      sys_err("Could not load item_proto. No results!");
+      return false;
+   }
+
+   sys_log(0, "ITEM_PROTO loading...");
+
+   if (!m_vec_itemTable.empty())
+   {
+      sys_log(0, "RELOAD: item_proto");
+      m_vec_itemTable.clear();
+      m_map_itemTableByVnum.clear();
+   }
+
+   m_vec_itemTable.resize(pRes->uiNumRows);
+   memset(&m_vec_itemTable[0], 0, sizeof(TItemTable) * m_vec_itemTable.size());
+   TItemTable * item_table = &m_vec_itemTable[0];
+
+   MYSQL_ROW data;
+   int col;
+
+   while ((data = mysql_fetch_row(pRes->pSQLResult)))
+   {
+      col = 0;
+
+      str_to_number(item_table->dwVnum, data[col++]);
+      strlcpy(item_table->szName, data[col++], sizeof(item_table->szName));
+      strlcpy(item_table->szLocaleName, data[col++], sizeof(item_table->szLocaleName));
+      str_to_number(item_table->bType, data[col++]);
+      str_to_number(item_table->bSubType, data[col++]);
+      str_to_number(item_table->dwGold, data[col++]);
+      str_to_number(item_table->dwShopBuyPrice, data[col++]);
+      str_to_number(item_table->bWeight, data[col++]);
+      str_to_number(item_table->bSize, data[col++]);
+      str_to_number(item_table->dwFlags, data[col++]);
+      str_to_number(item_table->dwWearFlags, data[col++]);
+      str_to_number(item_table->dwAntiFlags, data[col++]);
+      str_to_number(item_table->dwImmuneFlag, data[col++]);
+      str_to_number(item_table->dwRefinedVnum, data[col++]);
+      str_to_number(item_table->wRefineSet, data[col++]);
+      str_to_number(item_table->bAlterToMagicItemPct, data[col++]);
+      str_to_number(item_table->bGainSocketPct, data[col++]);
+      str_to_number(item_table->sAddonType, data[col++]);
+
+      item_table->cLimitRealTimeFirstUseIndex = -1;
+      item_table->cLimitTimerBasedOnWearIndex = -1;
+
+      int i;
+      for (i = 0; i < ITEM_LIMIT_MAX_NUM; ++i)
+      {
+         str_to_number(item_table->aLimits[i].bType, data[col++]);
+         str_to_number(item_table->aLimits[i].lValue, data[col++]);
+
+         if (LIMIT_REAL_TIME_START_FIRST_USE == item_table->aLimits[i].bType)
+            item_table->cLimitRealTimeFirstUseIndex = (char)i;
+
+         if (LIMIT_TIMER_BASED_ON_WEAR == item_table->aLimits[i].bType)
+            item_table->cLimitTimerBasedOnWearIndex = (char)i;
+      }
+
+      for (i = 0; i < ITEM_APPLY_MAX_NUM; ++i)
+      {
+         str_to_number(item_table->aApplies[i].bType, data[col++]);
+         str_to_number(item_table->aApplies[i].lValue, data[col++]);
+      }
+
+      for (i = 0; i < ITEM_VALUES_MAX_NUM; ++i)
+         str_to_number(item_table->alValues[i], data[col++]);
+
+      sys_log(1, "ITEM: #%-5lu %-24s %-24s VAL: %ld %ld %ld %ld %ld %ld WEAR %lu ANTI %lu IMMUNE %lu REFINE %lu REFINE_SET %u MAGIC_PCT %u",
+            item_table->dwVnum,item_table->szName,item_table->szLocaleName,
+            item_table->alValues[0],item_table->alValues[1],item_table->alValues[2],
+            item_table->alValues[3],item_table->alValues[4],item_table->alValues[5],
+            item_table->dwWearFlags,item_table->dwAntiFlags,item_table->dwImmuneFlag,
+            item_table->dwRefinedVnum,item_table->wRefineSet,item_table->bAlterToMagicItemPct);
+
+      m_map_itemTableByVnum.insert(std::map<DWORD, TItemTable *>::value_type(item_table->dwVnum, item_table));
+      ++item_table;
+   }
+
+   sort(m_vec_itemTable.begin(), m_vec_itemTable.end(), FCompareVnum());
+   sys_log(0, "CClientManager::InitializeMobTable:: %d items loaded.n", m_vec_itemTable.size());
+   return true;
+}
+// NOTXT_STARTUP_END
+
+
+Linia cu vnum_range este eliminata :)
+
+mai aveti de facut un singur pas, mergeti în sf-ul vostru în db si deschideti conf.txt unde adaugati :
+NO_TXT = 1
+= 1 înseamna activat ruleaza .sql
+= 0 înseamna dezactivat ruleaza .txt
+
+Daca chiar nu va descurcati cu tutorialul lasati reply si voi face niste fisiere comparabile pentru a vedea cum trebuie puse :) desi nu este greu deloc.. trebuie doar sa fiti atenti

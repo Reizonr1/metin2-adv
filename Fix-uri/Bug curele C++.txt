@@ -1,0 +1,5 @@
+Intra in sursa client =>UserInterface si deschizi GameType.h si cauta:
+const DWORD c_New_Equipment_Start = c_Equipment_Start + 21;
+
+Modifici cu : 
+const DWORD c_New_Equipment_Start = c_Equipment_Start + 22;

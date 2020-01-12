@@ -1,0 +1,97 @@
+[File: Src/Client/UserInterface/Locale_inc.h]
+adauga 
+// ------------------------------------------------------------------------ //
+#define ENABLE_EFFECT_COSTUME // Enable check for add effect costume
+// ------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //
+#define GET_EFFECT_VIA_MSM // Enable check from value3 item_proto(client)
+// ------------------------------------------------------------------------ //
+// ------------------------------------------------------------------------ //  
+#define GET_EFFECT_VIA_VNUM // Enable check from item vnum
+// ------------------------------------------------------------------------ //
+[File: Src/Client/UserInterface/InstanceBase.h]
+
+#1.) Search:
+
+PHP:
+enum
+        {
+            WEAPON_DUALHAND,
+            WEAPON_ONEHAND,
+            WEAPON_TWOHAND,
+            WEAPON_NUM,
+        };
+#2.) Add bellow:
+PHP:
+#ifdef  ENABLE_EFFECT_COSTUME     
+        enum ECostumeEffectMsm
+        {
+            VALUE_MSM_1 = 40032, // = vnum [ (M) -> 41003, (F) -> 41004]
+            VALUE_MSM_2 = 40033, // = vnum [ (M) -> 41005, (F) -> 41006]
+            VALUE_MSM_3 = 40034, // = vnum [ (M) -> 41007, (F) -> 41008]
+            VALUE_MSM_4 = 40035, // = vnum [ (M) -> 41009, (F) -> 41010]
+            VALUE_MSM_5 = 40036, // = vnum [ (M) -> 41011, (F) -> 41012]
+            VALUE_MSM_6 = 40037, // = vnum [ (M) -> 41013, (F) -> 41014]
+            VALUE_MSM_7 = 40038, // = vnum [ (M) -> 41015, (F) -> 41016]
+            VALUE_MSM_8 = 40039, // = vnum [ (M) -> 41017, (F) -> 41018]
+            VALUE_MSM_9 = 40040, // = vnum [ (M) -> 41019, (F) -> 41020]
+            VALUE_MSM_10 = 40041, // = vnum [ (M) -> 41021, (F) -> 41022]
+        };
+
+        enum ECostumeEffectVnum
+        {
+            VALUE_VNUM_1 = 41003,
+            VALUE_VNUM_2 = 41304,
+            VALUE_VNUM_3 = 41005,
+            VALUE_VNUM_4 = 41006,
+            VALUE_VNUM_5 = 41307,
+            VALUE_VNUM_6 = 41308,
+            VALUE_VNUM_7 = 41309,
+            VALUE_VNUM_8 = 41310,
+            VALUE_VNUM_9 = 41311,
+            VALUE_VNUM_10 = 41312,
+        }; 
+#endif
+ 
+
+[File: Src/Client/UserInterface/InstanceBase.cpp]
+
+#1.) Search:
+
+PHP:
+if (m_swordRefineEffectRight)
+            m_swordRefineEffectRight = __AttachEffect(m_swordRefineEffectRight);
+        if (m_swordRefineEffectLeft)
+            m_swordRefineEffectLeft = __AttachEffect(m_swordRefineEffectLeft);
+        break;
+#2.) Add bellow:
+
+PHP:
+#ifdef ENABLE_EFFECT_COSTUME 
+   case CItemData::ITEM_TYPE_COSTUME:
+ 
+        if (pItem->GetSubType() == CItemData::COSTUME_BODY)
+        {
+            DWORD szItem = pItem->GetIndex();
+            long szMsm = pItem->GetValue(3);
+
+#ifdef GET_EFFECT_VIA_MSM 
+           if (szMsm == VALUE_MSM_1 || szMsm == VALUE_MSM_2 ||
+                szMsm == VALUE_MSM_3 || szMsm == VALUE_MSM_4 ||
+                szMsm == VALUE_MSM_5 || szMsm == VALUE_MSM_6 ||
+                szMsm == VALUE_MSM_7 || szMsm == VALUE_MSM_8 ||
+                szMsm == VALUE_MSM_9 || szMsm == VALUE_MSM_10)
+#endif
+#ifdef GET_EFFECT_VIA_VNUM
+           if (szItem == VALUE_VNUM_1 || szItem == VALUE_VNUM_2 ||
+                szItem == VALUE_VNUM_3 || szItem == VALUE_VNUM_4 ||
+                szItem == VALUE_VNUM_5 || szItem == VALUE_VNUM_6 ||
+                szItem == VALUE_VNUM_7 || szItem == VALUE_VNUM_8 ||
+                szItem == VALUE_VNUM_9 || szItem == VALUE_VNUM_10)
+#endif
+           {
+                __AttachEffect(EFFECT_REFINED+EFFECT_NAME); // Put your effect
+            }
+        }
+#endif
+ 

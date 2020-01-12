@@ -1,0 +1,136 @@
+Deschide char.cpp
+Cauta:
+COD: SELECTATI TOT
+void CHARACTER::pointChange(BYTE type, int amount, bool bAmount, bool bBroadcast)
+
+Cauta si modifica:
+COD: SELECTATI TOT
+case POINT_LEVEL_STEP:
+if (amount > 0)
+{
+val = GetPoint(POINT_LEVEL_STEP) + amount;
+
+switch (val)
+{
+case 1:
+case 2:
+case 3:
+//if (GetLevel() < 100) PointChange(POINT_STAT, 1);
+if (GetLevel() < 91) PointChange(POINT_STAT, 1);
+break;
+
+case 4:
+{
+int iHP = number(JobInitialPoints[GetJob()].hp_per_lv_begin, JobInitialPoints[GetJob()].hp_per_lv_end);
+int iSP = number(JobInitialPoints[GetJob()].sp_per_lv_begin, JobInitialPoints[GetJob()].sp_per_lv_end);
+
+m_points.iRandomHP += iHP;
+m_points.iRandomSP += iSP;
+
+if (GetSkillGroup())
+{
+if (GetLevel() >= 5)
+PointChange(POINT_SKILL, 1);
+
+if (GetLevel() >= 9)
+PointChange(POINT_SUB_SKILL, 1);
+}
+
+PointChange(POINT_MAX_HP, iHP);
+PointChange(POINT_MAX_SP, iSP);
+PointChange(POINT_LEVEL, 1, false, true);
+
+val = 0;
+}
+break;
+}
+
+if (GetLevel() <= 10)
+AutoGiveItem(27001, 2);
+else if (GetLevel() <= 30)
+AutoGiveItem(27002, 2);
+else
+{
+AutoGiveItem(27002, 2);
+// AutoGiveItem(27003, 2);
+}
+
+PointChange(POINT_HP, GetMaxHP() - GetHP());
+PointChange(POINT_SP, GetMaxSP() - GetSP());
+PointChange(POINT_STAMINA, GetMaxStamina() - GetStamina());
+
+SetPoint(POINT_LEVEL_STEP, val);
+SetRealPoint(POINT_LEVEL_STEP, val);
+
+Save();
+}
+else
+val = GetPoint(POINT_LEVEL_STEP);
+
+break;
+
+Cu
+COD: SELECTATI TOT
+case POINT_LEVEL_STEP:
+if (amount > 0)
+{
+val = GetPoint(POINT_LEVEL_STEP) + amount;
+
+switch (val)
+{
+case 1:
+case 2:
+case 3:
+//if (GetLevel() < 100) PointChange(POINT_STAT, 1);
+PointChange(POINT_STAT, 1);
+break;
+
+case 4:
+{
+int iHP = number(JobInitialPoints[GetJob()].hp_per_lv_begin, JobInitialPoints[GetJob()].hp_per_lv_end);
+int iSP = number(JobInitialPoints[GetJob()].sp_per_lv_begin, JobInitialPoints[GetJob()].sp_per_lv_end);
+
+m_points.iRandomHP += iHP;
+m_points.iRandomSP += iSP;
+
+if (GetSkillGroup())
+{
+if (GetLevel() >= 5)
+PointChange(POINT_SKILL, 1);
+
+if (GetLevel() >= 9)
+PointChange(POINT_SUB_SKILL, 1);
+}
+
+PointChange(POINT_MAX_HP, iHP);
+PointChange(POINT_MAX_SP, iSP);
+PointChange(POINT_LEVEL, 1, false, true);
+
+val = 0;
+}
+break;
+}
+
+if (GetLevel() <= 10)
+AutoGiveItem(27001, 2);
+else if (GetLevel() <= 30)
+AutoGiveItem(27002, 2);
+else
+{
+AutoGiveItem(27002, 2);
+// AutoGiveItem(27003, 2);
+}
+
+PointChange(POINT_HP, GetMaxHP() - GetHP());
+PointChange(POINT_SP, GetMaxSP() - GetSP());
+PointChange(POINT_STAMINA, GetMaxStamina() - GetStamina());
+
+SetPoint(POINT_LEVEL_STEP, val);
+SetRealPoint(POINT_LEVEL_STEP, val);
+
+Save();
+}
+else
+val = GetPoint(POINT_LEVEL_STEP);
+
+break;

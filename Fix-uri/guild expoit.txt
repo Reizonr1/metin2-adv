@@ -1,0 +1,11 @@
+Fix pentru Crash Core prin invitatia breslei la un mob/npc
+In input_main.cpp cautam:
+
+if (!ch->IsPC()) 
+    return SubPacketLen;
+
+
+Sub ea adaugam:
+
+if (!newmember->IsPC()) 
+    return SubPacketLen; 

@@ -1,0 +1,25 @@
+În char.cpp cautam:
+
+int CHARACTER::GetQuestFlag(const std::string& flag) const 
+
+si sub
+quest::PC* pPC = q.GetPC(GetPlayerID());
+adaugam:
+   if(!pPC) 
+   { 
+      sys_err("Nullpointer in CHARACTER::GetQuestFlag %lu", GetPlayerID()); 
+      return 0; 
+   }
+
+
+Dupa aceea, cautam
+void CHARACTER::SetQuestFlag(const std::string& flag, int value)
+
+Sub
+quest::PC* pPC = q.GetPC(GetPlayerID());
+adaugam:
+   if(!pPC) 
+   { 
+      sys_err("Nullpointer in CHARACTER::GetQuestFlag %lu", GetPlayerID()); 
+      return; 
+   }

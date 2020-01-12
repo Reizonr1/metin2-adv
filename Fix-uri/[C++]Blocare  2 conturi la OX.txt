@@ -1,0 +1,58 @@
+Open OXEvent.h, find GetAttenderCount() and add those things under that line.
+
+	// Ox-event IP-Checker
+	public:
+		bool CheckIpAddress(LPCHARACTER ch);
+		void RemoveFromAttenderList(DWORD dwPID);
+		
+------------------------------------
+Open OXEvent.cpp, add those lines after COxEventManager::LogWinner()
+
+bool COXEventManager::CheckIpAddress(LPCHARACTER ch)
+{
+	for (itertype(m_map_attender) it = m_map_attender.begin(); it != m_map_attender.end(); ++it)
+	{
+		LPCHARACTER tch = CHARACTER_MANAGER::Instance().FindByPID(it->second);
+		if (!tch || !tch->GetDesc())
+			continue;
+
+		if (!strcmp(ch->GetDesc()->GetHostName(), tch->GetDesc()->GetHostName()) && ch->GetMapIndex() == tch->GetMapIndex())
+		{
+			LogManager::Instance().HackLog("MULTI_IP_OX", ch);
+			ch->GoHome();
+			return false;
+		}
+	}
+
+	return true;
+}
+
+
+void COXEventManager::RemoveFromAttenderList(DWORD dwPID)
+{
+	m_map_attender.erase(dwPID);
+}
+
+bool COXEventManager::EnterAttender(LPCHARACTER pkChar)
+{
+	DWORD pid = pkChar->GetPlayerID();
+	
+	if (CheckIpAddress(pkChar))
+	{
+		m_map_char.insert(std::make_pair(pid, pid));
+		m_map_attender.insert(std::make_pair(pid, pid));
+		return true;
+	}
+
+	return false;
+}
+
+-----------------------------------------------
+char.cpp
+
+Find:
+MessengerManager::instance().Logout(GetName());
+
+Add it under:
+	if (GetMapIndex() == OXEVENT_MAP_INDEX)
+		COXEventManager::Instance().RemoveFromAttenderList(GetPlayerID());

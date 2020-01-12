@@ -1,0 +1,44 @@
+CAUTI IN GUILD MANAGER.CPP
+
+DWORD CGuildManager::CreateGuild(TGuildCreateParameter& gcp)
+{
+    if (!gcp.master)
+        return 0;
+
+
+    if (!check_name(gcp.name))
+    {
+        gcp.master->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<e¢¬¢¬ea¢æ©«A¡°> e¢¬¢¬ea¢æ©«A¡° i¢¥e|a¢æži¢¥ i ia¢æ¡Ë¨Ïia¢æ¡ËE©«i¡×a?¡þ ia¢æ¡ËA iA ¥ìea¢æ©öE¢Óea¢æ©ö¢´."));
+        return 0;
+    }
+    static char __escape_name[GUILD_NAME_MAX_LEN * 2 + 1];
+    DBManager::instance().EscapeString(__escape_name, sizeof(__escape_name), static_cast<const char *>(gcp.name),
+    sizeof(gcp.name));
+    std::auto_ptr<SQLMsg> pmsg(DBManager::instance().DirectQuery("SELECT COUNT(*) FROM guild%s WHERE name = '%s'",
+                get_table_postfix(), __escape_name));
+
+
+    if (pmsg->Get()->uiNumRows > 0)
+    {
+        MYSQL_ROW row = mysql_fetch_row(pmsg->Get()->pSQLResult);
+
+
+        if (!(row[0] && row[0][0] == '0'))
+        {
+            gcp.master->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<e¢¬¢¬ea¢æ©«A¡°> i¢¥e?¢¬ e¡Æa?¡Ëia?¡þ i¢¥e|a¢æžiE©« e¢¬¢¬ea¢æ©«A¡°e¡Æa?¡þ ižE¢ÓiA ¥ìea¢æ©öE¢Óea¢æ©ö¢´."));
+            return 0;
+        }
+    }
+    else
+    {
+        gcp.master->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<e¢¬¢¬ea¢æ©«A¡°> e¢¬¢¬ea¢æ©«A¡°e¡Í¨ù i¨¡¡¯ia¢æž¡¾ia¢æ¡Ë  iE¢ÓE©« ia¢æ¡±a¢æ iA ¥ìea¢æ©öE¢Óea¢æ©ö¢´."));
+        return 0;
+    }
+
+
+    // new CGuild(gcp) queries guild tables and tell dbcache to notice other game servers.
+    // other game server calls CGuildManager::LoadGuild to load guild.
+    CGuild * pg = M2_NEW CGuild(gcp);
+    m_mapGuild.insert(std::make_pair(pg->GetID(), pg));
+    return pg->GetID();
+}

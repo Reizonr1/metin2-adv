@@ -1,0 +1,44 @@
+cmd_general.cpp
+cauta 
+
+
+ACMD(do_war)
+
+
+Gaesti in functia de m-ai sus
+
+if (*arg2)
+
+modifica toata functia cu cea de m-ai jos
+
+
+	if (*arg2)
+	{
+		str_to_number(type, arg2);
+
+
+		if (type >= GUILD_WAR_TYPE_MAX_NUM)
+			type = GUILD_WAR_TYPE_FIELD;
+			
+		if(type < 0)
+			return;
+	} // Crash + -11111 Lonca Adi Fixi
+
+
+acuma intram in 
+input_main.cpp
+
+cauta 
+
+
+if (!ch->IsPC())
+
+adauga supt / sau modifica una din 2 =))
+
+
+	if (!newmember->IsPC())
+	{
+		ch->ChatPacket(CHAT_TYPE_INFO, "Rezolvat Frate.");
+		return SubPacketLen;
+	} // alinti
+

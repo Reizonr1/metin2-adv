@@ -1,0 +1,24 @@
+Cauta in char_battle.cpp
+
+bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // returns true if dead
+{
+
+
+Adauga asta sub:
+
+if (pAttacker && this)
+  {
+  
+        if (pAttacker->IsAffectFlag(AFF_GWIGUM) && !pAttacker->GetWear(WEAR_WEAPON))
+        {
+            pAttacker->RemoveAffect(SKILL_GWIGEOM); //Silah yoksa büyülü keskinlik iptal agaaa
+            return false;
+        }
+
+
+        if (pAttacker->IsAffectFlag(AFF_GEOMGYEONG) && !pAttacker->GetWear(WEAR_WEAPON))
+        {
+            pAttacker->RemoveAffect(SKILL_GEOMKYUNG); //Silah olmadan nereye hava aciyon agaa
+            return false;
+        }
+   }

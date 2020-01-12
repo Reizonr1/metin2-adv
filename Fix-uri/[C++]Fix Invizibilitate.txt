@@ -1,0 +1,25 @@
+char_affect.cpp aç
+
+cauta:
+
+if (AFFECT_REVIVE_INVISIBLE != pkAff->dwType)
+{
+    ComputePoints();
+}
+
+Si modifica in 
+if (AFFECT_REVIVE_INVISIBLE != pkAff->dwType)
+    ComputePoints();
+else
+    UpdatePacket();
+
+Parea 2 : 
+char.cpp 
+cauta
+
+if (IsAffectFlag(AFF_REVIVE_INVISIBLE))
+si modifica in
+
+if (IsAffectFlag(AFF_REVIVE_INVISIBLE))
+
+RemoveAffect(AFFECT_REVIVE_INVISIBLE);

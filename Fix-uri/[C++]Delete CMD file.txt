@@ -1,0 +1,42 @@
+ config.cpp , cautati:
+if ((fp = fopen("CMD", "r")))
+
+si stergeti toate functia:
+   if ((fp = fopen("CMD", "r")))
+   {
+      while (fgets(buf, 256, fp))
+      {
+         char cmd[32], levelname[32];
+         int level;
+
+         two_arguments(buf, cmd, sizeof(cmd), levelname, sizeof(levelname));
+
+         if (!*cmd || !*levelname)
+         {
+            fprintf(stderr, "CMD syntax error: <cmd> <DISABLE | LOW_WIZARD | WIZARD | HIGH_WIZARD | GOD>\n");
+            exit(1);
+         }
+
+         if (!strcasecmp(levelname, "LOW_WIZARD"))
+            level = GM_LOW_WIZARD;
+         else if (!strcasecmp(levelname, "WIZARD"))
+            level = GM_WIZARD;
+         else if (!strcasecmp(levelname, "HIGH_WIZARD"))
+            level = GM_HIGH_WIZARD;
+         else if (!strcasecmp(levelname, "GOD"))
+            level = GM_GOD;
+         else if (!strcasecmp(levelname, "IMPLEMENTOR"))
+            level = GM_IMPLEMENTOR;
+         else if (!strcasecmp(levelname, "DISABLE"))
+            level = GM_IMPLEMENTOR + 1;
+         else
+         {
+            fprintf(stderr, "CMD syntax error: <cmd> <DISABLE | LOW_WIZARD | WIZARD | HIGH_WIZARD | GOD>\n");
+            exit(1);
+         }
+
+         interpreter_set_privilege(cmd, level);
+      }
+
+      fclose(fp);
+   }

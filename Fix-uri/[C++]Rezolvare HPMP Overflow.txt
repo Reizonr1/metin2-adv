@@ -1,0 +1,182 @@
+Intram în sursa game ?i deschidem char.cpp , apoi cautam:
+void CHARACTER::ComputePoints()
+
+?i inlocuim toata func?ia void cu:
+void CHARACTER::ComputePoints()
+{
+    long lStat = GetPoint(POINT_STAT);
+    long lStatResetCount = GetPoint(POINT_STAT_RESET_COUNT);
+    long lSkillActive = GetPoint(POINT_SKILL);
+    long lSkillSub = GetPoint(POINT_SUB_SKILL);
+    long lSkillHorse = GetPoint(POINT_HORSE_SKILL);
+    long lLevelStep = GetPoint(POINT_LEVEL_STEP);
+
+    long lAttackerBonus = GetPoint(POINT_PARTY_ATTACKER_BONUS);
+    long lTankerBonus = GetPoint(POINT_PARTY_TANKER_BONUS);
+    long lBufferBonus = GetPoint(POINT_PARTY_BUFFER_BONUS);
+    long lSkillMasterBonus = GetPoint(POINT_PARTY_SKILL_MASTER_BONUS);
+    long lHasteBonus = GetPoint(POINT_PARTY_HASTE_BONUS);
+    long lDefenderBonus = GetPoint(POINT_PARTY_DEFENDER_BONUS);
+
+    long lHPRecovery = GetPoint(POINT_HP_RECOVERY);
+    long lSPRecovery = GetPoint(POINT_SP_RECOVERY);
+
+    memset(m_pointsInstant.points, 0, sizeof(m_pointsInstant.points));
+    BuffOnAttr_ClearAll();
+    m_SkillDamageBonus.clear();
+
+    SetPoint(POINT_STAT, lStat);
+    SetPoint(POINT_SKILL, lSkillActive);
+    SetPoint(POINT_SUB_SKILL, lSkillSub);
+    SetPoint(POINT_HORSE_SKILL, lSkillHorse);
+    SetPoint(POINT_LEVEL_STEP, lLevelStep);
+    SetPoint(POINT_STAT_RESET_COUNT, lStatResetCount);
+
+    SetPoint(POINT_ST, GetRealPoint(POINT_ST));
+    SetPoint(POINT_HT, GetRealPoint(POINT_HT));
+    SetPoint(POINT_DX, GetRealPoint(POINT_DX));
+    SetPoint(POINT_IQ, GetRealPoint(POINT_IQ));
+
+    SetPart(PART_MAIN, GetOriginalPart(PART_MAIN));
+    SetPart(PART_WEAPON, GetOriginalPart(PART_WEAPON));
+    SetPart(PART_HEAD, GetOriginalPart(PART_HEAD));
+    SetPart(PART_HAIR, GetOriginalPart(PART_HAIR));
+
+    SetPoint(POINT_PARTY_ATTACKER_BONUS, lAttackerBonus);
+    SetPoint(POINT_PARTY_TANKER_BONUS, lTankerBonus);
+    SetPoint(POINT_PARTY_BUFFER_BONUS, lBufferBonus);
+    SetPoint(POINT_PARTY_SKILL_MASTER_BONUS, lSkillMasterBonus);
+    SetPoint(POINT_PARTY_HASTE_BONUS, lHasteBonus);
+    SetPoint(POINT_PARTY_DEFENDER_BONUS, lDefenderBonus);
+
+    SetPoint(POINT_HP_RECOVERY, lHPRecovery);
+    SetPoint(POINT_SP_RECOVERY, lSPRecovery);
+
+    SetPoint(POINT_PC_BANG_EXP_BONUS, 0);
+    SetPoint(POINT_PC_BANG_DROP_BONUS, 0);
+
+    int iMaxHP, iMaxSP;
+    int iMaxStamina;
+
+    if(IsPC())
+    {
+        iMaxHP = JobInitialPoints[GetJob()].max_hp + m_points.iRandomHP + GetPoint(POINT_HT) * JobInitialPoints[GetJob()].hp_per_ht;
+        iMaxSP = JobInitialPoints[GetJob()].max_sp + m_points.iRandomSP + GetPoint(POINT_IQ) * JobInitialPoints[GetJob()].sp_per_iq;
+        iMaxStamina = JobInitialPoints[GetJob()].max_stamina + GetPoint(POINT_HT) * JobInitialPoints[GetJob()].stamina_per_con;
+
+        {
+            CSkillProto* pkSk = CSkillManager::instance().Get(SKILL_ADD_HP);
+
+            if(NULL != pkSk)
+            {
+                pkSk->SetPointVar("k", 1.0f * GetSkillPower(SKILL_ADD_HP) / 100.0f);
+
+                iMaxHP += static_cast<int>(pkSk->kPointPoly.Eval());
+            }
+        }
+
+        // default value
+        SetPoint(POINT_MOV_SPEED, 100);
+        SetPoint(POINT_ATT_SPEED, 100);
+        PointChange(POINT_ATT_SPEED, GetPoint(POINT_PARTY_HASTE_BONUS));
+        SetPoint(POINT_CASTING_SPEED, 100);
+    }
+    else
+    {
+        iMaxHP = m_pkMobData->m_table.dwMaxHP;
+        iMaxSP = 0;
+        iMaxStamina = 0;
+
+        SetPoint(POINT_ATT_SPEED, m_pkMobData->m_table.sAttackSpeed);
+        SetPoint(POINT_MOV_SPEED, m_pkMobData->m_table.sMovingSpeed);
+        SetPoint(POINT_CASTING_SPEED, m_pkMobData->m_table.sAttackSpeed);
+    }
+
+    if(IsPC())
+    {
+        if(GetMountVnum())
+        {
+            if(GetHorseST() > GetPoint(POINT_ST))
+                PointChange(POINT_ST, GetHorseST() - GetPoint(POINT_ST));
+
+            if(GetHorseDX() > GetPoint(POINT_DX))
+                PointChange(POINT_DX, GetHorseDX() - GetPoint(POINT_DX));
+
+            if(GetHorseHT() > GetPoint(POINT_HT))
+                PointChange(POINT_HT, GetHorseHT() - GetPoint(POINT_HT));
+
+            if(GetHorseIQ() > GetPoint(POINT_IQ))
+                PointChange(POINT_IQ, GetHorseIQ() - GetPoint(POINT_IQ));
+        }
+
+    }
+
+    ComputeBattlePoints();
+
+    if(iMaxHP != GetMaxHP())
+    {
+        SetRealPoint(POINT_MAX_HP, iMaxHP);
+    }
+
+    PointChange(POINT_MAX_HP, 0);
+
+    if(iMaxSP != GetMaxSP())
+    {
+        SetRealPoint(POINT_MAX_SP, iMaxSP);
+    }
+
+    PointChange(POINT_MAX_SP, 0);
+
+    SetMaxStamina(iMaxStamina);
+
+    m_pointsInstant.dwImmuneFlag = 0;
+
+    for(int i = 0; i < WEAR_MAX_NUM; i++)
+    {
+        LPITEM pItem = GetWear(i);
+        if(pItem)
+        {
+            pItem->ModifyPoints(true);
+            SET_BIT(m_pointsInstant.dwImmuneFlag, GetWear(i)->GetImmuneFlag());
+        }
+    }
+
+    if(DragonSoul_IsDeckActivated())
+    {
+        for(int i = WEAR_MAX_NUM + DS_SLOT_MAX * DragonSoul_GetActiveDeck();
+            i < WEAR_MAX_NUM + DS_SLOT_MAX * (DragonSoul_GetActiveDeck() + 1); i++)
+        {
+            LPITEM pItem = GetWear(i);
+            if(pItem)
+            {
+                if(DSManager::instance().IsTimeLeftDragonSoul(pItem))
+                    pItem->ModifyPoints(true);
+            }
+        }
+    }
+
+    UpdatePacket();
+
+    ComputeSkillPoints();
+
+    RefreshAffect();
+
+    CPetSystem* pPetSystem = GetPetSystem();
+    if(NULL != pPetSystem)
+    {
+        pPetSystem->RefreshBuff();
+    }
+
+    for(TMapBuffOnAttrs::iterator it = m_map_buff_on_attrs.begin(); it != m_map_buff_on_attrs.end(); it++)
+    {
+        it->second->GiveAllAttributes();
+    }
+   
+    if(GetHP() > GetMaxHP())
+        PointChange(POINT_HP, GetMaxHP() - GetHP());
+   
+    if(GetSP() > GetMaxSP())
+        PointChange(POINT_SP, GetMaxSP() - GetSP());
+
+    UpdatePacket();
+}

@@ -1,0 +1,5 @@
+intra in Party.cpp
+cauta 
+ch->PointChange(POINT_PARTY_HASTE_BONUS, -ch->GetPoint(POINT_PARTY_HASTE_BONUS));
+si pune dedesupt 
+ch->ComputePoints();

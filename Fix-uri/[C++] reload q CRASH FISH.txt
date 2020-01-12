@@ -1,0 +1,90 @@
+src/game
+Intrati in questmanager.h si cautati:
+PC * GetPCForce(unsigned int pc);
+
+Adaugati sub:
+void      StopAllRunningQuests();
+
+Intrati in questmanager.cpp si cautati: 
+void CQuestManager::DisconnectPC(LPCHARACTER ch)
+   {
+      m_mapPC.erase(ch->GetPlayerID());
+   }
+
+Adaugati sub:
+void CQuestManager::StopAllRunningQuests()
+   {
+      for (PCMap::iterator it = m_mapPC.begin(); it != m_mapPC.end(); it++)
+      {
+         it->second.CancelRunning();
+         LPCHARACTER pkChr = CHARACTER_MANAGER::instance().FindByPID(it->first);
+         if (!pkChr || !(pkChr->GetDesc()))
+            continue;
+         struct ::packet_script packet_script;
+
+         packet_script.header = HEADER_GC_SCRIPT;
+         packet_script.skin = QUEST_SKIN_NOWINDOW;
+         string data = "[DESTROY_ALL]";
+         packet_script.src_size = data.size();
+         packet_script.size = packet_script.src_size + sizeof(struct packet_script);
+
+         TEMP_BUFFER buf;
+         buf.write(&packet_script, sizeof(struct packet_script));
+         buf.write(&data[0], data.size());
+
+         pkChr->GetDesc()->Packet(buf.read_peek(), buf.size());
+      }
+   }
+
+In acelasi fisier cautati: 
+void CQuestManager::Reload()
+   {
+
+Adaugati sub:
+StopAllRunningQuests();
+
+
+binary
+Intrati in PythonNetworkStream.h si cautati:
+void OnScriptEventStart(int iSkin, int iIndex);
+
+Adaugati sub:
+void HideQuestWindows();
+
+Intrati in PythonNetworkStream.cpp si la sfarsitul fisierului adaugati:
+COD: SELECTATI TOT
+void CPythonNetworkStream::HideQuestWindows()
+{
+   PyCallClassMemberFunc(m_apoPhaseWnd[PHASE_WINDOW_GAME], "HideAllQuestWindow", Py_BuildValue("()"));
+}
+
+Intrati in PythonNetworkStreamPhaseGame.cpp si la bool CPythonNetworkStream::RecvScriptPacket(), dupa str[str.size()-1] = '\0';
+Adaugati:
+if (str.compare(0, 13, "[DESTROY_ALL]") == 0)
+   {
+      CPythonNetworkStream::Instance().HideQuestWindows();
+      return true;
+   }
+
+
+root files(client)
+Intrati in interfacemodule.py si inainte de:
+COD: SELECTATI TOT
+def RemoveQuestDialog(self, key):
+
+Adaugati:
+def HideAllQuestWindow(self):
+      tempList = []
+      for i,v in self.wndQuestWindow.iteritems():
+         tempList.append(v)
+
+      for i in tempList:
+         i.OnCancel()
+
+Intrati in game.py si sub:
+def OpenQuestWindow(self, skin, idx):
+      self.interface.OpenQuestWindow(skin, idx)
+
+Adaugati:
+def HideAllQuestWindow(self):
+      self.interface.HideAllQuestWindow()

@@ -1,0 +1,15 @@
+Intram in char_item.cpp si sub linia 
+if (item2->GetSocketCount() == 0)
+                                        return false;
+ 
+Trecem:
+ if (item2->IsEquipped())
+                                return false;
+Acum va duceti la linia​
+
+                if (item2->GetVnum() >= 28330 && item2->GetVnum() <= 28343)
+ 
+si deasupra ei adaugam:​
+
+if (item2->IsEquipped())
+                                return false;

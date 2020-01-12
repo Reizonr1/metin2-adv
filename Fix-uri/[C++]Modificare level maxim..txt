@@ -1,0 +1,16 @@
+Intrati in common/length.h si cautati :
+
+PLAYER_EXP_TABLE_MAX = 105,
+PLAYER_MAX_LEVEL_CONST = 105,
+
+
+105 = numar level-ului
+
+ATENTIE!!! DUPA CE COMPILATI O SA TREBUIASCA SA MODIFICATI TABELELE DE EXPERIENTA.
+
+Intrati in game/src/constant.cpp si cautati :
+const DWORD exp_table_common[PLAYER_EXP_TABLE_MAX + 1] =
+
+const DWORD exp_table_euckr[PLAYER_EXP_TABLE_MAX + 1] =
+
+const DWORD exp_table_euckr[PLAYER_EXP_TABLE_MAX + 1] =

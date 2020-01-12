@@ -1,0 +1,83 @@
+1. Intrati in:
+/usr/src/Sursa pe care o folositi/Server/game/src
+2. Intrati in messenger_manager.cpp si cautati:
+void MessengerManager::RemoveFromList(MessengerManager::keyA account, MessengerManager::keyA companion)
+3, Inlocuiti toata functia cu :
+
+void MessengerManager::RemoveFromList(MessengerManager::keyA account, MessengerManager::keyA companion)
+{
+    if (companion.empty())
+        return;
+
+
+    // fix
+    if (m_Relation[account].find(companion) == m_Relation[account].end() || m_InverseRelation[companion].find(account) == m_InverseRelation[companion].end())
+    {
+        LPCHARACTER ch = CHARACTER_MANAGER::Instance().FindPC(account.c_str());
+        if (ch)
+        {
+            sys_err("MessengerManager::RemoveFromList: %s tries to use messenger sql injection", ch->GetName());
+            DBManager::Instance().DirectQuery("UPDATE account.account SET status = 'BAN' WHERE id = %u", ch->GetAID());
+            if (ch->GetDesc())
+                ch->GetDesc()->DelayedDisconnect(3);
+        }
+        else
+            sys_err("MessengerManager::RemoveFromList: Omg! The ghost tried to use this function!");
+        return;
+    }
+
+
+    sys_log(1, "MessengerManager::RemoveFromList: Remove %s %s", account.c_str(), companion.c_str());
+    DBManager::instance().Query("DELETE FROM messenger_list%s WHERE account='%s' AND companion = '%s'", get_table_postfix(), account.c_str(), companion.c_str());
+    __RemoveFromList(account, companion);
+    TPacketGGMessenger p2ppck;
+    p2ppck.bHeader = HEADER_GG_MESSENGER_REMOVE;
+    strlcpy(p2ppck.szAccount, account.c_str(), sizeof(p2ppck.szAccount));
+    strlcpy(p2ppck.szCompanion, companion.c_str(), sizeof(p2ppck.szCompanion));;
+    P2P_MANAGER::instance().Send(&p2ppck, sizeof(TPacketGGMessenger));
+}
+4, Salvati apoi intrati in guild_manager.cpp si cautati:
+DWORD CGuildManager::CreateGuild(TGuildCreateParameter& gcp)
+5. Inlocuiti toata functia cu :
+DWORD CGuildManager::CreateGuild(TGuildCreateParameter& gcp)
+{
+    if (!gcp.master)
+        return 0;
+
+
+    if (!check_name(gcp.name))
+    {
+        gcp.master->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<Í∏∏Î‚Äú≈ì> Í∏∏Î‚Äú≈ì Ïù¥Î¶‚Ä?Ïù¥ Ï ÅÌ‚Ä¢©Ì‚Ä¢ÀúÏß‚Ç¨ Ï‚Ä¢≈ Ï≈ µÎ‚ÄπÀÜÎ‚Äπ§."));
+        return 0;
+    }
+    static char __escape_name[GUILD_NAME_MAX_LEN * 2 + 1];
+    DBManager::instance().EscapeString(__escape_name, sizeof(__escape_name), static_cast<const char *>(gcp.name),
+    sizeof(gcp.name));
+    std::auto_ptr<SQLMsg> pmsg(DBManager::instance().DirectQuery("SELECT COUNT(*) FROM guild%s WHERE name = '%s'",
+                get_table_postfix(), __escape_name));
+
+
+    if (pmsg->Get()->uiNumRows > 0)
+    {
+        MYSQL_ROW row = mysql_fetch_row(pmsg->Get()->pSQLResult);
+
+
+        if (!(row[0] && row[0][0] == '0'))
+        {
+            gcp.master->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<Í∏∏Î‚Äú≈ì> Ïù¥ÎØ∏ Í∞‚Ñ¢Ïù‚Ç¨ Ïù¥Î¶‚Ä?ÏùÀú Í∏∏Î‚Äú≈ìÍ∞‚Ç¨ Ï?ÀÜÏ≈ µÎ‚ÄπÀÜÎ‚Äπ§."));
+            return 0;
+        }
+    }
+    else
+    {
+        gcp.master->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<Í∏∏Î‚Äú≈ì> Í∏∏Î‚Äú≈ìÎ•º Ï∆íùÏ‚Ä?±Ì‚Ä¢  ÏÀÜÀú Ï‚Äî‚Ä Ï≈ µÎ‚ÄπÀÜÎ‚Äπ§."));
+        return 0;
+    }
+
+
+    // new CGuild(gcp) queries guild tables and tell dbcache to notice other game servers.
+    // other game server calls CGuildManager::LoadGuild to load guild.
+    CGuild * pg = M2_NEW CGuild(gcp);
+    m_mapGuild.insert(std::make_pair(pg->GetID(), pg));
+    return pg->GetID();
+}

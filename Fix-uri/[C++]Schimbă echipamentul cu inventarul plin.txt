@@ -1,0 +1,9 @@
+Deschidem game/char.cpp ?i cautam:
+if (false == CanUnequipNow(item2) || false == CanEquipNow(item1))
+    return false;
+
+Schimbam întreaga linine cu:
+if (false == CanEquipNow(item1))
+    return false;
+if (item2->IsDragonSoul() && false == CanUnequipNow(item2))
+    return false;

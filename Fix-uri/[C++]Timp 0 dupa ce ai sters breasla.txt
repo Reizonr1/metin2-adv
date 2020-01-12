@@ -1,0 +1,37 @@
+Dupa cum spune si titlul dupa ce ai sters breasla poti crea alta breasla fara sa iti dea timp .
+Intrati in :
+input_main.cpp
+
+si cautati :
+if (get_global_time() - ch->GetQuestFlag("guild_manage.new_disband_time") <
+CGuildManager::instance().GetDisbandDelay())
+{
+ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<±?µ?> ??»??? ?? %d?? ???»???? ±?µ??¦ ??µ? ?? ????????."), 
+quest::CQuestManager::instance().GetEventFlag("guild_disband_delay"));
+return;
+}
+
+if (get_global_time() - ch->GetQuestFlag("guild_manage.new_withdraw_time") <
+CGuildManager::instance().GetWithdrawDelay())
+{
+ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<±?µ?> ?»???? ?? %d?? ???»???? ±?µ??¦ ??µ? ?? ????????."), 
+quest::CQuestManager::instance().GetEventFlag("guild_withdraw_delay"));
+return;
+}
+
+inlocuiti toata functia cu :
+//if (get_global_time() - ch->GetQuestFlag("guild_manage.new_disband_time") <
+// CGuildManager::instance().GetDisbandDelay())
+//{
+// ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<±?µ?> ??»??? ?? %d?? ???»???? ±?µ??¦ ??µ? ?? ????????."), 
+// quest::CQuestManager::instance().GetEventFlag("guild_disband_delay"));
+// return;
+//}
+
+//if (get_global_time() - ch->GetQuestFlag("guild_manage.new_withdraw_time") <
+// CGuildManager::instance().GetWithdrawDelay())
+//{
+// ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<±?µ?> ?»???? ?? %d?? ???»???? ±?µ??¦ ??µ? ?? ????????."), 
+// quest::CQuestManager::instance().GetEventFlag("guild_withdraw_delay"));
+// return;
+//}
