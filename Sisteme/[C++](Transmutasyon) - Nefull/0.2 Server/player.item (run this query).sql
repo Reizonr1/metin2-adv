@@ -1,2 +1,0 @@
-ALTER TABLE `item`
-ADD COLUMN `dwVnum` int(11) NOT NULL

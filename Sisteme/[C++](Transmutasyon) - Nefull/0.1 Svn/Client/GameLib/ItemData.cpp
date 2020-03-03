@@ -1,9 +1,0 @@
-// Search for:
-		case USE_PUT_INTO_RING_SOCKET:
-			return DEF_STR(USE_PUT_INTO_RING_SOCKET);
-
-// Add Under:
-#ifdef ENABLE_CHANGE_LOOK_SYSTEM
-		case USE_RESET_LOOK_VNUM:
-			return DEF_STR(USE_RESET_LOOK_VNUM);
-#endif
