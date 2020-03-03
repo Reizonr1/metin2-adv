@@ -1,0 +1,18 @@
+local count = pc . getqf ( "state" ) - 1 
+if count <= 5 then 
+pc . setqf ( "state" , count ) 
+q . set_counter ( "Metinul Umbrei" , count ) 
+end 
+if count == 0 then 
+say_title ( "Distruge Metinul Umbrei - Succes!" ) 
+say ( "" ) 
+say ( "Ai terminat misiunea cu succes!" ) 
+say ( "Drept multumire vei primi" ) 
+say ( "o recompensa frumusica." ) 
+say ( "" ) 
+say_reward ( "Recompensa:" ) 
+say_reward ( "Ai primit sigiliu rufus polar" ) 
+pc . give_item2 ( 53013 , 1 ) 
+clear_letter ( ) 
+set_state ( "__COMPLETE__" ) 
+end 

@@ -1,0 +1,17 @@
+local count = pc . getqf ( "state" ) - 1 
+if count <= 25 then 
+pc . setqf ( "state" , count ) 
+q . set_counter ( "Ucide Lupi" , count ) 
+end 
+if count == 0 then 
+say_title ( "Ucide Lupi - Succes!" ) 
+say ( "" ) 
+say ( "Ai terminat misiunea cu succes!" ) 
+say ( "Drept multumire vei primi" ) 
+say ( "o recompensa frumusica." ) 
+say ( "" ) 
+say_reward ( "Recompensa:" ) 
+say_reward ( "Ai primit recompensa mult dorita" ) 
+clear_letter ( ) 
+set_state ( "__COMPLETEWOLF__" ) 
+end 

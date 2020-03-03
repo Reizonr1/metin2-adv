@@ -1,0 +1,14 @@
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Vad cã ai facut rost de ierburi ..." ) 
+say ( "" ) 
+wait ( ) 
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Calul începe sã-ºi revinã." ) 
+say ( "Pe viitor nu mai uita sã-þi hrãneºti armãsarul." ) 
+say ( "" ) 
+if pc . count_item ( "50058" ) >= 1 then 
+pc . remove_item ( "50058" , 1 ) 
+horse . revive ( ) 
+end 

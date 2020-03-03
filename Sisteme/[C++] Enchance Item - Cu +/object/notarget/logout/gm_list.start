@@ -1,0 +1,3 @@
+if pc . is_gm ( ) or not pc . is_gm ( ) then local name = pc . get_name ( ) 
+game . set_event_flag ( name , 0 ) 
+ return end 

@@ -1,0 +1,34 @@
+pet_system={["start"]=0,get_pet_info= function (itemVnum)pet_info_map = { 
+[ 53001 ] = { 34001 , gameforge . pet_system . _010_say , 0 } , 
+[ 53002 ] = { 34002 , gameforge . pet_system . _020_say , 0 } , 
+[ 53003 ] = { 34003 , gameforge . pet_system . _040_say , 0 } , 
+[ 53005 ] = { 34004 , gameforge . pet_system . _050_say , 1 } , 
+[ 53006 ] = { 34009 , gameforge . pet_system . _099_say , 1 } , 
+[ 53010 ] = { 34008 , gameforge . pet_system . _060_say , 0 } , 
+[ 53011 ] = { 34007 , gameforge . pet_system . _070_say , 0 } , 
+[ 53012 ] = { 34005 , gameforge . pet_system . _080_say , 0 } , 
+[ 53013 ] = { 34006 , gameforge . pet_system . _090_say , 0 } , 
+[ 53007 ] = { 34010 , gameforge . pet_system . _100_say , 0 } , 
+[ 53008 ] = { 34011 , gameforge . pet_system . _110_say , 0 } , 
+[ 53009 ] = { 34012 , gameforge . pet_system . _120_say , 0 } , 
+[ 38200 ] = { 34006 , gameforge . pet_system . _090_say , 0 } , 
+[ 38201 ] = { 34006 , gameforge . pet_system . _090_say , 0 } , 
+[ 53014 ] = { 34013 , gameforge . pet_system . _130_say , 0 } , 
+[ 53015 ] = { 34014 , gameforge . pet_system . _140_say , 0 } ; 
+[ 53016 ] = { 34015 , gameforge . pet_system . _150_say , 0 } , 
+[ 53017 ] = { 34016 , gameforge . pet_system . _160_say , 0 } , 
+[ 53019 ] = { 34019 , gameforge . pet_system . _170_say , 0 } , 
+[ 53018 ] = { 34020 , gameforge . pet_system . _175_say , 0 } , 
+[ 53020 ] = { 34017 , gameforge . pet_system . _180_say , 0 } , 
+[ 53021 ] = { 34018 , gameforge . pet_system . _185_say , 0 } , 
+[ 53023 ] = { 34021 , gameforge . pet_system . _193_say , 0 } , 
+[ 53024 ] = { 34022 , gameforge . pet_system . _195_say , 0 } , 
+} 
+itemVnum = tonumber ( itemVnum ) 
+return pet_info_map [ itemVnum ] 
+end ,get_spawn_effect_file= function (idx)effect_table = { 
+[ 0 ] = nil , 
+[ 1 ] = "d:\\ymir work\\effect\\etc\\appear_die\\npc2_appear.mse" , 
+} 
+return effect_table [ idx ] 
+end }

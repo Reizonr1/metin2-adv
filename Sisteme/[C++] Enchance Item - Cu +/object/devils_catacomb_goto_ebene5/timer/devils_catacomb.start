@@ -1,0 +1,21 @@
+d . new_jump_all ( 206 , 3917 , 12925 ) 
+d . notice ( "Tartarus detine Totemul necesar pentru etajul urmator" ) 
+d . notice ( "Pentru a obtine acel Totem trebuie sa il omori." ) 
+d . spawn_mob ( 30102 , 848 , 739 ) 
+d . regen_file ( "data/dungeon/devils_catacomb/dc_regen_level5.txt" ) 
+local tartaros = number ( 1 , 5 ) 
+if tartaros == 1 then 
+d . spawn_mob ( 2591 , 991 , 848 ) 
+end 
+if tartaros == 2 then 
+d . spawn_mob ( 2591 , 999 , 652 ) 
+end 
+if tartaros == 3 then 
+d . spawn_mob ( 2591 , 848 , 577 ) 
+end 
+if tartaros == 4 then 
+d . spawn_mob ( 2591 , 703 , 644 ) 
+end 
+if tartaros == 5 then 
+d . spawn_mob ( 2591 , 692 , 817 ) 
+end 

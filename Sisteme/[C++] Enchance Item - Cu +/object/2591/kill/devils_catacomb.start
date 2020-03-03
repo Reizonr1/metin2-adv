@@ -1,0 +1,9 @@
+if pc . in_dungeon ( ) then game . set_event_flag ( ( "" .. pc . get_name ( ) .. "ap_send" ) , game . get_event_flag ( "" .. pc . get_name ( ) .. "ap_send" ) + 5 ) 
+local Reward = 5 
+local Achievement = "Höllenbastard" 
+local killcount = pc . getqf ( "2591" ) 
+local actual_achievement_points = pc . getqf ( "achievement_points" ) 
+pc . setqf ( "2591" , killcount + 1 ) 
+pc . setqf ( "achievement_points" , actual_achievement_points + Reward ) 
+game . drop_item ( 30312 , 1 ) 
+ return end 

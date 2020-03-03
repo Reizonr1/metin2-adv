@@ -1,0 +1,3 @@
+d . exit_all ( ) 
+game . set_event_flag ( "enter" , 0 ) 
+game . set_event_flag ( "block" , 0 ) 

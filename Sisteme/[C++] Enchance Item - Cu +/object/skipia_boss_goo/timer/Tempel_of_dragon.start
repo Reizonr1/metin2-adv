@@ -1,0 +1,4 @@
+game . set_event_flag ( "Grotte_zugang" , 0 ) 
+d . new_jump_all ( 207 , 8436 , 10669 ) 
+d . setf ( "grotte_boss" , 1 ) 
+d . spawn_mob ( 9012 , 239 , 173 ) 

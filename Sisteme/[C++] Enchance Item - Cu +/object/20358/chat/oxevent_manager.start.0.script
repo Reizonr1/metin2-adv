@@ -1,0 +1,110 @@
+local stat = oxevent . get_status ( ) 
+if stat == 0 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say_gm ( "" ) 
+say_gm ( "Începe OX?" ) 
+say_gm ( "" ) 
+local s = select ( "Da" , "Nu" ) 
+if s == 2 then return end 
+local v = oxevent . open ( ) 
+if v == 0 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say_gm ( "" ) 
+say_gm ( "Nu am putut încãrca întrebãrile." ) 
+say_gm ( "" ) 
+return 
+elseif v == 1 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say_gm ( "" ) 
+say_gm ( "Competiþia OX a început." ) 
+say_gm ( "" ) 
+notice_all ( "Competiþia OX a început! Pentru a intra la concurs, mergeþi la Uriel." ) 
+notice_all ( "Succes tuturor!" ) 
+else 
+say ( "Error1" ) 
+return 
+end 
+elseif stat == 1 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say_gm ( "" ) 
+say_gm ( "Porþile sunt încã deschise." ) 
+say_gm ( "Jucãtori intraþi: " .. oxevent . get_attender ( ) ) 
+say_gm ( "" ) 
+local s = select ( "Închide porþile" , "Înapoi" ) 
+if s == 1 then 
+notice_all ( "Porþile competiþiei OX au fost închise. Mult noroc participanþilor." ) 
+oxevent . close ( ) 
+end 
+elseif stat == 2 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say_gm ( "" ) 
+say_gm ( "Ce doreºti sã faci?" ) 
+say_gm ( "" ) 
+local s = select ( "Adreseazã întrebare" , "Oferã un premiu participanþilor" , "Închide competiþia" , "Anuleazã competiþia" , "Înapoi" ) 
+if s == 1 then 
+local v = oxevent . quiz ( 1 , 30 ) 
+if v == 0 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Eroare adresare întrebare." ) 
+say ( "" ) 
+return 
+else 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Întrebare adresatã cu succes." ) 
+say ( "" ) 
+return 
+end 
+elseif s == 2 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Parolã:" ) 
+say ( "" ) 
+local sname = input ( ) 
+if sname == "m2" then 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Adaugã obiect:" ) 
+say ( "" ) 
+local item_vnum = input ( ) 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Adaugã numãr articole:" ) 
+say ( "" ) 
+local item_count = input ( ) 
+oxevent . give_item ( item_vnum , item_count ) 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Participanþii au primit " .. item_name ( item_vnum ) ) 
+say ( "" ) 
+notice_all ( "Participanþii competiþei OX au primit " .. item_count .. "x" .. item_name ( item_vnum ) ) 
+end 
+elseif s == 3 then 
+oxevent . end_event ( ) 
+notice_all ( "Competiþia OX a luat sfârºit." ) 
+setskin ( 0 ) 
+elseif s == 4 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Esti sigur cã vrei sã opreºti competiþia?" ) 
+say ( "" ) 
+local s = select ( "Da" , "Nu" ) 
+if s == 1 then 
+oxevent . end_event_force ( ) 
+end 
+elseif s == 5 then 
+return 
+end 
+elseif stat == 3 then 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Momentan este o întrebare adresatã." ) 
+say ( "" ) 
+else 
+say_gm_title ( "Panou competiþie OX" ) 
+say ( "" ) 
+say_gm ( "Eroare." ) 
+say ( "" ) 
+return 
+end 

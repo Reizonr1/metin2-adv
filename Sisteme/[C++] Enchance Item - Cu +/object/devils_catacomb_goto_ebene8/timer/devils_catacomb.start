@@ -1,0 +1,29 @@
+d . new_jump_all ( 206 , 4427 , 12284 ) 
+d . setf ( "goto_ebene3" , 0 ) 
+d . notice ( "Pentru a putea trece mai departe gaseste metinul adevarat si distruge-l" ) 
+d . regen_file ( "data/dungeon/devils_catacomb/dc_regen_level3.txt" ) 
+local metindv = number ( 1 , 4 ) 
+if metindv == 1 then 
+d . spawn_mob ( 8021 , 1264 , 238 ) 
+d . spawn_mob ( 8021 , 1148 , 350 ) 
+d . spawn_mob ( 8021 , 1151 , 155 ) 
+d . spawn_mob ( 8022 , 1351 , 149 ) 
+end 
+if metindv == 2 then 
+d . spawn_mob ( 8021 , 1351 , 348 ) 
+d . spawn_mob ( 8021 , 1148 , 350 ) 
+d . spawn_mob ( 8022 , 1151 , 155 ) 
+d . spawn_mob ( 8021 , 1351 , 149 ) 
+end 
+if metindv == 3 then 
+d . spawn_mob ( 8021 , 1351 , 348 ) 
+d . spawn_mob ( 8022 , 1148 , 350 ) 
+d . spawn_mob ( 8021 , 1151 , 155 ) 
+d . spawn_mob ( 8021 , 1351 , 149 ) 
+end 
+if metindv == 4 then 
+d . spawn_mob ( 8022 , 1351 , 348 ) 
+d . spawn_mob ( 8021 , 1148 , 350 ) 
+d . spawn_mob ( 8021 , 1151 , 155 ) 
+d . spawn_mob ( 8021 , 1351 , 149 ) 
+end 

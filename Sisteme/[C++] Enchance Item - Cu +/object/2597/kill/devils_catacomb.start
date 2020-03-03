@@ -1,0 +1,9 @@
+if pc . in_dungeon ( ) then game . set_event_flag ( ( "" .. pc . get_name ( ) .. "ap_send" ) , game . get_event_flag ( "" .. pc . get_name ( ) .. "ap_send" ) + 8 ) 
+local Reward = 8 
+local Achievement = "Charon" 
+local killcount = pc . getqf ( "2597" ) 
+local actual_achievement_points = pc . getqf ( "achievement_points" ) 
+pc . setqf ( "2597" , killcount + 1 ) 
+d . notice ( "Pregatitiva pentru al infrunta pe Marele Azrael" ) 
+timer ( "devils_catacomb_goto_ebene7" , 10 ) 
+ return end 

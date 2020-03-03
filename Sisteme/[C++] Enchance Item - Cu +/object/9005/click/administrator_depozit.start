@@ -1,0 +1,67 @@
+if pc . getqf ( "open_count" ) >= 1 then 
+say_title ( "" .. mob_name ( 9005 ) .. "" ) 
+say ( "Bine ai venit. Eu sunt managerul depozitului." ) 
+if pc . getqf ( "open_count" ) == 1 then 
+pc . setqf ( "open_count" , pc . getqf ( "open_count" ) + 1 ) 
+say_reward ( "Ai deschis depozitul pentru prima datã," ) 
+say_reward ( "Parola implicitã este: 000000" ) 
+say_reward ( "Schimb-o pentru siguranþa ta!" ) 
+end 
+say ( "Cu ce te pot ajuta?" ) 
+local s = select ( "Depozit" , "Item-Shop" , "Lingouri" , "Înapoi" ) 
+if s == 1 then 
+if pc . count_item ( 30136 ) > 0 then 
+say_title ( "" .. mob_name ( 9005 ) .. "" ) 
+say ( "Aveþi Vrãjeºte obiectul în inventar, ºi din" ) 
+say ( "cauzã cã nu aþi folosit itemul nu puteþi deschide" ) 
+say ( "depozitul. Vã rugãm sã utilizaþi Îmbunãtãþeºte" ) 
+say ( "obiectul iar apoi puteþi deschide depozitul!" ) 
+say ( "Mulþumim pentru înþelegere!" ) 
+elseif pc . count_item ( 30136 ) == 0 then 
+if pc . count_item ( 30136 ) > 0 then 
+say_title ( "Administrare depozit:" ) 
+say ( "Nu puteþi deschide depozitul pentru cã aveþi" ) 
+say ( "în inventar " .. pc . count_item ( 30136 ) .. " Tolbe norocoase!" ) 
+else 
+game . open_safebox ( ) 
+setskin ( NOWINDOW ) 
+end 
+end 
+elseif s == 2 then 
+administrator_depozit . itemshoptext ( ) 
+elseif s == 3 then 
+if npc . get_empire ( ) == pc . get_empire ( ) then 
+npc . open_shop ( ) 
+setskin ( NOWINDOW ) 
+else 
+chat ( "Întoarce-te în regatul tãu." ) 
+end 
+end 
+else 
+say_title ( "" .. mob_name ( 9005 ) .. "" ) 
+say ( "Vãd cã nu ai un loc în depozit.." ) 
+say ( "Eu aº putea sã îþi þin itemele" ) 
+say ( "în siguranþã ºi sã îþi vând ºi" ) 
+say ( "lingouri pentru a stoca banii" ) 
+say ( "mai uºor. Încearcã.." ) 
+say ( "Te costã doar 500 Yang." ) 
+say_reward ( "Ce doreºti?" ) 
+local s = select ( "Plãteºte" , "Nu plãtesc!" , "Item-Shop" ) 
+if s == 1 then 
+if pc . get_gold ( ) >= 500 then 
+pc . changegold ( - 500 ) 
+pc . setqf ( "open_count" , 1 ) 
+game . set_safebox_level ( 1 ) 
+say_title ( "" .. mob_name ( 9005 ) .. "" ) 
+say ( "Depozitul a fost creat cu succes." ) 
+say ( "Mult noroc ºi distracþie placutã." ) 
+else 
+say_title ( "" .. mob_name ( 9005 ) .. "" ) 
+say ( "Nu ai destul yang!" ) 
+end 
+elseif s == 2 then 
+return 
+elseif s == 3 then 
+administrator_depozit . itemshoptext ( ) 
+end 
+end 

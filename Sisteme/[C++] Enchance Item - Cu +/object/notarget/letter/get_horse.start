@@ -1,0 +1,6 @@
+if horse . get_level ( ) == 1 then local v = find_npc_by_vnum ( 20349 ) 
+if v ~= 0 then 
+target . vid ( "__TARGET__" , v , "Grãjdar" ) 
+end 
+send_letter ( "Du-te la Grãjdar." ) 
+ return end 

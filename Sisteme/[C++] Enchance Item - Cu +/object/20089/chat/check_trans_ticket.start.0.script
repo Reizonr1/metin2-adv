@@ -1,0 +1,18 @@
+say_title ( "" .. mob_name ( 20089 ) .. "" ) 
+say ( "" ) 
+say ( "Salut razboinicule, vrei în" ) 
+say ( "primul nivel al temniþei.." ) 
+say ( "Doreºti?" ) 
+say ( "" ) 
+local a = select ( "Da" , "Nu" ) 
+if 1 == a then 
+say_title ( "" .. mob_name ( 20089 ) .. "" ) 
+say ( "" ) 
+say ( "Ai grija de tine, ne vom revedea.." ) 
+wait ( ) 
+pc . warp ( 91700 , 525300 ) 
+return 
+end 
+say ( "" ) 
+say ( "" .. mob_name ( 20089 ) .. "" ) 
+say ( "" ) 

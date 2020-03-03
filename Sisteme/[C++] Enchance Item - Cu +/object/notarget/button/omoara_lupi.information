@@ -1,0 +1,8 @@
+say_title ( "Ucide Lupi:" ) 
+say ( "Gaseste in Map1 Lupi" ) 
+say ( "si omoara 25 animale de acest fel." ) 
+say ( "Ucide animalele si primesti un premiu deosebit." ) 
+say ( "Tip: Poti ucide Lup si Lup Alpha " ) 
+say ( "" ) 
+pc . setqf ( "state" , 25 ) 
+q . set_counter ( "Ucide Lupi" , 25 ) 

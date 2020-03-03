@@ -1,0 +1,82 @@
+horse_menu={["start"]=0,horse_menu= function ()if horse . is_mine ( ) then 
+say ( "Informaþii armãsar:" ) 
+say_reward ( "Nivel: " .. horse . get_level ( ) .. "[ENTER]Sãnãtate: " .. horse . get_health_pct ( ) .. "%[ENTER]Rezistenþã " .. horse . get_stamina_pct ( ) .. "%" ) 
+say ( "" ) 
+local s = 6 
+if horse . is_dead ( ) then 
+s = select ( "Învie armãsarul" , "Starea armãsarului" , "Închide" ) 
+if s == 1 then s = 0 
+elseif s == 2 then s = 3 
+elseif s == 3 then return 
+end 
+else 
+s = select ( "Hrãneºte" , "Încalecã " , "Trimite" , "Numeºte" , "Nimic (închide ferastra)" ) 
+end 
+if s == 0 then 
+horse . revive ( ) 
+elseif s == 1 then 
+local food = horse . get_grade ( ) + 50054 - 1 
+if pc . countitem ( food ) > 0 then 
+pc . removeitem ( food , 1 ) 
+horse . feed ( ) 
+else 
+say ( "Ai nevoie de " .. item_name ( food ) .. " pentru a hrãni calul." ) 
+say ( "" ) 
+end 
+elseif s == 2 then 
+horse . ride ( ) 
+elseif s == 3 then 
+horse . unsummon ( ) 
+elseif s == 4 then 
+if pc . countitem ( "71110" ) <= 0 then 
+say ( "Ai nevoie de " .. item_name ( "71110" ) .. " pentru a schimba numele calului." ) 
+say ( "" ) 
+return 
+end 
+local old_horse_name = horse . get_name ( ) ; 
+say_title ( "Schimbã numele" ) 
+say ( "" ) 
+say ( "Zahãrul armãsarului îþi dã posibilitatea de a" ) 
+say ( "alege un nume calului tãu." ) 
+say ( "" ) 
+if string . len ( old_horse_name ) == 0 then 
+say_reward ( "Calul dumneavoastrã nu a avut nici un nume." ) 
+say ( "" ) 
+else 
+say_reward ( "Numele actual este: " .. old_horse_name .. "." ) 
+say ( "" ) 
+end 
+say ( "" ) 
+say ( "Alege numele armãsarului:" ) 
+say ( "" ) 
+local horse_name = input ( ) 
+if string . len ( horse_name ) < 2 then 
+say_title ( "Schimbã numele" ) 
+say ( "" ) 
+say ( "Nu ai ales niciun nume." ) 
+say ( "" ) 
+return 
+elseif string . len ( horse_name ) > 12 then 
+say_title ( "Schimbã numele" ) 
+say ( "" ) 
+say ( "Numele ales este prea lung." ) 
+say ( "" ) 
+return 
+end 
+local ret = horse . set_name ( horse_name ) 
+say_title ( "Schimbã numele" ) 
+say ( "" ) 
+if ret == 0 then 
+say_reward ( "Nu aveþi armãsar!" ) 
+say ( "" ) 
+elseif ret == 1 then 
+say_reward ( "Acest nume este folosit deja.!" ) 
+say ( "" ) 
+elseif ret == 2 then 
+pc . remove_item ( "71110" ) 
+say ( "Ai dat armãsarului tãu un nume." ) 
+say ( "" ) 
+end 
+end 
+end 
+end }

@@ -1,0 +1,36 @@
+if horse . get_grade ( ) == 0 then say_title ( "Informaþie:" ) 
+say ( "Încã nu deþii un cal!" ) 
+ return end if horse . get_grade ( ) == 1 then if pc . get_map_index ( ) == 113 and not pc . is_gm ( ) then 
+say_title ( "Informaþie:" ) 
+say ( "Nu puteþi chema calul în aceastã hartã." ) 
+return 
+end 
+if pc . getsp ( ) >= 100 then 
+if number ( 1 , 100 ) <= horse_summon . get_horse_summon_prob_pct ( ) then 
+notice ( "Calul tãu a fost chemat." ) 
+horse . summon ( ) 
+else 
+notice ( "Calul tãu nu a fost chemat." ) 
+end 
+pc . change_sp ( - 100 ) 
+else 
+say_title ( "Informaþie:" ) 
+say ( "Pentru a chema calul ai nevoie de 100 PM." ) 
+end 
+ return end if horse . get_grade ( ) == 2 then if horse . get_level ( ) >= 22 then 
+say_title ( "Informaþie:" ) 
+say ( "Trimite animãluþul de companie pentru a chema calul." ) 
+return 
+else 
+say_title ( "Informaþie:" ) 
+say ( "Foloseºti o imagine de cal greºitã." ) 
+end 
+ return end if horse . get_grade ( ) == 3 then if horse . get_level ( ) >= 22 then 
+say_title ( "Informaþie:" ) 
+say ( "Trimite animãluþul de companie pentru a chema calul." ) 
+return 
+else 
+say_title ( "Informaþie:" ) 
+say ( "Foloseºti o imagine de cal greºitã." ) 
+end 
+ return end 

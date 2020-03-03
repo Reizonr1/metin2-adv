@@ -1,0 +1,3 @@
+if pc . in_dungeon ( ) then d . notice ( "Aceasta Piatra metin este falsa din pacate..." ) 
+d . notice ( "Mai cauta..poate o vei gasi pe cea adevarata" ) 
+ return end 

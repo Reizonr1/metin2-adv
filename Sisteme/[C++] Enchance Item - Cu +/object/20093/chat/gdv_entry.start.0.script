@@ -1,0 +1,18 @@
+say_title ( "Koe-Pung" ) 
+say ( "" ) 
+say ( "Hey opreste-te!" ) 
+say ( "Ca sa poti trece acest portal trebuie sa" ) 
+say ( "Imi arati o Piatra Insangerata," ) 
+say ( "Ai asa ceva?" ) 
+if pc . count_item ( 30190 ) >= 1 and pc . level >= 75 then 
+local s = select ( "Am piatra" , "Nu am piatra" ) 
+if s == 1 then 
+pc . remove_item ( 30190 , 1 ) 
+pc . remove_item ( 22010 , 9999 ) 
+pc . warp ( 900 , 1.2078e+06 ) 
+else 
+return 
+end 
+else 
+say_reward ( "Poti intra aici doar cand vei avea minim Level 75 si detii si o Piatra Insangerata!" ) 
+end 

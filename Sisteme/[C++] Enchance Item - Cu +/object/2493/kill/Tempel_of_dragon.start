@@ -1,0 +1,9 @@
+if pc . in_dungeon ( ) and d . getf ( "grotte_boss" ) == 2 then d . setf ( "grotte_boss" , 3 ) 
+notice_all ( "Grupul lui " .. pc . get_name ( ) .. " a ucis Dragonul Albastru Beran-Setaou!" ) 
+d . notice ( "Impresionant ! Ai reusit sa il invingi." ) 
+d . notice ( "Veti fi dusi afara in 60 de secunde." ) 
+timer ( "skipia_boss_end" , 60 ) 
+d . kill_all ( ) 
+d . spawn_mob ( 9012 , 239 , 173 ) 
+d . clear_regen ( ) 
+ return end 

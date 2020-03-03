@@ -1,0 +1,6 @@
+npc . purge ( ) 
+say_reward ( "Statuia Broasca Testoasa" ) 
+say ( "Bravo ai trecut mai departe !" ) 
+say ( "Aici te va astepta o porovocare care tine mai mult de noroc." ) 
+say ( "Trebuie sa gasesti in acest tinut metinul cel adevarat si sa il distrugi." ) 
+timer ( "devils_catacomb_goto_ebene8" , 5 ) 

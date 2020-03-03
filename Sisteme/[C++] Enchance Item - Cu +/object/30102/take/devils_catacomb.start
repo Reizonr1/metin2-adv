@@ -1,0 +1,5 @@
+if item . vnum == 30312 then item . remove ( ) 
+npc . purge ( ) 
+d . notice ( "Felicitãri veti trece mai departe!" ) 
+timer ( "devils_catacomb_goto_ebene6" , 5 ) 
+ return end 

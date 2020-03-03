@@ -1,0 +1,130 @@
+if get_time ( ) > game . get_event_flag ( "Grotte_time" ) then 
+pc . remove_item ( 22000 , 9999 ) 
+pc . remove_item ( 22001 , 9999 ) 
+pc . remove_item ( 22010 , 9999 ) 
+pc . remove_item ( 22011 , 9999 ) 
+pc . remove_item ( 22020 , 9999 ) 
+game . set_event_flag ( "Grotte_zugang" , 0 ) 
+end 
+if pc . is_gm ( ) then 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+say ( "Salut GM, " .. pc . get_name ( ) .. "" ) 
+say ( "Te voi lasa sa treci fara" ) 
+say ( "cheie si fara parola..." ) 
+wait ( ) 
+pc . warp ( 843200 , 1.0669e+06 ) 
+return 
+end 
+if pc . count_item ( "80041" ) >= 1 then 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+say ( "Ai iteme de GM" ) 
+wait ( ) 
+pc . warp ( 843200 , 1.0669e+06 ) 
+return 
+end 
+if game . get_event_flag ( "Grotte_zugang" ) == 0 and pc . count_item ( 30179 ) < 3 then 
+pc . remove_item ( 22000 , 9999 ) 
+pc . remove_item ( 22001 , 9999 ) 
+pc . remove_item ( 22010 , 9999 ) 
+pc . remove_item ( 22011 , 9999 ) 
+pc . remove_item ( 22020 , 9999 ) 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+say ( "Îti lipseste " .. item_name ( 30179 ) .. "" ) 
+say_item_vnum ( 30179 ) 
+say ( "Vino inapoi cand ai 3 bucati.." ) 
+return 
+end 
+if game . get_event_flag ( "Grotte_zugang" ) == 1 then 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+pc . setqf ( "grotte_passworto" , 7.89547e+10 ) 
+if pc . getqf ( "abgabe" ) == 1 then 
+pc . setqf ( "abgabe" , 0 ) 
+say ( "Vad ca ai 3 chei rasucite." ) 
+say ( "Te voi lasa sa treci." ) 
+pc . setqf ( "erlaubt" , 1 ) 
+pc . remove_item ( 22000 , 9999 ) 
+pc . remove_item ( 22001 , 9999 ) 
+pc . remove_item ( 22010 , 9999 ) 
+pc . remove_item ( 22011 , 9999 ) 
+pc . remove_item ( 22020 , 9999 ) 
+wait ( ) 
+pc . warp ( 843200 , 1.0669e+06 ) 
+return 
+end 
+say ( "Îmi pare rau dar camera" ) 
+say ( "este ocupata de alt grup." ) 
+say ( "Poti intra doar daca" ) 
+say ( "ai o parola de acces.." ) 
+local passwort = tonumber ( input ( "" ) ) 
+pc . setqf ( "grotte_passworto" , passwort ) 
+if game . get_event_flag ( "Grotte_passwort" ) == passwort then 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+say ( "Parola introdusa este corecta." ) 
+if pc . count_item ( 30179 ) < 3 then 
+say ( "Nu va pot oferi acces." ) 
+say ( "Îti lipseste " .. item_name ( 30179 ) .. "" ) 
+say_item_vnum ( 30179 ) 
+say ( "Vino inapoi cand ai 3 bucati.." ) 
+pc . remove_item ( 22000 , 9999 ) 
+pc . remove_item ( 22001 , 9999 ) 
+pc . remove_item ( 22010 , 9999 ) 
+pc . remove_item ( 22011 , 9999 ) 
+pc . remove_item ( 22020 , 9999 ) 
+return 
+end 
+pc . remove_item ( "30179" , 3 ) 
+say ( "Te voi lasa sa intri!" ) 
+pc . setqf ( "erlaubt" , 1 ) 
+wait ( ) 
+pc . warp ( 843200 , 1.0669e+06 ) 
+elseif passi ~= pc . getqf ( "grotte_passworto" ) then 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+say ( "Din pacate parola introdusa este gresita." ) 
+return 
+end 
+end 
+if game . get_event_flag ( "Grotte_zugang" ) == 0 and pc . count_item ( 30179 ) >= 3 then 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+say ( "Tu esti primul la intrare!" ) 
+say ( "Te voi duce in camera cu conditia" ) 
+say ( "ca o sa ai 3 chei rasucite." ) 
+say ( "Înainte sa intri in camera  de cristal" ) 
+say ( "trebuie sa pui un numar de acces secret." ) 
+say ( "Acest lucru se poate face in 5 minute!" ) 
+say ( "" ) 
+say ( "Cu puterea cheilor rasucite, vei" ) 
+say ( "avea la dispozitie 1 ora pentru" ) 
+say ( "a invinge dragonul Beran-Setaou." ) 
+local i = select ( "Sunt gata!" , "Nu vreau.." ) 
+if 1 == i then 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+local passwort = tonumber ( input ( "" ) ) 
+if passwort and passwort <= 1e+09 and pc . count_item ( 30179 ) >= 1 then 
+game . set_event_flag ( "Grotte_zugang" , 1 ) 
+game . set_event_flag ( "Grotte_passwort" , passwort ) 
+local times = get_time ( ) + 300 
+game . set_event_flag ( "Grotte_time" , times ) 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+pc . setqf ( "abgabe" , 1 ) 
+say ( "" ) 
+say ( "Indiciul pentru a intra in camera este:" ) 
+chat ( "Codul pentru intrare in camera este: " .. passwort .. "" ) 
+say_reward ( "" .. passwort .. "" ) 
+say ( "Introdu codul impreuna cu colegii tai." ) 
+pc . remove_item ( "30179" , 3 ) 
+else 
+say_title ( "" .. mob_name ( 30123 ) .. "" ) 
+say ( "" ) 
+say ( "Daca intampinati o eroare incercati din nou." ) 
+say ( "Introdu doar cifre." ) 
+end 
+end 
+end 

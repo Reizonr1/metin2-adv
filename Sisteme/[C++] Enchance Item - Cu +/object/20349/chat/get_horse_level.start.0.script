@@ -1,0 +1,42 @@
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Poþi mãri nivelul armãsarul tãu cu ajutorul" ) 
+say ( "unei medalii de cal. Grãjdarul are nevoie de ele" ) 
+say ( "pentru a înregistra rezultatele calificãrilor." ) 
+say ( "" ) 
+local s = select ( "Mãreºte nivelul calului" , "Nu, mulþumesc" ) 
+if s == 1 then 
+if pc . count_item ( 50050 ) < 1 then 
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Revin-o când ai o Medalie de cal." ) 
+say ( "" ) 
+return 
+end 
+if horse . get_level ( ) < 11 then 
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Nivelul armãsarului tãu este prea mic." ) 
+say ( "" ) 
+return 
+end 
+if horse . get_level ( ) > 19 then 
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Nivelul armãsarului tãu este prea mare." ) 
+say ( "" ) 
+return 
+end 
+if horse . get_level ( ) >= 11 and horse . get_level ( ) <= 19 and pc . count_item ( 50050 ) >= 1 then 
+horse . unride ( ) 
+horse . ride ( ) 
+horse . advance ( ) 
+pc . remove_item ( "50050" , 1 ) 
+syschat ( "Armãsarul tãu a ajuns la nivelul " .. horse . get_level ( ) .. "." ) 
+end 
+else 
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Revin-o dacã te rãzgândeºti." ) 
+say ( "" ) 
+end 

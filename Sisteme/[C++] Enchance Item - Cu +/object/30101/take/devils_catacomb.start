@@ -1,0 +1,8 @@
+if item . vnum == 30311 then if party . is_party ( ) then 
+item . remove ( ) 
+npc . purge ( ) 
+timer ( "devils_catacomb_goto_ebene3" , 5 ) 
+else 
+say ( "Tu nu mai apartii nici unui grup" ) 
+end 
+ return end 

@@ -1,0 +1,48 @@
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Armãsarul tãu a ajuns la un nivel înalt." ) 
+say ( "Pentru a mãri nivelul calului ai nevoie de" ) 
+say ( "Autorizaþia armãsarului." ) 
+say ( "" ) 
+if pc . count_item ( 71100 ) < 1 then 
+say_reward ( "Autorizaþia poate fi gãsitã la Maimuþa Lord" ) 
+say_reward ( "din temniþa maimuþelor avansat." ) 
+say ( "" ) 
+return 
+end 
+if pc . count_item ( 71100 ) >= 1 then 
+local s = select ( "Am autorizaþia" , "Înapoi" ) 
+if s == 1 then 
+if pc . count_item ( 71100 ) < 1 then 
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Revin-o când ai Autorizaþia armãsarului." ) 
+say ( "" ) 
+return 
+end 
+if horse . get_level ( ) < 20 then 
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Nivelul armãsarului tãu este prea mic." ) 
+say ( "" ) 
+return 
+end 
+if horse . get_level ( ) > 20 then 
+say_title ( "Grãjdar:" ) 
+say ( "" ) 
+say ( "Nivelul armãsarului tãu este prea mare." ) 
+say ( "" ) 
+return 
+end 
+if horse . get_level ( ) == 20 and pc . count_item ( 71100 ) >= 1 then 
+horse . unride ( ) 
+horse . advance ( ) 
+horse . ride ( ) 
+pc . remove_item ( "71100" , 1 ) 
+pc . remove_item ( "50051" , 1 ) 
+pc . remove_item ( "50052" , 1 ) 
+pc . give_item2 ( "50053" , 1 ) 
+syschat ( "Armãsarul tãu a fost îmbunãtãþit ºi ai primit cartea cailor militari." ) 
+end 
+end 
+end 

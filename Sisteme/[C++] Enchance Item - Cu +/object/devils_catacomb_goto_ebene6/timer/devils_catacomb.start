@@ -1,0 +1,4 @@
+d . new_jump_all ( 206 , 4411 , 12736 ) 
+d . notice ( "Felicitari pentru ca ati putut ajunge pana aici!" ) 
+d . notice ( "Pentru a putea trece la ultimul nivel va trebuie sa il omorati pe Charon!" ) 
+d . regen_file ( "data/dungeon/devils_catacomb/dc_regen_level6.txt" ) 

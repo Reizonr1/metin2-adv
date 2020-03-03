@@ -1,0 +1,5 @@
+if not npc . is_pc ( ) and pc . get_map_index ( ) == 206 then local sks = number ( 1 , 100 ) 
+if sks == 1 then 
+game . drop_item_with_ownership ( 30311 , 1 ) 
+end 
+ return end 

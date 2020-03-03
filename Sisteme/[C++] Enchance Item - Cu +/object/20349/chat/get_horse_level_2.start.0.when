@@ -1,0 +1,1 @@
+return horse . get_level ( ) == 20

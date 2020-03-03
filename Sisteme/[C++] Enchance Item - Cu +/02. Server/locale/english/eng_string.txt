@@ -1,0 +1,5 @@
+"You choose to take the new bonuses.";
+"You choose to take the new bonuses.";
+
+"You choose to take the old bonuses.";
+"You choose to take the old bonuses.";

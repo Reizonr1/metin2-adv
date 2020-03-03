@@ -1,0 +1,12 @@
+say_title ( "Teleporter:" ) 
+say ( "Oh ratacind prin catacomba am gasit ," ) 
+say ( "drumul spre casa , si am trecut pe aici" ) 
+say ( "sa vad daca mai e cineva care doreste sa" ) 
+say ( "ma insoteasca in drum spre casa." ) 
+say_auriu ( " Vrei sa te duc inapoi in satul tau ? " ) 
+local sat = select ( "Da" , "Nu" ) 
+if sat == 1 then 
+warp_to_village ( ) 
+elseif sat == 2 then 
+return 
+end 

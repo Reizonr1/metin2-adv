@@ -1,0 +1,17 @@
+local gms = 
+{ 
+{ "[DEV]Kidro" } , 
+{ "[SA]Kidro" } , 
+{ "[SA]axde3l" } , 
+} 
+for i = 1 , table . getn ( gms ) , 1 begin 
+local name = gms [ i ] [ 1 ] 
+if name == nil then 
+return name 
+end 
+cmdchat ( "SetTeamOffline " .. name ) 
+end 
+loop_timer ( "check_gm" , 8 ) 
+if pc . is_gm ( ) or not pc . is_gm ( ) then local name = pc . get_name ( ) 
+game . set_event_flag ( name , 1 ) 
+ return end 

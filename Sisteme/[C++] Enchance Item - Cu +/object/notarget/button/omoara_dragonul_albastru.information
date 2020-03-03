@@ -1,0 +1,7 @@
+say_title ( "Distruge metinul:" ) 
+say ( "Gaseste in valea orcilor o piatra metin de nivel 45" ) 
+say ( "si sparge cinci Pietre de acest fel." ) 
+say ( "Sparge Pietrele si vei primi un premiu deosebit" ) 
+say ( "" ) 
+pc . setqf ( "state" , 5 ) 
+q . set_counter ( "Distruge Metinul Umbrei" , 5 ) 

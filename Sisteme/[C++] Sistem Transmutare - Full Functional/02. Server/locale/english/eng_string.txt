@@ -1,0 +1,35 @@
+"[Transmutation] The window is already opened.";
+"[Transmutation] The window is already opened.";
+
+"[Transmutation] The window is not opened.";
+"[Transmutation] The window is not opened.";
+
+"[Transmutation] You cannot transmute an item while it is equipped.";
+"[Transmutation] You cannot transmute an item while it is equipped.";
+
+"[Transmutation] This item cannot be transmuted.";
+"[Transmutation] This item cannot be transmuted.";
+
+"[Transmutation] You can't add binded items.";
+"[Transmutation] You can't add binded items.";
+
+"[Transmutation] You can't add locked items.";
+"[Transmutation] You can't add locked items.";
+
+"[Transmutation] You can't add items which are transmuted yet.";
+"[Transmutation] You can't add items which are transmuted yet.";
+
+"[Transmutation] You cannot submit this item.";
+"[Transmutation] You cannot submit this item.";
+
+"[Transmutation] Please submit the item you want to transmute.";
+"[Transmutation] Please submit the item you want to transmute.";
+
+"[Transmutation] You don't have enough Yang.";
+"[Transmutation] You don't have enough Yang.";
+
+"You can't remove the transmute because item is binded.";
+"You can't remove the transmute because item is binded.";
+
+"You can't remove the transmute because item is locked.";
+"You can't remove the transmute because item is locked.";

@@ -1,0 +1,66 @@
+if pc . is_engaged ( ) then 
+say_title ( "Schimbã imperiul" ) 
+say ( "Nu poþi schimba imperiul deoarece eºti" ) 
+say ( "logodit.[ENTER]" ) 
+return 
+end 
+if pc . is_married ( ) then 
+say_title ( "Schimbã imperiul" ) 
+say ( "Nu poþi schimba imperiul deoarece eºti" ) 
+say ( "cãsãtorit.[ENTER]" ) 
+return 
+end 
+if pc . is_polymorphed ( ) then 
+say_title ( "Schimbã imperiul" ) 
+say ( "Nu poþi schimba imperiul deoarece eºti" ) 
+say ( "transformat.[ENTER]" ) 
+return 
+end 
+if pc . has_guild ( ) then 
+say_title ( "Schimbã imperiul" ) 
+say ( "Nu poþi schimba imperiul deoarece aparþii" ) 
+say ( "unei bresle.[ENTER]" ) 
+return 
+end 
+if pc . money < 500000 then 
+say_title ( "Schimbã imperiul" ) 
+say ( "Nu poþi schimba imperiul deoarece nu" ) 
+say ( "ai destul yang.[ENTER]" ) 
+say_reward ( "Yang necesar: 500.000[ENTER]" ) 
+return 
+end 
+say_title ( "Schimbã regatul" ) 
+say ( "În ce imperiul vrei sã te muþi?[ENTER]" ) 
+local s = select ( "Imperiul Shinsoo (roºu)" , "Imperiul Chunjo (galben)" , "Imperiul Jinno (albastru)" , "Ieºire" ) 
+if 4 == s then 
+return 
+end 
+say_title ( "Schimbã imperiul" ) 
+say ( "Eºti sigur cã vrei sã schimbi imperiul?[ENTER]" ) 
+local a = select ( "Schimbã " , "M-am rãzgândit ..." ) 
+if 2 == a then 
+return 
+end 
+local ret = pc . change_empire ( s ) 
+local oldempire = pc . get_empire ( ) 
+if ret == 999 then 
+say_title ( "Schimbã imperiul" ) 
+say ( "Ai schimbat imperiul cu succes.[ENTER]" ) 
+say_reward ( "Trebuie sã te reconectezi la server" ) 
+say_reward ( "pentru a vedea modificãrile.[ENTER]" ) 
+pc . change_gold ( - 500000 ) 
+pc . remove_item ( 71054 ) ; 
+return 
+else 
+if ret == 1 then 
+say_title ( "Schimbã imperiul" ) 
+say ( "Deja faci parte din acest imperiu.[ENTER]" ) 
+elseif ret == 2 then 
+say_title ( "Schimbã imperiul" ) 
+say ( "Nu poþi schimba imperiul dacã ai fost recent" ) 
+say ( "într-o breaslã.[ENTER]" ) 
+elseif ret == 3 then 
+say ( "Nu poþi schimba imperiul dacã ai fost recent" ) 
+say ( "cãsãtorit.[ENTER]" ) 
+end 
+end 

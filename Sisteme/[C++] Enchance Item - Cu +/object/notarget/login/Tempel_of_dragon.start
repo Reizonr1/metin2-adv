@@ -1,0 +1,37 @@
+if pc . get_map_index ( ) == 207 and not pc . is_gm ( ) then if pc . count_item ( "80041" ) >= 1 then chat ( "You have GM items!" ) return end 
+if pc . get_level ( ) < 75 or pc . getqf ( "erlaubt" ) == 0 and pc . get_map_index ( ) == 207 then 
+chat ( "You are not allowed to enter this map. " .. pc . get_level ( ) .. " " .. pc . getqf ( "erlaubt" ) .. " " .. pc . get_map_index ( ) .. " " ) 
+warp_to_village ( ) 
+end 
+chat ( "Bine ai venit. Distruge piatra pentru a ajunge la dragon." ) 
+chat ( "Grabeste-te !" ) 
+notice_all ( "Dragon Albastru sa trezit!" ) 
+local sekunden = game . get_event_flag ( "Grotte_time" ) - get_time ( ) 
+notice_in_map ( "Timp ramas : " .. sekunden .. " secunde." ) 
+timer ( "skipia_boss_ende" , sekunden ) 
+pc . set_warp_location ( 73 , 1825 , 12207 ) 
+ return end if pc . in_dungeon ( ) and d . getf ( "grotte_boss" ) == 2 then pc . set_warp_location ( 73 , 1825 , 12207 ) 
+ return end if pc . in_dungeon ( ) and d . getf ( "grotte_boss" ) == 1 then timer ( "skipia_boss_end" , 3600 ) 
+d . set_regen_file ( "data/dungeon/skia_boss.txt" ) 
+local t = number ( 1 , 3 ) 
+if 1 == t then 
+d . regen_file ( "data/dungeon/skia_boss1.txt" ) 
+elseif 2 == t then 
+d . regen_file ( "data/dungeon/skia_boss2.txt" ) 
+else 
+d . regen_file ( "data/dungeon/skia_boss4.txt" ) 
+end 
+local o = number ( 1 , 3 ) 
+if 1 == o then 
+d . regen_file ( "data/dungeon/skia_boss1.txt" ) 
+elseif 2 == o then 
+d . regen_file ( "data/dungeon/skia_boss2.txt" ) 
+else 
+d . regen_file ( "data/dungeon/skia_boss4.txt" ) 
+end 
+d . setf ( "grotte_boss" , 2 ) 
+d . notice ( "Bine ai venit in camera dragonului. Ai la dispozitie o ora sa il invingi." ) 
+d . setf ( "count" , 0 ) 
+pc . set_warp_location ( 73 , 1825 , 12207 ) 
+ return end if pc . in_dungeon ( ) and d . getf ( "grotte_boss" ) == 3 then  return end if pc . get_map_index ( ) ~= 207 or not pc . in_dungeon ( ) then pc . setqf ( "erlaubt" , 0 ) 
+ return end 

@@ -1,0 +1,93 @@
+pc . removeitem ( "50512" , 1 ) 
+say_title ( "Piatra curcubeu" ) 
+say ( "Aceasta piatra va poate face" ) 
+say ( "magiile perfecte." ) 
+if pc . job == 0 then 
+say ( "Alegeti competentele dvs." ) 
+local s = select ( "Corp" , "Mental" ) 
+if s == 1 then 
+pc . set_skill_group ( 1 ) 
+pc . set_skill_level ( 1 , 59 ) 
+pc . set_skill_level ( 2 , 59 ) 
+pc . set_skill_level ( 3 , 59 ) 
+pc . set_skill_level ( 4 , 59 ) 
+pc . set_skill_level ( 5 , 59 ) 
+say ( "Competentele dvs. sunt perfecte" ) 
+end 
+if s == 2 then 
+pc . set_skill_group ( 2 ) 
+pc . set_skill_level ( 16 , 59 ) 
+pc . set_skill_level ( 17 , 59 ) 
+pc . set_skill_level ( 18 , 59 ) 
+pc . set_skill_level ( 19 , 59 ) 
+pc . set_skill_level ( 20 , 59 ) 
+say ( "Competentele dvs. sunt perfecte" ) 
+end 
+elseif pc . job == 1 then 
+say ( "Alegeti competentele dvs." ) 
+local s = select ( "Lame" , "Arc" ) 
+if s == 1 then 
+pc . set_skill_group ( 3 ) 
+pc . set_skill_level ( 31 , 59 ) 
+pc . set_skill_level ( 32 , 59 ) 
+pc . set_skill_level ( 33 , 59 ) 
+pc . set_skill_level ( 34 , 59 ) 
+pc . set_skill_level ( 35 , 59 ) 
+say ( "Competentele dvs. sunt perfecte" ) 
+end 
+if s == 2 then 
+pc . set_skill_group ( 4 ) 
+pc . set_skill_level ( 46 , 59 ) 
+pc . set_skill_level ( 47 , 59 ) 
+pc . set_skill_level ( 48 , 59 ) 
+pc . set_skill_level ( 49 , 59 ) 
+pc . set_skill_level ( 50 , 59 ) 
+say ( "Competentele dvs. sunt perfecte" ) 
+end 
+elseif pc . job == 2 then 
+say ( "Alegeti competentele dvs." ) 
+local s = select ( "Magie" , "Arme" ) 
+if s == 1 then 
+pc . set_skill_group ( 5 ) 
+pc . set_skill_level ( 76 , 59 ) 
+pc . set_skill_level ( 77 , 59 ) 
+pc . set_skill_level ( 78 , 59 ) 
+pc . set_skill_level ( 79 , 59 ) 
+pc . set_skill_level ( 80 , 59 ) 
+pc . set_skill_level ( 81 , 59 ) 
+say ( "Competentele dvs. sunt perfecte" ) 
+end 
+if s == 2 then 
+pc . set_skill_group ( 6 ) 
+pc . set_skill_level ( 61 , 59 ) 
+pc . set_skill_level ( 62 , 59 ) 
+pc . set_skill_level ( 63 , 59 ) 
+pc . set_skill_level ( 64 , 59 ) 
+pc . set_skill_level ( 65 , 59 ) 
+pc . set_skill_level ( 66 , 59 ) 
+say ( "Competentele dvs. sunt perfecte" ) 
+end 
+elseif pc . job == 3 then 
+say ( "Alegeti competentele dvs." ) 
+local s = select ( "Vindecare" , "Dragon" ) 
+if s == 1 then 
+pc . set_skill_group ( 7 ) 
+pc . set_skill_level ( 106 , 59 ) 
+pc . set_skill_level ( 107 , 59 ) 
+pc . set_skill_level ( 108 , 59 ) 
+pc . set_skill_level ( 109 , 59 ) 
+pc . set_skill_level ( 110 , 59 ) 
+pc . set_skill_level ( 111 , 59 ) 
+say ( "Competentele dvs. sunt perfecte" ) 
+end 
+if s == 2 then 
+pc . set_skill_group ( 8 ) 
+pc . set_skill_level ( 91 , 59 ) 
+pc . set_skill_level ( 92 , 59 ) 
+pc . set_skill_level ( 93 , 59 ) 
+pc . set_skill_level ( 94 , 59 ) 
+pc . set_skill_level ( 95 , 59 ) 
+pc . set_skill_level ( 96 , 59 ) 
+say ( "Competentele dvs. sunt perfecte" ) 
+end 
+end 

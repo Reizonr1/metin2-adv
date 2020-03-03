@@ -1,0 +1,8 @@
+d . new_jump_all ( 206 , 3347 , 12810 ) 
+d . setf ( "Laberinto" , 1 ) 
+d . spawn_mob ( 30104 , 500 , 720 ) 
+d . regen_file ( "data/dungeon/devils_catacomb/dc_regen_level4_portals.txt" ) 
+d . notice ( "Gaseste o cale de iesire din acest labirit" ) 
+d . notice ( "Catre statuia Broastei Testoase" ) 
+if game . get_event_flag ( "dc_is_wartung" ) == 1 then 
+end 

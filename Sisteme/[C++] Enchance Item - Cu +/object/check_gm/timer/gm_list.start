@@ -1,0 +1,17 @@
+local t_gms = 
+{ 
+{ "[DEV]Kidro" } , 
+{ "[SA]Kidro" } , 
+{ "[SA]axde3l" } , 
+} 
+for i = 1 , table . getn ( t_gms ) , 1 begin 
+local t_name = t_gms [ i ] [ 1 ] 
+if t_name == nil then 
+return t_name 
+end 
+if game . get_event_flag ( t_name ) == 1 then 
+cmdchat ( "SetTeamOnline " .. t_name ) 
+else 
+cmdchat ( "SetTeamOffline " .. t_name ) 
+end 
+end 

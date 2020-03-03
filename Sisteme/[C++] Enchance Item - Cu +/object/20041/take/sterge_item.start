@@ -1,0 +1,29 @@
+say_title ( "Cetateanul Turmentat:" ) 
+say ( "Vrei sa distrugi acest obiect?" ) 
+say_item ( item . get_name ( item . vnum ) , item . vnum , "" ) 
+say ( "" ) 
+say ( "" ) 
+say ( "" ) 
+say ( "" ) 
+say ( "" ) 
+say ( "" ) 
+local destroy = select ( "Da" , "Nu" ) 
+if destroy == 2 then 
+return 
+else 
+local s = number ( 1 , 200 ) 
+say_title ( "Cetateanul Turmentat:" ) 
+say ( "Pentru siguranta, introdu codul de mai jos:" ) 
+say_reward ( s ) 
+local code = tonumber ( input ( "" ) ) 
+if code == s then 
+item . remove ( ) 
+say_title ( "Cetateanul Turmentat:" ) 
+say ( "Obiectul a fost distrus cu succes!" ) 
+wait ( ) 
+return 
+else 
+say_title ( "Cetateanul Turmentat:" ) 
+say ( "Codul este incorect!" ) 
+end 
+end 

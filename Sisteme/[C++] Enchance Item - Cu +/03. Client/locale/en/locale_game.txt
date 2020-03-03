@@ -1,0 +1,2 @@
+NEW_ENCHANT_DIALOG_ALERT_2	Choose the old or new bonuses.
+NEW_ENCHANT_DIALOG_ALERT_1	Choose the old or new bonuses and press the Ok button.

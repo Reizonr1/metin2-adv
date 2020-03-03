@@ -1,0 +1,3 @@
+d . kill_all ( ) 
+d . spawn_mob ( 9012 , 74 , 1160 ) 
+notice_all ( "" .. pc . get_name ( ) .. " a reuºit sã învingã pe Marele Zeu Azrael!" ) 

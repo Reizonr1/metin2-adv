@@ -1,0 +1,57 @@
+if pc . get_level ( ) <= 15 then 
+say_title ( "Nu ai nivelul necesar" ) 
+return 
+end 
+settings = { 
+{ [ "map" ] = "Map1 Regat Rosu" , [ "coords" ] = { 473900 , 954600 } , [ "lvl" ] = 1 } , 
+{ [ "map" ] = "Map2 Regat Rosu" , [ "coords" ] = { 352300 , 882700 } , [ "lvl" ] = 1 } , 
+{ [ "map" ] = "Map1 Regat Galben" , [ "coords" ] = { 63200 , 166700 } , [ "lvl" ] = 1 } , 
+{ [ "map" ] = "Map2 Regat Galben" , [ "coords" ] = { 145700 , 239800 } , [ "lvl" ] = 1 } , 
+{ [ "map" ] = "Map1 Regat Albastru" , [ "coords" ] = { 959600 , 269700 } , [ "lvl" ] = 1 } , 
+{ [ "map" ] = "Map2 Regat Albastru" , [ "coords" ] = { 863800 , 246000 } , [ "lvl" ] = 1 } , 
+{ [ "map" ] = "Valea Orcilor" , [ "coords" ] = { 332700 , 745600 } , [ "lvl" ] = 20 } , 
+{ [ "map" ] = "Desert" , [ "coords" ] = { 296300 , 547500 } , [ "lvl" ] = 20 } , 
+{ [ "map" ] = "Muntele Sohan" , [ "coords" ] = { 434200 , 290600 } , [ "lvl" ] = 20 } , 
+{ [ "map" ] = "Padurea Fantomelor" , [ "coords" ] = { 289000 , 5800 } , [ "lvl" ] = 50 } , 
+{ [ "map" ] = "Padurea Rosie" , [ "coords" ] = { 1.1199e+06 , 70800 } , [ "lvl" ] = 50 } , 
+{ [ "map" ] = "V1" , [ "coords" ] = { 91900 , 525400 } , [ "lvl" ] = 50 } , 
+{ [ "map" ] = "V2" , [ "coords" ] = { 665600 , 435200 } , [ "lvl" ] = 50 } , 
+{ [ "map" ] = "V3" , [ "coords" ] = { 10100 , 1.2079e+06 } , [ "lvl" ] = 50 } , 
+{ [ "map" ] = "V4" , [ "coords" ] = { 241700 , 1.2749e+06 } , [ "lvl" ] = 50 } , 
+{ [ "map" ] = "Thunder (Beta Map)" , [ "coords" ] = { 1.1344e+06 , 1.6548e+06 } , [ "lvl" ] = 90 } , 
+{ [ "map" ] = "Dawn Mist Wood (Beta Map" , [ "coords" ] = { 1.2266e+06 , 1.6806e+06 } , [ "lvl" ] = 90 } , 
+{ [ "map" ] = "Cape Dragon (Beta Map)" , [ "coords" ] = { 1.0846e+06 , 1.7844e+06 } , [ "lvl" ] = 90 } , 
+{ [ "map" ] = "Bay Black Sand (Beta Map)" , [ "coords" ] = { 1.087e+06 , 1.6554e+06 } , [ "lvl" ] = 90 } , 
+{ [ "map" ] = "Tara de Foc" , [ "coords" ] = { 601100 , 684900 } , [ "lvl" ] = 55 } , 
+{ [ "map" ] = "Turnul Demonilor" , [ "coords" ] = { 590800 , 110800 } , [ "lvl" ] = 40 } , 
+} 
+menu_telep = { } 
+for i in settings begin 
+table . insert ( menu_telep , tostring ( settings [ i ] [ "map" ] ) ) 
+end 
+table . insert ( menu_telep , "Renunta" ) 
+say_size ( 350 , 400 ) 
+say_title ( "Teleporter Portabil[ENTER]" ) 
+say ( "Alege locatia la care vrei sa fii teleportat:[ENTER]" ) 
+local telep_sel = select_table ( menu_telep ) 
+if telep_sel == table . getn ( menu_telep ) then return 
+else 
+mname = settings [ telep_sel ] [ "map" ] 
+mcx = settings [ telep_sel ] [ "coords" ] [ 1 ] 
+mcy = settings [ telep_sel ] [ "coords" ] [ 2 ] 
+plvl = settings [ telep_sel ] [ "lvl" ] 
+local clvl = pc . get_level ( ) 
+say_title ( "Teleporter Portabil[ENTER]" ) 
+say ( string . format ( "Vrei sa mergi in '%s ' ?[ENTER]" , tostring ( mname ) ) ) 
+if select ( "Da" , "Nu" ) == 1 then 
+if clvl >= plvl then 
+pc . warp ( mcx , mcy ) 
+else 
+say_title ( "Teleporter Portabil[ENTER]" ) 
+say ( "Nivelul tau este prea mic pentru aceasta harta[ENTER]" ) 
+say ( "Nivelul minim pentu a te teleporta aici este: " ) 
+say ( string . format ( "lvl. %s " , tostring ( plvl ) ) ) 
+return 
+end 
+end 
+end 

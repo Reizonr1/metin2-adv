@@ -1,0 +1,4 @@
+if pc . in_dungeon ( ) then d . notice ( "Ai gasit metinul cel adevarat !" ) 
+d . notice ( "Felicitari , tu si echipa ta veti fii teleportati mai departe" ) 
+timer ( "devils_catacomb_goto_ebene5" , 5 ) 
+ return end 

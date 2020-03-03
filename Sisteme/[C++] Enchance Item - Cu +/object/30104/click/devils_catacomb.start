@@ -1,0 +1,4 @@
+if pc . in_dungeon ( ) then d . notice ( "Felicitari ati ajuns la etajul 5" ) 
+npc . purge ( ) 
+timer ( "devils_catacomb_goto_ebene5" , 5 ) 
+ return end 

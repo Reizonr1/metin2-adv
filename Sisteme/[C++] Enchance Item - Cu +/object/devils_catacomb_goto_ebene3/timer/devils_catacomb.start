@@ -1,0 +1,6 @@
+d . new_jump_all ( 206 , 3617 , 12074 ) 
+d . notice ( "Pentru a putea trece mai departe gaseste drumul cel bun catre Roca Testoasa!" ) 
+d . regen_file ( "data/dungeon/devils_catacomb/dc_regen_level2.txt" ) 
+d . regen_file ( "data/dungeon/devils_catacomb/dc_regen_30111.txt" ) 
+d . regen_file ( "data/dungeon/devils_catacomb/dc_regen_30111_left.txt" ) 
+d . spawn_mob ( 30103 , 741 , 221 ) 

@@ -1,0 +1,6 @@
+CHANGE_LOOK_FAILURE_CLEAN	This item wasn't transmuted yet.
+CHANGE_LOOK_DO_YOU_CLEAN	Do you want to remove the transmuted item?
+CHANGE_LOOK_CHANGE_ITEM	Do you want to transmute this item?
+CHANGE_LOOK_COST	Cost of transmutation: %s Yang
+CHANGE_LOOK_DEL_ITEM	The absorbed item will be deleted.
+CHANGE_LOOK_TITLE	Transmutation

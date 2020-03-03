@@ -1,0 +1,43 @@
+if npc . get_guild ( ) == pc . get_guild ( ) and pc . isguildmaster ( ) then say ( gameforge . guild_building_melt . _130_say ) 
+if pc . get_gold ( ) < 3e+06 then 
+say ( gameforge . guild_building_melt . _140_say ) 
+else 
+say ( gameforge . guild_building_melt . _150_say ) 
+local sel = 0 
+local timetable1 = { gameforge . guild_building_melt . _180_say , 
+gameforge . guild_building_melt . _190_say , 
+gameforge . guild_building_melt . _200_say , 
+gameforge . guild_building_melt . _210_say , 
+gameforge . guild_building_melt . _220_say , 
+gameforge . guild_building_melt . _230_say , 
+gameforge . locale . levelup . prev_quest_go , 
+gameforge . guild_building_melt . _170_say } 
+local valuetable1 = { 14043 , 14045 , 14046 , 14047 , 14048 , 14049 , 0 , - 1 } 
+local timetable2 = { gameforge . guild_building_melt . _240_say , 
+gameforge . guild_building_melt . _250_say , 
+gameforge . guild_building_melt . _260_say , 
+gameforge . guild_building_melt . _270_say , 
+gameforge . guild_building_melt . _280_say , 
+gameforge . guild_building_melt . _290_say , 
+gameforge . locale . levelup . prev_quest_go , 
+gameforge . guild_building_melt . _170_say } 
+local valuetable2 = { 14050 , 14051 , 14052 , 14053 , 14054 , 14055 , 0 , - 1 } 
+repeat 
+local s = select_table ( timetable1 ) 
+sel = valuetable1 [ s ] 
+if sel == 0 then 
+local s = select_table ( timetable2 ) 
+sel = valuetable2 [ s ] 
+end 
+until sel ~= 0 
+if sel ~= - 1 then 
+npc_num = sel + 20060 - 14043 
+if npc_num == npc . get_race ( ) then 
+say ( gameforge . guild_building_melt . _160_say ) 
+else 
+pc . changegold ( - 3e+06 ) 
+building . reconstruct ( sel ) 
+end 
+end 
+end 
+ return end 

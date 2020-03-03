@@ -1,0 +1,13 @@
+if pc . get_map_index ( ) == 206 then 
+pc . set_warp_location ( 206 , 3148 , 12098 ) 
+end 
+if pc . get_map_index ( ) == 206 then game . set_event_flag ( ( "dcgamer" ) , game . get_event_flag ( "dcgamer" ) + 1 ) 
+game . set_event_flag ( ( "dc_versuche" ) , game . get_event_flag ( "dc_versuche" ) + 1 ) 
+say_title ( "Catacomba Diavolului" ) 
+say ( "Pentru a trece la nivelul 2 ai nevoie de o" ) 
+say_item ( "Cheie Rubin" , 30311 , "" ) 
+say ( "Dupa ce gasiti cheia va veti duce si o veti pune pe statuie!" ) 
+say ( "" ) 
+say_reward ( "Mult noroc!" ) 
+say ( "" ) 
+ return end 

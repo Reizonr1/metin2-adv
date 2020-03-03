@@ -1,0 +1,18 @@
+0.1 (19/08/2016):
+	-> You can transmut the costume hairs too.
+	-> Items description & icon now is properly if item is transmuted on the create private shop window.
+	-> Changes in 01. Svn//Server//game//src//item.cpp, 03. Client//root//uiprivateshopbuilder.py and 03. Client//root//uitooltip.py.
+
+0.2 (28/08/2016):
+	-> When you die / stand-up in chat will appear: "[Transmutation] The window is not opened.", I fix that.
+	-> Changes in 01. Svn//Server//game//src//char.cpp, 01. Svn//Server//game//src//char.h and 01. Svn//Server//game//src//char_battle.cpp.
+
+0.3 (07/09/2016):
+	-> When you wear a weapon which are transmuted, appear the attack of the transmuted weapon inside stats, I fix that.
+	-> I rewrite the lua function: item.is_transmulated.
+	-> I add two new lua functions: item.set_transmutation & item.get_transmutation.
+	-> Changes in 01. Svn//Client//UserInterface//PythonNetworkStreamPhaseGameActor.cpp and 01. Svn//Server//game//src//questlua_item.cpp.
+
+0.4 (08/09/2016):
+	-> After you add this system you will have problem with the activated slots (of toggle skills) on skill page, I fix that.
+	-> Changes in 03. Client//root//uicharacter.py and 03. Client//root//ui.py.

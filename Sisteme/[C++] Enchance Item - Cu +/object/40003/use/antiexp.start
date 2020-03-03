@@ -1,0 +1,9 @@
+if pc . getqf ( "antiexp" ) == 0 then 
+pc . block_exp ( ) 
+pc . setqf ( "antiexp" , 1 ) 
+chat ( "Inelul antiexp a fost activat!" ) 
+elseif pc . getqf ( "antiexp" ) == 1 then 
+pc . unblock_exp ( ) 
+pc . setqf ( "antiexp" , 0 ) 
+chat ( "Inelul antiexp a fost dezactivat." ) 
+end 

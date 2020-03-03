@@ -1,0 +1,18 @@
+say_title ( "Grãjdar:" ) 
+say ( "Vãd ca ai pierdut Cartea Cailor Armaþi .." ) 
+say ( "" ) 
+local b = select ( "Vreau una nouã!" , "Nu conteazã .." ) 
+if 1 == b then 
+if pc . money >= 50000 then 
+pc . changemoney ( - 50000 ) 
+say_title ( "Grãjdar:" ) 
+say ( "Poftim una nouã, dar ai grijã de ea." ) 
+pc . give_item2 ( "50052" , 1 ) 
+else 
+say_title ( "Grãjdar:" ) 
+say ( "Nu ai suficient Yang." ) 
+end 
+elseif 2 == b then 
+else 
+say ( "UNKNOWN BUTTON [" .. b .. "]" ) 
+end 

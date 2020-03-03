@@ -1,0 +1,2 @@
+if horse . get_level ( ) > 21 then horse . set_level ( 21 ) 
+ return end 

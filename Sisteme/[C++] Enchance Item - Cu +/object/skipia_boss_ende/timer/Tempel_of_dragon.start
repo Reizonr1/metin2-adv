@@ -1,0 +1,4 @@
+kill_all_in_map ( 207 ) 
+game . set_event_flag ( "Grotte_zugang" , 0 ) 
+d . setf ( "grotte_boss" , 1 ) 
+d . exit_all ( ) 
